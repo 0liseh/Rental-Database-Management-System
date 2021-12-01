@@ -1,10 +1,10 @@
 //Other GUIs inherit this class
 import javax.swing.*;                           //package for GUIs
+import java.awt.*;
 
-class GuiTest extends javax.swing.JFrame{
+abstract class GUI extends JFrame{
 
-
-  public static void main(String[] args){
-
+  GUI(){
+    
   }
 }
