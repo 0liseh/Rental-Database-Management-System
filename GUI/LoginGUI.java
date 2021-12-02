@@ -1,11 +1,11 @@
-class LoginGUI{
+class LoginGUI extends GUI{
   private Logout logoutObj;
   private LoginController logoutObj;
 
-  public confirmLogin(){
+  public void confirmLogin(){
 
   }
-  public logout(){
+  public void logout(){
 
   }
 

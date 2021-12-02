@@ -1,4 +1,5 @@
 class Property {
+  
   private static int propertyid;
   private string propertyType;
   private int noOfBed;
@@ -9,6 +10,6 @@ class Property {
   private int landlordID;
 
   Property(){
-    
+
   }
 }

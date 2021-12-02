@@ -1,4 +1,4 @@
-class RegisteredRenter{
+class RegisteredRenter implements User{
 
   private bool notificationsOn;
   private string observerState;
@@ -7,7 +7,7 @@ class RegisteredRenter{
   public update(){
 
   }
-  
+
   RegisteredRenter(){
 
   }
