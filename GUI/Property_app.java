@@ -7,7 +7,7 @@ class Property_app{
 
   private GUI setupGUI;
   
-  public setupWindoes(){
+  public setupWindows(){
 
   }
 
