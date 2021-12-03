@@ -16,6 +16,8 @@ class Property_app{
   }*/
 
   public static void main(String[] args){
+    LoginGUI x = new LoginGUI();
 
+    
   }
 }
