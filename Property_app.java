@@ -3,13 +3,13 @@
   Will call whatever GUI the user needs
 */
 //Property_app.java
-package GUI;
-import Data.*;
-import Controller.*;
+import GUIClasses.*;
+import DataClasses.*;
+import ControllerClasses.*;
 
 class Property_app{
 
-  private GUI setupGUI;
+ // private GUI setupGUI;
   
   /*public setupWindows(){
     

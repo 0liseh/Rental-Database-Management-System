@@ -1,10 +1,12 @@
 //import Controller.loginController;
+package GUIClasses;
+import ControllerClasses.LoginController;
 
-class LoginGUI extends GUI{
+public class LoginGUI extends GUI{
   //private Logout logoutObj;
   private LoginController logoutObj;
 
-  LoginGUI(){
+  public LoginGUI(){
     
   }
 

@@ -1,5 +1,7 @@
+package DataClasses;
+
 class NewProperties{
-  protcted Observer reference;
+  protected Observer reference;
 
   public void register(Observer o){
 

@@ -1,3 +1,5 @@
+package DataClasses;
+
 class Property {
   
   private static int propertyid;

@@ -1,3 +1,5 @@
+package DataClasses;
+
 class RegisteredRenter implements User{
 
   private bool notificationsOn;

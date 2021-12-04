@@ -1,8 +1,10 @@
+package ControllerClasses;
+
 class ManagerController{
 
-  public void setFee(int, int){
+  /*public void setFee(int, int){
 
-  }
+  }*/
 
   public void generateReport(){
 
