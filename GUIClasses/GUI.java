@@ -11,22 +11,27 @@ import java.awt.*;
 abstract class GUI extends JFrame{
   JFrame frame; 
   JPanel panel;
+  private Font normalFont = new Font("Courier", Font.PLAIN, 15);
   
 
   GUI(){
-    frame = new JFrame("Property Manager");
+    frame = new JFrame("Property Application");
     panel = new JPanel();
     panel.setLayout(null);
     frame.setContentPane(panel);
     
     frame.setSize(500, 500);
+    frame.setLocationRelativeTo(null); // Makes window open in middle of screen
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If window is closed, stop the program
     // /frame.setResizable(false);
     
-    //these next two arent working rn
     
-    frame.setLocationRelativeTo(null); // Makes window open in middle of screen
+    
+  
 
     frame.setVisible(true);
+  }
+  public void logout(){
+
   }
 }

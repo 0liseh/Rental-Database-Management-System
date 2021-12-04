@@ -9,7 +9,7 @@ import ControllerClasses.LoginController;
 public class LoginGUI extends GUI{
   //private Logout logoutObj;
   private LoginController logoutObj;
-  private Font normalFont = new Font("Courier", Font.PLAIN, 15);
+  
   private JTextField un = new JTextField();
   private JTextField pw = new JTextField();
 
@@ -65,8 +65,6 @@ public class LoginGUI extends GUI{
   public void confirmLogin(){
 
   }
-  public void logout(){
-
-  }
+  
 
 }
