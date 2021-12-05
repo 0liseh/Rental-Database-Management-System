@@ -1,8 +1,11 @@
-class UnregisteredRenterGUI{
+package GUIClasses;
+import ControllerClasses.UnregisteredRenterController;
+
+public class UnregisteredRenterGUI{
 
   private renterController renter;
 
-  public searchProperties(){
+  /*public searchProperties(){
 
   }
 
@@ -12,6 +15,6 @@ class UnregisteredRenterGUI{
 
   public display(){
 
-  }
+  }*/
 
 }

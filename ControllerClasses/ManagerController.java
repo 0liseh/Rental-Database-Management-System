@@ -1,6 +1,6 @@
 package ControllerClasses;
 
-class ManagerController{
+public class ManagerController{
 
   /*public void setFee(int, int){
 

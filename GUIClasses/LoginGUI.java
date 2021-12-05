@@ -12,11 +12,15 @@ public class LoginGUI extends GUI{
   
   private JTextField un = new JTextField();
   private JTextField pw = new JTextField();
+  JButton login = new JButton("Login");
+  JButton guest = new JButton("Use as Guest");
+  private String type = "yolo";
 
   public LoginGUI(){
-    JButton login = new JButton("Login");
-    JButton guest = new JButton("Use as Guest");
     
+    
+    /*GridLayout L = new GridLayout(0 , 1);
+    panel.setLayout(L);*/
    
     
 
@@ -54,16 +58,53 @@ public class LoginGUI extends GUI{
     login.setFont(normalFont);
     panel.add(login);
 
+    login.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        loginButtonPressed();
+      }
+    });
+
 
     guest.setBounds(40 , 250, 420, 30);
     guest.setBackground(Color.GRAY);
     guest.setForeground(Color.WHITE);
     guest.setFont(normalFont);
+
+    guest.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        geustButtonPressed();
+      }
+    });
+
     panel.add(guest);
+    frame.setVisible(true);
   }
 
   public void confirmLogin(){
 
+  }
+
+  private void geustButtonPressed(){
+    type = "Unregistered Renter";
+  }
+
+  private void loginButtonPressed(){
+    //search database for the type
+    type ="yolo";
+    //if type is un found display error
+    if(true){
+      JOptionPane.showMessageDialog(panel, "Username or Password is Incorrect");
+    }else{
+      //set type to the return value of the database search
+      //type = "";
+    }
+    
+  }
+
+  
+
+  public String gettype(){
+    return type;
   }
   
 

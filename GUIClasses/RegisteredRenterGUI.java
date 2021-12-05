@@ -1,8 +1,11 @@
-class RegisteredRenterGUI extends GUI{
+package GUIClasses;
+import ControllerClasses.RegisteredRenterController;
+
+public class RegisteredRenterGUI extends GUI{
 
   private RegisteredRenterController registered_renter;
 
-  public searchProperties(){
+  /*public searchProperties(){
 
   }
 
@@ -24,5 +27,5 @@ class RegisteredRenterGUI extends GUI{
 
   public display(){
 
-  }
+  }*/
 }

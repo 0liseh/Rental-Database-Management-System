@@ -1,6 +1,6 @@
 package ControllerClasses;
 
-class RegisteredRenterGUI{
+public class RegisteredRenterGUI{
 
   public void getNewProperties(){
 

@@ -1,6 +1,6 @@
 package ControllerClasses;
 
-class RenterController{
+public class RenterController{
 
   public void viewProperties(){}
   public void contactLandlord(String msg){}
