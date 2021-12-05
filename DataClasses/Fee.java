@@ -1,3 +1,5 @@
+package DataClasses;
+
 class Fee{
   private double fee;
 

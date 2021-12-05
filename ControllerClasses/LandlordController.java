@@ -1,3 +1,5 @@
+package ControllerClasses;
+
 class LandlordController{
 
 
@@ -9,13 +11,13 @@ class LandlordController{
 
   }
 
-  public void editProperty(int, string, int , int, bool, string, string, int){
+  /*public void editProperty(int, string, int , int, bool, string, string, int){
 
   }
 
   public void addProperties(String, int , int, bool, string, string, int){
 
-  }
+  }*/
 
   public vector<string> checkMail(){
 
