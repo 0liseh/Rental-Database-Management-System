@@ -138,6 +138,14 @@ public class UnregisteredRenterGUI extends GUI{
     panel.revalidate();
     panel.repaint();
 
+    //need to pass these values to the controller to connect to the database
+    // if they are "--" then it can be any
+    String SelectedSpot = spotBox.getSelectedItem().toString();
+    String bedNum= b.getSelectedItem().toString();
+    String bathNum= b2.getSelectedItem().toString();
+    String furnished = fBox.getSelectedItem().toString();
+    String typeOfPlace = tOP.getSelectedItem().toString();
+    
   }
 
 }

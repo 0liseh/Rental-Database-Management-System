@@ -12,7 +12,7 @@ public class LandlordGUI extends GUI{
   private LandlordController landlordController;
 
   private JButton registerProperty, postProperty, changeStateOfListing, confirm;
-
+  private JComboBox sBox , pBox;
   JLabel header;
   private Vector<String> properties = new Vector<String>(0);
 
@@ -100,7 +100,7 @@ public class LandlordGUI extends GUI{
   }
 
   private void addPropertiesBox(int a, int b){
-    JComboBox pBox = new JComboBox(properties);
+    pBox = new JComboBox(properties);
     pBox.setSelectedIndex(0);
     pBox.setBounds(40, a, 300, b);
     confirm.setBounds(350 , a, 110 , b);
@@ -124,7 +124,7 @@ public class LandlordGUI extends GUI{
     // need to access database and add all properties to the properties vector
     addPropertiesBox(170, 30);
 
-    JComboBox sBox = new JComboBox(statuses);
+    sBox = new JComboBox(statuses);
     sBox.setSelectedIndex(0);
     sBox.setBounds(40, 210, 300, 30);
     panel.add(sBox);
@@ -223,23 +223,36 @@ public class LandlordGUI extends GUI{
     //use controller to send data to database
     
     if(properties.size() > 0){
+      //make changes to property here
+      String forProperty = pBox.getSelectedItem().toString();
       if(properties.get(0).equals("Select property to post")){
         int fee = 5;
         JOptionPane.showConfirmDialog(panel, "Do you agree to pay the fee of $" + fee);
+        backButtonPressed();
+
       }else if(properties.get(0).equals("Select property To change state of")){
         //need to read from box and switch status, and what property was switched
-        String propertyName = "name of property ";
-        String s = "status";
-        JOptionPane.showMessageDialog(panel, "The status of " + propertyName + " has been changed to " + s);
+        String newStatus = sBox.getSelectedItem().toString();
+        
+
+        if(forProperty.equals(properties.get(0))){
+          JOptionPane.showMessageDialog(panel, "Must select a property to change");
+          changeStateOfListingButtonPressed();
+        }else{
+          JOptionPane.showMessageDialog(panel, "The status of " + forProperty + " has been changed to " + newStatus);
+          backButtonPressed();
+        }
+        
 
       }
     }else{
       //need to read from box and switch status, and what property was switched
      
       JOptionPane.showMessageDialog(panel, "The property has be registered! to post it select it under post and confirm");
+      backButtonPressed();
     }
 
-    backButtonPressed();
+    
     
   }
 
