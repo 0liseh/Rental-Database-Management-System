@@ -134,6 +134,9 @@ public class UnregisteredRenterGUI extends GUI{
   }
 
   private void searchButtonPressed(){
+    panel.removeAll();
+    panel.revalidate();
+    panel.repaint();
 
   }
 
