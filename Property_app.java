@@ -40,8 +40,8 @@ class Property_app{
         x.closeWindow();
         break;
       }else if (type == "Unregistered Renter"){
-        loop = "m";
-        mGUI.addElements();
+        loop = "l";
+        lGUI.addElements();
         x.closeWindow();
         break;
       }
