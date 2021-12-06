@@ -15,7 +15,7 @@ class Property_app{
     ManagerGUI mGUI = new ManagerGUI();
     LandlordGUI lGUI = new LandlordGUI();
     //RegisteredRenterGUI rrGUI;
-    //UnregisteredRenterGUI urrGUI;
+    UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
     LoginGUI x = new LoginGUI();
    
     
@@ -40,8 +40,8 @@ class Property_app{
         x.closeWindow();
         break;
       }else if (type == "Unregistered Renter"){
-        loop = "l";
-        lGUI.addElements();
+        loop = "urr";
+        urrGUI.addElements();
         x.closeWindow();
         break;
       }
@@ -79,7 +79,19 @@ class Property_app{
     }else if(loop == "rr"){
 
     }else if(loop == "urr"){
-
+      String status = urrGUI.getLoggingOut();
+      while(status == "NO"){
+        status = urrGUI.getLoggingOut();
+        if(status == "YES"){
+          urrGUI.closeWindow();
+          x = new LoginGUI();
+          break;
+        }
+         
+         System.out.print("");
+      }
+      
+      urrGUI = new UnregisteredRenterGUI();
     }
 
 

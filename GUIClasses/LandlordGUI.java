@@ -162,21 +162,6 @@ public class LandlordGUI extends GUI{
     panel.add(typeOfProperty);
     typeOfProperty.setBounds(40, 50 , 480, 40);
 
-    Vector<String> types = new Vector<String>(5); 
-    types.add("Apartment");
-    types.add("Attached House");
-    types.add("Detached House");
-    types.add("Townhouse");
-    types.add("Condo");
-
-
-    Vector<Integer> nums = new Vector<Integer>(10);
-
-    for(int i = 0; i <  11; i++){
-      nums.add(i);
-    }
-
-    JComboBox tOP = new JComboBox(types);
     tOP.setBounds(40 , 90, 420, 30);
     panel.add(tOP);
     
@@ -187,7 +172,7 @@ public class LandlordGUI extends GUI{
     panel.add(bed);
     bed.setBounds(40, 120 , 480, 40);
 
-    JComboBox b = new JComboBox(nums);
+    
     b.setBounds(40 , 160, 420, 30);
     panel.add(b);
     
@@ -197,7 +182,7 @@ public class LandlordGUI extends GUI{
     panel.add(bath);
     bath.setBounds(40, 190 , 480, 40);
 
-    JComboBox b2 = new JComboBox(nums);
+   
     b2.setBounds(40 , 230, 420, 30);
     panel.add(b2);
 
@@ -207,10 +192,7 @@ public class LandlordGUI extends GUI{
     panel.add(f);
     f.setBounds(40, 270 , 480, 40);
 
-    Vector<String> furn = new Vector<String>(2);
-    furn.add("furnished");
-    furn.add("unfurnished");
-    JComboBox fBox = new JComboBox(furn);
+
     fBox.setSelectedIndex(0);
     fBox.setBounds(40, 310, 420, 30);
     panel.add(fBox);
@@ -221,12 +203,7 @@ public class LandlordGUI extends GUI{
     panel.add(a);
     a.setBounds(40, 340 , 480, 40);
     
-    Vector<String> spot = new Vector<String>(4);
-    spot.add("SW");
-    spot.add("NW");
-    spot.add("SE");
-    spot.add("NE");
-    JComboBox spotBox = new JComboBox(spot);
+
     spotBox.setSelectedIndex(0);
     spotBox.setBounds(40, 380, 420, 30);
     panel.add(spotBox);

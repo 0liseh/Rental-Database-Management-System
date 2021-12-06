@@ -18,6 +18,11 @@ abstract class GUI extends JFrame{
   JButton logout = new JButton("Logout");
   JButton back = new JButton("Back");
   String loggingOut = "NO";
+  protected JComboBox b , b2, tOP, fBox, spotBox; 
+  Vector<String> furn = new Vector<String>(2);
+  Vector<String> spot = new Vector<String>(4);
+  Vector<String> nums = new Vector<String>(11);
+  Vector<String> types = new Vector<String>(5); 
 
   protected Font normalFont = new Font("Courier", Font.PLAIN, 15);
   
@@ -59,7 +64,31 @@ abstract class GUI extends JFrame{
         logout();
       }
     });
-    
+    types.add("--");
+    types.add("Apartment");
+    types.add("Attached House");
+    types.add("Detached House");
+    types.add("Townhouse");
+    types.add("Condo");
+
+    nums.add("--");
+    for(Integer i = 0; i <  11; i++){
+      nums.add(i.toString());
+    }
+    furn.add("--");
+    furn.add("furnished");
+    furn.add("unfurnished");
+    spot.add("--");
+    spot.add("SW");
+    spot.add("NW");
+    spot.add("SE");
+    spot.add("NE");
+
+    tOP = new JComboBox(types);
+    b = new JComboBox(nums);
+    b2 = new JComboBox(nums);
+    fBox = new JComboBox(furn);
+    spotBox = new JComboBox(spot);
   }
   public void logout(){
     loggingOut = "YES";
