@@ -162,9 +162,22 @@ public class LandlordGUI extends GUI{
     panel.add(typeOfProperty);
     typeOfProperty.setBounds(40, 50 , 480, 40);
 
-    JTextField tOP = new JTextField("e.g apartment");
+    Vector<String> types = new Vector<String>(5); 
+    types.add("Apartment");
+    types.add("Attached House");
+    types.add("Detached House");
+    types.add("Townhouse");
+    types.add("Condo");
+
+
+    Vector<Integer> nums = new Vector<Integer>(10);
+
+    for(int i = 0; i <  11; i++){
+      nums.add(i);
+    }
+
+    JComboBox tOP = new JComboBox(types);
     tOP.setBounds(40 , 90, 420, 30);
-    tOP.setFont(normalFont);
     panel.add(tOP);
     
 
@@ -174,9 +187,8 @@ public class LandlordGUI extends GUI{
     panel.add(bed);
     bed.setBounds(40, 120 , 480, 40);
 
-    JTextField b = new JTextField("e.g 3");
+    JComboBox b = new JComboBox(nums);
     b.setBounds(40 , 160, 420, 30);
-    b.setFont(normalFont);
     panel.add(b);
     
     JLabel bath = new JLabel("Number of Bathrooms:");
@@ -185,9 +197,8 @@ public class LandlordGUI extends GUI{
     panel.add(bath);
     bath.setBounds(40, 190 , 480, 40);
 
-    JTextField b2 = new JTextField("e.g 3");
+    JComboBox b2 = new JComboBox(nums);
     b2.setBounds(40 , 230, 420, 30);
-    b2.setFont(normalFont);
     panel.add(b2);
 
     JLabel f = new JLabel("Furnished or Unfurnished");
@@ -234,15 +245,24 @@ public class LandlordGUI extends GUI{
     
     //use controller to send data to database
     
-    if(properties.get(0).equals("Select property to post")){
-      int fee = 5;
-      JOptionPane.showConfirmDialog(panel, "Do you agree to pay the fee of $" + fee);
+    if(properties.size() > 0){
+      if(properties.get(0).equals("Select property to post")){
+        int fee = 5;
+        JOptionPane.showConfirmDialog(panel, "Do you agree to pay the fee of $" + fee);
+      }else if(properties.get(0).equals("Select property To change state of")){
+        //need to read from box and switch status, and what property was switched
+        String propertyName = "name of property ";
+        String s = "status";
+        JOptionPane.showMessageDialog(panel, "The status of " + propertyName + " has been changed to " + s);
+
+      }
     }else{
       //need to read from box and switch status, and what property was switched
-      String propertyName = "name of property ";
-      String s = "status";
-      JOptionPane.showMessageDialog(panel, "The status of " + propertyName + " has been changed to " + s);
+     
+      JOptionPane.showMessageDialog(panel, "The property has be registered! to post it select it under post and confirm");
     }
+
+    backButtonPressed();
     
   }
 
