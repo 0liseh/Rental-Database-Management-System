@@ -9,19 +9,16 @@ import ControllerClasses.*;
 
 class Property_app{
 
- 
-
+  //Property app calls loginGUI first
   public static void main(String[] args){
     ManagerGUI mGUI = new ManagerGUI();
     LandlordGUI lGUI = new LandlordGUI();
     //RegisteredRenterGUI rrGUI;
     UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
     LoginGUI x = new LoginGUI();
-   
-    
-   while(true){
 
-   
+
+   while(true){
     String type = x.gettype();
     String loop = "";
     while(type == "yolo"){
@@ -56,10 +53,10 @@ class Property_app{
           x = new LoginGUI();
           break;
         }
-         
+
          System.out.print("");
       }
-      
+
       mGUI = new ManagerGUI();
     }else if(loop == "l"){
       String status = lGUI.getLoggingOut();
@@ -70,10 +67,10 @@ class Property_app{
           x = new LoginGUI();
           break;
         }
-         
+
          System.out.print("");
       }
-      
+
       lGUI = new LandlordGUI();
 
     }else if(loop == "rr"){
@@ -87,10 +84,10 @@ class Property_app{
           x = new LoginGUI();
           break;
         }
-         
+
          System.out.print("");
       }
-      
+
       urrGUI = new UnregisteredRenterGUI();
     }
 
@@ -98,9 +95,9 @@ class Property_app{
 
   }
 
-    
-    
-    
-    
+
+
+
+
   }
 }
