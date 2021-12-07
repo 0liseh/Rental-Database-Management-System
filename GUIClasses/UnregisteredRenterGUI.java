@@ -104,6 +104,7 @@ public class UnregisteredRenterGUI extends GUI{
 
   }
 
+  //Is called in Property app, and removes all the previous buttons and text fields while adding the new ones for an unregistered guest
   public void addElements(){
     panel.removeAll();
     panel.revalidate();
