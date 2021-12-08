@@ -7,13 +7,16 @@ import java.lang.*;
 import java.io.*;
 
 
+
 public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
     private JPanel newProps; // propListPanel instead of view all
     
     public RegisteredRenterGUI(){
+        
         mainFrame.setTitle("Renter window");
-
+        
+        
         newProps = new JPanel();
         addToNewProps();
         
@@ -27,4 +30,6 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         newProps.add(header);
         tp.add("Recently added" , newProps);
     }
+
+    
 }

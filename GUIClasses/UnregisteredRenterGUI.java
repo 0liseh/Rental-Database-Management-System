@@ -5,7 +5,8 @@ import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
+import DataClasses.Property;
+import ControllerClasses.DatabaseController;
 
 
 public class UnregisteredRenterGUI extends GUI {
@@ -15,6 +16,9 @@ public class UnregisteredRenterGUI extends GUI {
     protected JTabbedPane tp;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private JLabel typeOfProperty, bed , bath , f , a;
+    private Vector<Property> properties = new Vector<Property>();
+    private DatabaseController dbController;
+
 
     public UnregisteredRenterGUI(){
 
@@ -23,7 +27,9 @@ public class UnregisteredRenterGUI extends GUI {
         mainFrame.add(controlPanel);
         controlPanel.setLayout(null);
         //needs to use controller to get a list of properties from the database and populat properties[]
-
+        dbController = new DatabaseController();
+        properties = dbController.getProperties();
+        displayProp();
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         tp = new JTabbedPane();
         
@@ -34,6 +40,13 @@ public class UnregisteredRenterGUI extends GUI {
         setButtons();
         addObjects();
     }   
+    private void displayProp(){
+        System.out.println("display property id");
+        for(int i = 0; i < properties.size(); i++){
+            Property temp = properties.get(i);
+            System.out.println(temp.getPropertyid());
+        }
+    }
 
     private void addObjects(){
         

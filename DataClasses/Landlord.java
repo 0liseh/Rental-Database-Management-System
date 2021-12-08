@@ -1,6 +1,6 @@
 package DataClasses;
 
-class Landlord implements User{
+public class Landlord extends User{
   private Property[] properties;
   private Mail[] mails;
 }

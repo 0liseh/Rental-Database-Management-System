@@ -1,10 +1,10 @@
 package DataClasses;
 
 abstract class User{
-  private string name;
+  private String name;
   private int id;
-  private string email;
-  private string phoneNumber;
-  private string password;
+  private String email;
+  private String phoneNumber;
+  private String password;
 
 }

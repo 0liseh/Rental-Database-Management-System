@@ -1,4 +1,6 @@
-import DataClasses.Property;
+package ControllerClasses;
+
+import DataClasses.*;
 
 import java.sql.*;
 import java.sql.Connection;
@@ -11,6 +13,8 @@ import java.lang.*;
 public class DatabaseController{
   
 	private Vector<Property> properties = new Vector<Property>();
+	private Vector<Landlord> landlords = new Vector<Landlord>();
+	
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
@@ -53,7 +57,7 @@ public class DatabaseController{
 	public void addProperty() {}
 	public void removeProperty() {}
 	
-	public void getProperties() {
+	public Vector<Property> getProperties(){
 		try {
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			stmt = mysql_con.createStatement();  
@@ -73,9 +77,49 @@ public class DatabaseController{
 				temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
 				properties.add(temp);
 			}
+			
 		}
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
+		return properties;
+	}
+
+	public Vector<Property> getMyProperties(int lID){
+		try {
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("select * from property");  
+			
+			while(rs.next()) {
+
+				if(lID == rs.getInt("landlordID")){
+					Property temp;
+					int propID = rs.getInt("propertyId");
+					String propType = rs.getString("propertyType");
+					int numOfBed = rs.getInt("numberOfBed");
+					int numOfBath = rs.getInt("numberOfBath");
+					boolean furn = rs.getBoolean("furnished");
+					String area = rs.getString("area");
+					String status = rs.getString("status1");
+					int llID = rs.getInt("landlordID");
+					
+					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+					properties.add(temp);
+				}
+				
+			}
+			
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return properties;
+	}
+
+	public Vector<Landlord> getLandlords(){
+
+
+		return landlords;
 	}
 }

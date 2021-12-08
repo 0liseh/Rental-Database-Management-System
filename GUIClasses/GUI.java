@@ -8,6 +8,7 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
+
 abstract class GUI extends JFrame {
    protected JFrame mainFrame;
    protected JPanel controlPanel , propListPanel;
