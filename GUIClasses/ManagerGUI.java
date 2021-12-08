@@ -168,7 +168,7 @@ public class ManagerGUI extends GUI{
 
         //landlords = dbController.getLandlords();
         //have to call funciton in db controller to get vectro of landlords
-
+        seeLandlords.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel slPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         slPanel.setSize(500, 600);
@@ -198,7 +198,7 @@ public class ManagerGUI extends GUI{
         p.setForeground(Color.BLACK);
         p.setFont(normalFont);
         seeProps.add(p);*/
-
+        seeProps.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         sPanel.setSize(500, 600);
@@ -236,7 +236,7 @@ public class ManagerGUI extends GUI{
         r.setForeground(Color.BLACK);
         r.setFont(normalFont);
         seeRenters.add(r);*/
-
+        seeRenters.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel srPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         srPanel.setSize(500, 600);
