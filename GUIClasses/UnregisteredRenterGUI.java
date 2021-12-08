@@ -47,8 +47,7 @@ public class UnregisteredRenterGUI extends GUI {
 
         for(int i = 0; i < properties.size(); i++){
             String tempStr = "\nProperty ID: " + properties.get(i).getPropertyid() + "\n";
-            prop = Arrays.copyOf(prop, prop.length + 1);
-            prop[prop.length -1 ] = String.valueOf(properties.get(i).getPropertyid());
+            
             tempStr = tempStr + "Type of property: " + properties.get(i).getPropertyType() + "\n";
             tempStr = tempStr + "Number of Bed(s): " + properties.get(i).getNoOfBed() + "\n";
             tempStr = tempStr + "Number of Bath(s): " + properties.get(i).getNoOfBath() + "\n";
