@@ -38,11 +38,35 @@ public class UnregisteredRenterGUI extends GUI {
         addObjects();
     }   
     private void displayProp(){
-        System.out.println("display property id");
+        JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+
+        sPanel.setSize(500, 600);
+        sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
         for(int i = 0; i < properties.size(); i++){
-            Property temp = properties.get(i);
-            System.out.println(temp.getPropertyid());
+            String tempStr = "\nProperty ID: " + properties.get(i).getPropertyid() + "\n";
+            tempStr = tempStr + "Type of property: " + properties.get(i).getPropertyType() + "\n";
+            tempStr = tempStr + "Number of Bed(s): " + properties.get(i).getNoOfBed() + "\n";
+            tempStr = tempStr + "Number of Bath(s): " + properties.get(i).getNoOfBath() + "\n";
+            if(properties.get(i).isFurnished()){
+                tempStr = tempStr + "Furnished\n";
+            }else{
+                tempStr = tempStr + "Unfurnished\n";
+            }
+            tempStr = tempStr + "Location: " + properties.get(i).getArea() + "\n";
+            tempStr = tempStr + "Landlord ID: " + properties.get(i).getLandlordID() + "\n";
+
+
+
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            sPanel.add(temp);
+
         }
+
+        JScrollPane scrollPane = new JScrollPane(sPanel);    
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        propListPanel.add(scrollPane);
     }
 
     private void addObjects(){
