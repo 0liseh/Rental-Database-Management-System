@@ -161,10 +161,10 @@ public class ManagerGUI extends GUI{
 
     private void addToSeeLandlords(){
         
-        JLabel ll = new JLabel("Landlords");
+        /*JLabel ll = new JLabel("Landlords");
         ll.setForeground(Color.BLACK);
         ll.setFont(normalFont);
-        seeLandlords.add(ll);
+        seeLandlords.add(ll);*/
 
         //landlords = dbController.getLandlords();
         //have to call funciton in db controller to get vectro of landlords
@@ -194,10 +194,10 @@ public class ManagerGUI extends GUI{
     }
     private void addToSeeProperties(){
         
-        JLabel p = new JLabel("Properties");
+        /*JLabel p = new JLabel("Properties");
         p.setForeground(Color.BLACK);
         p.setFont(normalFont);
-        seeProps.add(p);
+        seeProps.add(p);*/
 
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
@@ -232,10 +232,10 @@ public class ManagerGUI extends GUI{
     }
     private void addToSeeRenters(){
         
-        JLabel r = new JLabel("Renters");
+       /* JLabel r = new JLabel("Renters");
         r.setForeground(Color.BLACK);
         r.setFont(normalFont);
-        seeRenters.add(r);
+        seeRenters.add(r);*/
 
         JPanel srPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
