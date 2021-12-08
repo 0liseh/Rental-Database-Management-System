@@ -13,6 +13,9 @@ public class ManagerGUI extends GUI{
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private JTextField changeFeeTo;
     private JPanel changeOfStatus, seeProps, seeLandlords, seeRenters , setFee, getPSummary;
+    private Vector<Property> properties = new Vector<Property>();
+    private Vector<Landlord> landlords = new Vector<Landlord>();
+    private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
     public ManagerGUI(){
         mainFrame = new JFrame("Manager window");
         mainFrame.setSize(500, 600);
@@ -157,11 +160,31 @@ public class ManagerGUI extends GUI{
     }
 
     private void addToSeeLandlords(){
-        JPanel slPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        
         JLabel ll = new JLabel("Landlords");
         ll.setForeground(Color.BLACK);
         ll.setFont(normalFont);
         seeLandlords.add(ll);
+
+        //landlords = dbController.getLandlords();
+        //have to call funciton in db controller to get vectro of landlords
+
+        JPanel slPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+
+        slPanel.setSize(500, 600);
+        slPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
+        for(int i = 0; i < landlords.size(); i++){
+            String tempStr = "\nLandlord ID: " + landlords.get(i).getId() + "\n";
+            tempStr = tempStr + "Name: " + landlords.get(i).getName() + "\n";
+            tempStr = tempStr + "Email: " + landlords.get(i).getEmail() + "\n";
+            tempStr = tempStr + "Phone Number: " + landlords.get(i).getPhoneNumber() + "\n";
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            slPanel.add(temp);
+
+        }
+
 
 
         JScrollPane scrollPane = new JScrollPane(slPanel);    
@@ -170,24 +193,65 @@ public class ManagerGUI extends GUI{
 
     }
     private void addToSeeProperties(){
-        JPanel spPanel = new JPanel(new GridLayout(0, 1, 0, 20)); // use propListPanel instead
+        
         JLabel p = new JLabel("Properties");
         p.setForeground(Color.BLACK);
         p.setFont(normalFont);
         seeProps.add(p);
 
+        JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
-        JScrollPane scrollPane = new JScrollPane(spPanel);    
+        sPanel.setSize(500, 600);
+        sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
+        for(int i = 0; i < properties.size(); i++){
+            String tempStr = "\nProperty ID: " + properties.get(i).getPropertyid() + "\n";
+            tempStr = tempStr + "Type of property: " + properties.get(i).getPropertyType() + "\n";
+            tempStr = tempStr + "Number of Bed(s): " + properties.get(i).getNoOfBed() + "\n";
+            tempStr = tempStr + "Number of Bath(s): " + properties.get(i).getNoOfBath() + "\n";
+            if(properties.get(i).isFurnished()){
+                tempStr = tempStr + "Furnished\n";
+            }else{
+                tempStr = tempStr + "Unfurnished\n";
+            }
+            tempStr = tempStr + "Location: " + properties.get(i).getArea() + "\n";
+            tempStr = tempStr + "Landlord ID: " + properties.get(i).getLandlordID() + "\n";
+
+
+
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            sPanel.add(temp);
+
+        }
+
+        JScrollPane scrollPane = new JScrollPane(sPanel);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         seeProps.add(scrollPane);
 
     }
     private void addToSeeRenters(){
-        JPanel srPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        
         JLabel r = new JLabel("Renters");
         r.setForeground(Color.BLACK);
         r.setFont(normalFont);
         seeRenters.add(r);
+
+        JPanel srPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+
+        srPanel.setSize(500, 600);
+        srPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
+        for(int i = 0; i < renters.size(); i++){
+            String tempStr = "\nRenter ID: " + renters.get(i).getId() + "\n";
+            tempStr = tempStr + "Name: " + renters.get(i).getName() + "\n";
+            tempStr = tempStr + "Email: " + renters.get(i).getEmail() + "\n";
+            tempStr = tempStr + "Phone Number: " + renters.get(i).getPhoneNumber() + "\n";
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            srPanel.add(temp);
+
+        }
 
 
         JScrollPane scrollPane = new JScrollPane(srPanel);    

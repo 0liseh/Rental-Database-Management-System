@@ -14,6 +14,7 @@ public class UnregisteredRenterGUI extends GUI {
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private JLabel typeOfProperty, bed , bath , f , a;
     private Vector<Property> properties = new Vector<Property>();
+    private Vector<Property> searchedProperties = new Vector<Property>();
     private DatabaseController dbController;
 
 
@@ -169,5 +170,39 @@ public class UnregisteredRenterGUI extends GUI {
         header.setFont(normalFont);
         searchResults.add(header);
         tp.add("Search Results" , searchResults);
+
+        //searchedProperties = dbController.getSearchedProperties();
+        //need to call above function to get results that fit search criteria
+
+        
+        JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+
+        sPanel.setSize(500, 600);
+        sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
+        for(int i = 0; i < searchedProperties.size(); i++){
+            String tempStr = "\nProperty ID: " + searchedProperties.get(i).getPropertyid() + "\n";
+            tempStr = tempStr + "Type of property: " + searchedProperties.get(i).getPropertyType() + "\n";
+            tempStr = tempStr + "Number of Bed(s): " + searchedProperties.get(i).getNoOfBed() + "\n";
+            tempStr = tempStr + "Number of Bath(s): " + searchedProperties.get(i).getNoOfBath() + "\n";
+            if(searchedProperties.get(i).isFurnished()){
+                tempStr = tempStr + "Furnished\n";
+            }else{
+                tempStr = tempStr + "Unfurnished\n";
+            }
+            tempStr = tempStr + "Location: " + searchedProperties.get(i).getArea() + "\n";
+            tempStr = tempStr + "Landlord ID: " + searchedProperties.get(i).getLandlordID() + "\n";
+
+
+
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            sPanel.add(temp);
+
+        }
+
+        JScrollPane scrollPane = new JScrollPane(sPanel);    
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        searchResults.add(scrollPane);
     }
 }
