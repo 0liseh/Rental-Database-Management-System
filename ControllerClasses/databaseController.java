@@ -1,3 +1,5 @@
+package ControllerClasses;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.Driver;
@@ -5,7 +7,7 @@ import java.sql.DriverManager; //uses static method getConnection(database URL, 
 import java.sql.SQLException;
 import java.util.*;
 
-class DatabaseController{
+public class DatabaseController{
   
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
