@@ -1,5 +1,5 @@
 package DataClasses;
 
 class Mail{
-  private string mail;
+  private String mail;
 }
