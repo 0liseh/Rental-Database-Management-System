@@ -1,7 +1,6 @@
 import java.util.*;
 import java.sql.*;
 
-
 public class DataModel {
 	private final String DBURL;
 	private final String USERNAME;

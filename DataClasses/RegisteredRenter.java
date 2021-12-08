@@ -1,5 +1,3 @@
-package DataClasses;
-
 class RegisteredRenter extends User{
 
   private boolean notificationsOn;

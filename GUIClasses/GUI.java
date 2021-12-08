@@ -34,10 +34,7 @@ abstract class GUI extends JFrame {
        propListPanel = new JPanel();
        
 
-       JLabel propListHeader = new JLabel("Properties");
-       propListHeader.setForeground(Color.BLACK);
-       propListHeader.setFont(normalFont);
-       propListPanel.add(propListHeader);
+   
        
        setupButtons();
        comboBoxSetup();
