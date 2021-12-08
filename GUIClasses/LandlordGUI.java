@@ -1,286 +1,238 @@
 package GUIClasses;
-import ControllerClasses.LandlordController;
-import javax.swing.*;                           //package for GUIs
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-public class LandlordGUI extends GUI{
+//import ControllerClasses.LandlordController;
+
+public class LandlordGUI extends GUI {
+    
+    private JButton confirmStatusChange, confirmRegister , confirmRegAndPost, confirmPost;
+    private JPanel reg , post , changeOfStatus; // can add prop list panel so landlords can view all their properties
+    private JTabbedPane tp;
+    
+    //private Property properties[];
+    private String prop[] = {"-------"}; // use for properties box populate with properties.name
+    
+    public LandlordGUI(){
+
+        mainFrame = new JFrame("Landlord window");
+        mainFrame.setSize(500, 600);
+        mainFrame.add(controlPanel);
+        controlPanel.setLayout(null);
+        //needs to use controller to get a list of properties from the database and populat properties[]
+
+        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+        tp = new JTabbedPane();
+        
+        reg = new JPanel(new GridLayout(0, 1, 0, 20));
+        post = new JPanel(new GridLayout(0, 1, 0, 20));
+        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
+
+        
+        initializeComboBoxes();
+        setButtons();
+        addObjects();
 
-  private LandlordController landlordController;
-
-  private JButton registerProperty, postProperty, changeStateOfListing, confirm;
-  private JComboBox sBox , pBox;
-  JLabel header;
-  private Vector<String> properties = new Vector<String>(0);
-
-  public LandlordGUI(){
-    //changeFee  = new JButton("Update Fee");
-    confirm = new JButton("Confirm");
-    registerProperty  = new JButton("Register Property");
-    postProperty = new JButton("Post Property");
-    changeStateOfListing  = new JButton("Change State of Listing");
-
-    header = new JLabel("Select Service", JLabel.CENTER);
-    header.setForeground(Color.BLACK);
-    header.setFont(new Font("Courier", Font.PLAIN, 30));
-    header.setBounds(50, 10 , 400, 40);
-
-
-
-    registerProperty.setBackground(Color.GRAY);
-    registerProperty.setForeground(Color.WHITE);
-    registerProperty.setFont(normalFont);
-
-    registerProperty.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        registerPropertyButtonPressed();
-      }
-    });
-
-
-    postProperty.setBackground(Color.GRAY);
-    postProperty.setForeground(Color.WHITE);
-    postProperty.setFont(normalFont);
-
-    postProperty.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        postPropertyButtonPressed();
-      }
-    });
-
-
-    changeStateOfListing.setBackground(Color.GRAY);
-    changeStateOfListing.setForeground(Color.WHITE);
-    changeStateOfListing.setFont(normalFont);
-
-    changeStateOfListing.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        changeStateOfListingButtonPressed();
-      }
-    });
-
-    confirm.setBackground(Color.GRAY);
-    confirm.setForeground(Color.WHITE);
-    confirm.setFont(normalFont);
-
-    confirm.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        confirmButtonPressed();
-      }
-    });
-
-
-
-  }
-
-  private void initializeBounds(){
-
-    postProperty.setBounds(40 , 90, 420, 30);
-    registerProperty.setBounds(40 , 50, 420, 30);
-    changeStateOfListing.setBounds(40 , 130, 420, 30);
-  }
-
-
-  public void addElements(){
-    panel.removeAll();
-    panel.revalidate();
-    panel.repaint();
-    initializeBounds();
-    panel.add(header);
-    panel.add(postProperty);
-
-    panel.add(registerProperty);
-    panel.add(changeStateOfListing);
-
-    panel.add(logout);
-    frame.setVisible(true);
-  }
-
-  private void addPropertiesBox(int a, int b){
-    pBox = new JComboBox(properties);
-    pBox.setSelectedIndex(0);
-    pBox.setBounds(40, a, 300, b);
-    confirm.setBounds(350 , a, 110 , b);
-    panel.add(confirm);
-    panel.add(pBox);
-  }
-
-  private void changeStateOfListingButtonPressed(){
-    initializeBounds();
-    properties = new Vector<String>(0);
-    Vector<String> statuses = new Vector<String>(4);
-    statuses.add("active");
-    statuses.add("rented");
-    statuses.add("cancelled");
-    statuses.add("suspended");
-
-
-
-    addElements();
-    properties.add("Select property To change state of");
-    // need to access database and add all properties to the properties vector
-    addPropertiesBox(170, 30);
-
-    sBox = new JComboBox(statuses);
-    sBox.setSelectedIndex(0);
-    sBox.setBounds(40, 210, 300, 30);
-    panel.add(sBox);
-
-  }
-
-  private void postPropertyButtonPressed(){
-    properties = new Vector<String>(0);
-
-
-    addElements();
-    changeStateOfListing.setBounds(40 , 170, 420, 30);
-    properties.add("Select property to post");
-    // need to access database and add all properties to the properties vector
-    addPropertiesBox(130, 30);
-
-  }
-
-  private void registerPropertyButtonPressed(){
-    panel.removeAll();
-    panel.revalidate();
-    panel.repaint();
-
-    panel.add(back);
-    panel.add(logout);
-    header = new JLabel("Register Property", JLabel.CENTER);
-    header.setForeground(Color.BLACK);
-    header.setFont(new Font("Courier", Font.PLAIN, 30));
-    header.setBounds(50, 10 , 400, 40);
-    panel.add(header);
-
-    JLabel typeOfProperty = new JLabel("Type of property:");
-    typeOfProperty.setForeground(Color.BLACK);
-    typeOfProperty.setFont(normalFont);
-    panel.add(typeOfProperty);
-    typeOfProperty.setBounds(40, 50 , 480, 40);
-
-    tOP.setBounds(40 , 90, 420, 30);
-    panel.add(tOP);
-
-
-    JLabel bed= new JLabel("Number of Bedrooms:");
-    bed.setForeground(Color.BLACK);
-    bed.setFont(normalFont);
-    panel.add(bed);
-    bed.setBounds(40, 120 , 480, 40);
-
-
-    b.setBounds(40 , 160, 420, 30);
-    panel.add(b);
-
-    JLabel bath = new JLabel("Number of Bathrooms:");
-    bath.setForeground(Color.BLACK);
-    bath.setFont(normalFont);
-    panel.add(bath);
-    bath.setBounds(40, 190 , 480, 40);
-
-
-    b2.setBounds(40 , 230, 420, 30);
-    panel.add(b2);
-
-    JLabel f = new JLabel("Furnished or Unfurnished");
-    f.setForeground(Color.BLACK);
-    f.setFont(normalFont);
-    panel.add(f);
-    f.setBounds(40, 270 , 480, 40);
-
-
-    fBox.setSelectedIndex(0);
-    fBox.setBounds(40, 310, 420, 30);
-    panel.add(fBox);
-
-    JLabel a = new JLabel("Area of City");
-    a.setForeground(Color.BLACK);
-    a.setFont(normalFont);
-    panel.add(a);
-    a.setBounds(40, 340 , 480, 40);
-
-
-    spotBox.setSelectedIndex(0);
-    spotBox.setBounds(40, 380, 420, 30);
-    panel.add(spotBox);
-
-    confirm.setBounds(40, 420, 100, 30);
-    panel.add(confirm);
-
-  }
-
-  @Override
-  public void backButtonPressed(){
-    addElements();
-  }
-
-  private void confirmButtonPressed(){
-
-    //use controller to send data to database
-
-    if(properties.size() > 0){
-      //make changes to property here
-      String forProperty = pBox.getSelectedItem().toString();
-      if(properties.get(0).equals("Select property to post")){
-        int fee = 5;
-        JOptionPane.showConfirmDialog(panel, "Do you agree to pay the fee of $" + fee);
-        backButtonPressed();
-
-      }else if(properties.get(0).equals("Select property To change state of")){
-        //need to read from box and switch status, and what property was switched
-        String newStatus = sBox.getSelectedItem().toString();
-
-
-        if(forProperty.equals(properties.get(0))){
-          JOptionPane.showMessageDialog(panel, "Must select a property to change");
-          changeStateOfListingButtonPressed();
-        }else{
-          JOptionPane.showMessageDialog(panel, "The status of " + forProperty + " has been changed to " + newStatus);
-          backButtonPressed();
-        }
-
-
-      }
-    }else{
-      //need to read from box and switch status, and what property was switched
-
-      JOptionPane.showMessageDialog(panel, "The property has be registered! to post it select it under post and confirm");
-      backButtonPressed();
     }
 
+    public void addObjects(){
+        controlPanel.removeAll();
+        controlPanel.revalidate();
+        controlPanel.repaint();
+
+        addToReg();
+        addToPost();
+        addToChangeOfStatus();
+        addListeners();
+
+        tp.add("Register new Property!", reg);
+        tp.add("Post Property!", post);
+        tp.add("Change Status of Property", changeOfStatus);
+        mainFrame.add(tp);
+        
+        mainFrame.setVisible(true);
+        
+
+    }
+
+    private void addListeners(){
+
+        confirmPost.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                confirmPostButtonPressed();
+            }
+        });
+
+        confirmRegister.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                confirmRegisterButtonPressed();
+            }
+        });
+
+        confirmStatusChange.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                confirmStatusChangeButtonPressed();
+            }
+        });
+
+        confirmRegAndPost.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                confirmRegAndPostButtonPressed();
+            }
+        });
+    }
+
+    private void initializeComboBoxes(){
+        propertiesBox = new JComboBox(prop);
+
+    }
+
+    private void setButtons(){
+        confirmStatusChange = new JButton("Confirm Status Change");
+        confirmRegister = new JButton("Register");
+        confirmPost = new JButton("Post");
+        confirmRegAndPost = new JButton("Register and Post");
+
+        confirmStatusChange.setBackground(Color.WHITE);
+        confirmStatusChange.setForeground(Color.GRAY);
+        confirmStatusChange.setFont(normalFont);
+
+        confirmRegister.setBackground(Color.WHITE);
+        confirmRegister.setForeground(Color.GRAY);
+        confirmRegister.setFont(normalFont);
+        
+        confirmPost.setBackground(Color.WHITE);
+        confirmPost.setForeground(Color.GRAY);
+        confirmPost.setFont(normalFont);
+
+        confirmRegAndPost.setBackground(Color.WHITE);
+        confirmRegAndPost.setForeground(Color.GRAY);
+        confirmRegAndPost.setFont(normalFont);
 
 
-  }
+    }
 
-  /*public payFee(){
+    
 
-  }
+    private void confirmPostButtonPressed(){
+        String propSelected = propertiesBox.getSelectedItem().toString();
+        System.out.println(propSelected);
+        //Make them pay a fee
+    }
 
-  public updateProperty(){
+    private void confirmStatusChangeButtonPressed(){
+        String status = (String)statusBox.getSelectedItem();
+        System.out.println(status);
 
-  }
+        String propSelected = propertiesBox.getSelectedItem().toString();
+        System.out.println(propSelected);
+        //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
+        //should send status and property to the controller so it can update the database
+    }
 
-  public changePropertyStatus(){
+    private void confirmRegisterButtonPressed(){
+        String tOfProp = typeOfPropBox.getSelectedItem().toString();
+        String numB = numOfBedsBox.getSelectedItem().toString();
+        String numB2 = numOfBathsBox.getSelectedItem().toString();
+        String isFurn = furnishedBox.getSelectedItem().toString();
+        String area  = locationBox.getSelectedItem().toString();
+        //sedn these values to database to register them
+        System.out.println(tOfProp);
+        System.out.println(numB);
+        System.out.println(numB2);
+        System.out.println(isFurn);
+        System.out.println(area);
 
-  }
+    }
 
-  public registerProperty(){
+    private void confirmRegAndPostButtonPressed(){
+        confirmRegisterButtonPressed();
+        //String tOfProp = typeOfPropBox.getSelectedItem().toString();
+       // String numB = numOfBedsBox.getSelectedItem().toString();
+        //String numB2 = numOfBathsBox.getSelectedItem().toString();
+        //String isFurn = furnishedBox.getSelectedItem().toString();
+        //String area  = locationBox.getSelectedItem().toString();
+        
+        //once sent to database find name of property and change status to active
+        //Also must show option to pay for posting if they want to cancel go back to jsut register
+    }
 
-  }
+    private void addToReg(){
 
-  public listProperty(){
+        reg.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
 
-  }
+        JLabel typeOfProperty = new JLabel("Type of Property");
+        typeOfProperty.setForeground(Color.BLACK);
+        typeOfProperty.setFont(normalFont);
+        reg.add(typeOfProperty);
+        reg.add(typeOfPropBox);
 
-  public display(){
+        JLabel bed= new JLabel("Number of Bedrooms:");
+        bed.setForeground(Color.BLACK);
+        bed.setFont(normalFont);
+        reg.add(bed);
+        reg.add(numOfBedsBox);
 
-  }
+        JLabel bath = new JLabel("Number of Bathrooms:");
+        bath.setForeground(Color.BLACK);
+        bath.setFont(normalFont);
+        reg.add(bath);
+        reg.add(numOfBathsBox);
 
-  public checkMail(){
+        JLabel f = new JLabel("Furnished or Unfurnished?");
+        f.setForeground(Color.BLACK);
+        f.setFont(normalFont);
+        reg.add(f);
+        reg.add(furnishedBox);
 
-  }*/
+        JLabel a = new JLabel("Area of City");
+        a.setForeground(Color.BLACK);
+        a.setFont(normalFont);
+        reg.add(a);
+        reg.add(locationBox);
+
+        reg.add(confirmRegister);
+        reg.add(confirmRegAndPost);
+
+        
+
+    }
+
+    private void addToPost(){
+        post.setBorder(BorderFactory.createEmptyBorder(100, 40, 300, 40));
+        JLabel whatProp = new JLabel("Select Property to Post" , JLabel.CENTER);
+
+        whatProp.setForeground(Color.BLACK);
+        whatProp.setFont(normalFont);
+        post.add(whatProp);
+        
+        post.add(propertiesBox); // idk why it doesnt show up
+
+        post.add(confirmPost);
+        
+
+    }
+
+    private void addToChangeOfStatus(){
+        changeOfStatus.setBorder(BorderFactory.createEmptyBorder(115, 40, 200, 40));
+
+        JLabel whatProp = new JLabel("Select Property to Change Status of");
+        whatProp.setForeground(Color.BLACK);
+        whatProp.setFont(normalFont);
+        changeOfStatus.add(whatProp);
+
+        changeOfStatus.add(propertiesBox);
+
+        JLabel whatState = new JLabel("Select Status to Change to");
+        whatState.setForeground(Color.BLACK);
+        whatState.setFont(normalFont);
+        changeOfStatus.add(whatState);
+        changeOfStatus.add(statusBox);
+
+        changeOfStatus.add(confirmStatusChange);
+    }
 }

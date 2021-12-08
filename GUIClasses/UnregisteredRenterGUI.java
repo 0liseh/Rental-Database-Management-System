@@ -1,152 +1,139 @@
 package GUIClasses;
-import javax.swing.*;                           //package for GUIs
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-//import ControllerClasses.UnregisteredRenterController;
-
-public class UnregisteredRenterGUI extends GUI{
-
-  //private renterController renter;
-  private JButton search, backToLogin;
-  private JLabel header;
-  private JLabel typeOfProperty, bed , bath , f , a;
 
 
-  public UnregisteredRenterGUI(){
-    header = new JLabel("Select search criteria", JLabel.CENTER);
-    header.setForeground(Color.BLACK);
-    header.setFont(new Font("Courier", Font.PLAIN, 20));
-    header.setBounds(50, 10 , 400, 40);
+public class UnregisteredRenterGUI extends GUI {
+    
+    private JPanel search, searchResults, message; // propListPanel instead of view all
+    private JButton confirmSearch;
+    protected JTabbedPane tp;
+    private String prop[] = {"-------"}; // use for properties box populate with properties.name
+    private JLabel typeOfProperty, bed , bath , f , a;
+
+    public UnregisteredRenterGUI(){
+
+        mainFrame = new JFrame("guest window");
+        mainFrame.setSize(500, 600);
+        mainFrame.add(controlPanel);
+        controlPanel.setLayout(null);
+        //needs to use controller to get a list of properties from the database and populat properties[]
+
+        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+        tp = new JTabbedPane();
+        
+        search = new JPanel(new GridLayout(0, 1, 0, 20));
+        searchResults = new JPanel(new GridLayout(0, 1, 0, 20));
+        message = new JPanel();
+        //addToSearchResults();
+        setButtons();
+        addObjects();
+    }   
+
+    private void addObjects(){
+        
+
+        addActionListeners();
+        addToSearch();
+        tp.add("View all Properties", propListPanel);
+        tp.add("Search properties" , search);
+        mainFrame.add(tp);
+        mainFrame.setVisible(true);
+    }
+
+    private void setButtons(){
+        confirmSearch = new JButton("Search");
+       
+
+        confirmSearch.setBackground(Color.WHITE);
+        confirmSearch.setForeground(Color.GRAY);
+        confirmSearch.setFont(normalFont);
+    }
+
+    private void addToSearch(){
+        search.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
+        headerLabel = new JLabel("Select search criteria", JLabel.CENTER);
+        headerLabel.setForeground(Color.BLACK);
+        headerLabel.setFont(normalFont);
+        search.add(headerLabel);
+
+        typeOfProperty = new JLabel("Type of property:");
+        typeOfProperty.setForeground(Color.BLACK);
+        typeOfProperty.setFont(normalFont);
+        search.add(typeOfProperty);
+        search.add(typeOfPropBox);
+
+        bed= new JLabel("Number of Bedrooms:");
+        bed.setForeground(Color.BLACK);
+        bed.setFont(normalFont);
+        search.add(bed);
+        search.add(numOfBedsBox);
+        
 
 
+        bath = new JLabel("Number of Bathrooms:");
+        bath.setForeground(Color.BLACK);
+        bath.setFont(normalFont);
+        search.add(bath);
+        search.add(numOfBathsBox);
 
-    search  = new JButton("Search");
-    search.setBounds(50, 420, 400, 40);
-    search.setBackground(Color.GRAY);
-    search.setForeground(Color.WHITE);
-    search.setFont(normalFont);
+        f = new JLabel("Furnished or Unfurnished");
+        f.setForeground(Color.BLACK);
+        f.setFont(normalFont);
+        search.add(f);
+        search.add(furnishedBox);
 
-    search.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        searchButtonPressed();
-      }
-    });
+        a = new JLabel("Area of City");
+        a.setForeground(Color.BLACK);
+        a.setFont(normalFont);
+        search.add(a);
+        search.add(locationBox);
 
+        search.add(confirmSearch);
 
-    typeOfProperty = new JLabel("Type of property:");
-    typeOfProperty.setForeground(Color.BLACK);
-    typeOfProperty.setFont(normalFont);
+    }
 
-    typeOfProperty.setBounds(40, 50 , 480, 40);
+    private void addActionListeners(){
+        confirmSearch.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+              searchButtonPressed();
+            }
+          });
+    }
 
-    tOP.setBounds(40 , 90, 420, 30);
+    private void searchButtonPressed(){
+        String tOfProp = typeOfPropBox.getSelectedItem().toString();
+        String numB = numOfBedsBox.getSelectedItem().toString();
+        String numB2 = numOfBathsBox.getSelectedItem().toString();
+        String isFurn = furnishedBox.getSelectedItem().toString();
+        String area  = locationBox.getSelectedItem().toString();
 
+        System.out.println(tOfProp);
+        System.out.println(numB);
+        System.out.println(numB2);
+        System.out.println(isFurn);
+        System.out.println(area);
 
+        //contact database a grab all properties that match the description
+        addToSearchResults();
+    }
 
-    bed= new JLabel("Number of Bedrooms:");
-    bed.setForeground(Color.BLACK);
-    bed.setFont(normalFont);
+    private void addToSearchResults(){
+        searchResults.removeAll();
+        searchResults.revalidate();
+        searchResults.repaint();
 
-    bed.setBounds(40, 120 , 480, 40);
-
-
-    b.setBounds(40 , 160, 420, 30);
-
-
-     bath = new JLabel("Number of Bathrooms:");
-    bath.setForeground(Color.BLACK);
-    bath.setFont(normalFont);
-
-    bath.setBounds(40, 190 , 480, 40);
-
-
-    b2.setBounds(40 , 230, 420, 30);
-
-
-     f = new JLabel("Furnished or Unfurnished");
-    f.setForeground(Color.BLACK);
-    f.setFont(normalFont);
-
-    f.setBounds(40, 270 , 480, 40);
-
-
-    furnBox.setSelectedIndex(0);
-    furnBox.setBounds(40, 310, 420, 30);
-
-
-     a = new JLabel("Area of City");
-    a.setForeground(Color.BLACK);
-    a.setFont(normalFont);
-
-    a.setBounds(40, 340 , 480, 40);
-
-
-    locationBox.setSelectedIndex(0);
-    locationBox.setBounds(40, 380, 420, 30);
-
-    backToLogin = new JButton("Login");
-    backToLogin.setOpaque(false);
-    backToLogin.setBorderPainted(false);
-    backToLogin.setBounds(380 , 10, 120, 30);
-    backToLogin.setBackground(Color.WHITE);
-    backToLogin.setForeground(Color.BLUE);
-    backToLogin.setFont(new Font("Courier", Font.PLAIN, 15));
-
-    backToLogin.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        logout();
-      }
-    });
-
-  }
-
-  //Is called in Property app, and removes all the previous buttons and text fields while adding the new ones for an unregistered guest
-  public void addElements(){
-    panel.removeAll();
-    panel.revalidate();
-    panel.repaint();
-
-    //adding labels
-    panel.add(a);
-    panel.add(f);
-    panel.add(bath);
-    panel.add(bed);
-    panel.add(typeOfProperty);
-
-    panel.add(header);
-    panel.add(search);
-    panel.add(backToLogin);
-    panel.add(b);
-    panel.add(b2);
-    panel.add(furnBox);
-    panel.add(locationBox);
-    panel.add(tOP);
-    frame.setVisible(true);
-  }
-
-
-  @Override
-  public void backButtonPressed(){
-    loggingOut = "YES";
-  }
-
-  private void searchButtonPressed(){
-    panel.removeAll();
-    panel.revalidate();
-    panel.repaint();
-
-    //need to pass these values to the controller to connect to the database
-    // if they are "--" then it can be any
-    String Selectedlocation = locationBox.getSelectedItem().toString();
-    String bedNum= b.getSelectedItem().toString();
-    String bathNum= b2.getSelectedItem().toString();
-    String furnished = furnBox.getSelectedItem().toString();
-    String typeOfPlace = tOP.getSelectedItem().toString();
-
-  }
-
+        
+        searchResults.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
+        JLabel header = new JLabel("Search Results", JLabel.CENTER);
+        header.setForeground(Color.BLACK);
+        header.setFont(normalFont);
+        searchResults.add(header);
+        tp.add("Search Results" , searchResults);
+    }
 }

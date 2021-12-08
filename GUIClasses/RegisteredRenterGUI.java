@@ -1,31 +1,30 @@
 package GUIClasses;
-import ControllerClasses.RegisteredRenterController;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-public class RegisteredRenterGUI extends GUI{
 
-  private RegisteredRenterController registered_renter;
+public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
-  /*public searchProperties(){
+    private JPanel newProps; // propListPanel instead of view all
+    
+    public RegisteredRenterGUI(){
+        mainFrame.setTitle("Renter window");
 
-  }
+        newProps = new JPanel();
+        addToNewProps();
+        
+    }
 
-  public viewProperties(){
-
-  }
-
-  public contactLandlord(){
-
-  }
-
-  public viewNotifications(){
-
-  }
-
-  public toggleNotifications(){
-
-  }
-
-  public display(){
-
-  }*/
+    private void addToNewProps(){
+        newProps.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
+        JLabel header = new JLabel("Recently Added", JLabel.CENTER);
+        header.setForeground(Color.BLACK);
+        header.setFont(normalFont);
+        newProps.add(header);
+        tp.add("Recently added" , newProps);
+    }
 }
