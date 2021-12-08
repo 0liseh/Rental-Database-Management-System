@@ -290,6 +290,31 @@ public class ManagerGUI extends GUI{
         houseRentedP.setFont(normalFont);
         sPanel.add(houseRentedP);
 
+        Vector<Property> currentlyRented = new Vector<Property>();
+
+        //Call controller function for all properties with status rented
+
+        for(int i = 0; i < currentlyRented.size(); i++){
+            String tempStr = "\nProperty ID: " + currentlyRented.get(i).getPropertyid() + "\n";
+            tempStr = tempStr + "Type of property: " + currentlyRented.get(i).getPropertyType() + "\n";
+            tempStr = tempStr + "Number of Bed(s): " + currentlyRented.get(i).getNoOfBed() + "\n";
+            tempStr = tempStr + "Number of Bath(s): " + currentlyRented.get(i).getNoOfBath() + "\n";
+            if(currentlyRented.get(i).isFurnished()){
+                tempStr = tempStr + "Furnished\n";
+            }else{
+                tempStr = tempStr + "Unfurnished\n";
+            }
+            tempStr = tempStr + "Location: " + currentlyRented.get(i).getArea() + "\n";
+            tempStr = tempStr + "Landlord ID: " + currentlyRented.get(i).getLandlordID() + "\n";
+
+
+
+            JTextArea temp = new JTextArea(tempStr);
+            temp.setFont(normalFont);
+            sPanel.add(temp);
+
+        }
+
         //add properties bbelow to show house rented currently use textArea
 
 
