@@ -13,7 +13,7 @@ public class DatabaseController{
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
-	private static final String password = "JesusistheOGM1!";
+	private static final String password = "kaboomy";
 	
 	public static Connection mysql_con;
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
@@ -131,7 +131,7 @@ public class DatabaseController{
 		return landlords;
 	}
 	
-	public boolean checkUser(String email, String password, String type) {
+	public int checkUser(String email, String password, String type) {
 		System.out.println("System is in checkUser");
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -140,14 +140,14 @@ public class DatabaseController{
 			while(rs.next()) {
 				System.out.println("System is checking for user in database");
 				if(type.equals(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
-					return true;
+					return rs.getInt("id"));
 				}
 			}
 		} catch (SQLException ex) {
             ex.printStackTrace();
         }
 		System.out.println("System is done with checkUser");
-		return false;
+		return -1;
 	}
 	
 	public Vector<RegisteredRenter> getRegisteredRenters(){
@@ -245,7 +245,6 @@ public class DatabaseController{
         catch(Exception e){ 
             System.out.println(e);
         }  
-
         return searched;
     }
 	
@@ -260,6 +259,7 @@ public class DatabaseController{
                     query += attributes.get(i) + ")";
                 }
             }
+            System.out.println(query);
             PreparedStatement preparedStatment = mysql_con.prepareStatement(query);
 
             preparedStatment.executeUpdate();
@@ -393,7 +393,7 @@ public class DatabaseController{
     	Vector<String> feeStr = new Vector<String>();
     	 try {
              stmt = mysql_con.createStatement();
-             rs = stmt.executeQuery("select * from fee");
+             rs = stmt.executeQuery("select * from FEE");
              
              while(rs.next()) {
             	 feeStr.add( "Fee amount: " + rs.getDouble("fee") + " for " + rs.getInt("duration") + " days");

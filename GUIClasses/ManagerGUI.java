@@ -222,8 +222,10 @@ public class ManagerGUI extends GUI{
         
 
         String newFeeDurationText = feeDuration.getText().toString();
-
-        dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
+        ArrayList<String> attributes = new ArrayList<String>;
+        attributes.add(newFeeText);
+        attributes.add(newFeeDurationText);
+        dbController.addItems("FEE",attributes);
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         addToSetFee();
         //send the new fee to data base
@@ -237,7 +239,7 @@ public class ManagerGUI extends GUI{
         seeLandlords.add(ll);*/
 
         //landlords = dbController.getLandlords();
-        //have to call funciton in db controller to get vectro of landlords
+        //have to call function in db controller to get vectro of landlords
         seeLandlords.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel slPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
