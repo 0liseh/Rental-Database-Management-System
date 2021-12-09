@@ -140,7 +140,8 @@ public class ManagerGUI extends GUI{
 
 
         String fee = dbController.getFee(); // get the fee from databse
-        JTextArea currentFee = new JTextArea("Current fee(s) are:\n" + fee);
+        String tempFee = "Current fee(s) are:\n" + fee;
+        JTextArea currentFee = new JTextArea(tempFee);
         currentFee.setForeground(Color.BLACK);
         currentFee.setOpaque(false);
         currentFee.setLineWrap(true);
