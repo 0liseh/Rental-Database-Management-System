@@ -138,7 +138,7 @@ public class ManagerGUI extends GUI{
         setFee.removeAll();
         setFee.revalidate();
         setFee.repaint();
-        
+        setButtons();
         setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 

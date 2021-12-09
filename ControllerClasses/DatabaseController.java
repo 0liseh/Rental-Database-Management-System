@@ -393,7 +393,7 @@ public class DatabaseController{
 //    	 }
 //    	 
     	 try {
- 			String query = "INSERT INTO FEE (fee, duration) values (?,?,?)";
+ 			String query = "INSERT INTO FEE (fee, duration) values (?,?)";
  			PreparedStatement pStat = mysql_con.prepareStatement(query);
  			pStat.setDouble(1, feeAmount);
  			pStat.setInt(2, feeDuration);
