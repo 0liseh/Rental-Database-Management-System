@@ -115,15 +115,15 @@ public class DatabaseController{
 		return landlords;
 	}
 	
-	public Vector<Property> getRentedProperties(){
-		Vector<Property> rented = new Vector<Property>();
+	public Vector<Property> getStatusProperties(String stat){
+		Vector<Property> prop = new Vector<Property>();
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			
 			while(rs.next()) {
 
-				if("rented".equals(rs.getString("status1"))){
+				if(stat.equals(rs.getString("status1"))){
 					Property temp;
 					int propID = rs.getInt("propertyId");
 					String propType = rs.getString("propertyType");
@@ -144,7 +144,7 @@ public class DatabaseController{
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
-		return rented;
+		return prop;
 		
 	}
 	
