@@ -358,7 +358,11 @@ public class ManagerGUI extends GUI{
             addToPS(tempStr);
             tempStr =  "Landlord ID: " + currentlyRented.get(i).getLandlordID() + "\n";
             addToPS(tempStr);
-
+            JTextArea t = new JTextArea("-----------------");
+            t.setFont(normalFont);
+            t.setFont(normalFont);
+            t.setEditable(false);
+            sPanel.add(t);
 
 
             
@@ -376,6 +380,8 @@ public class ManagerGUI extends GUI{
     private void addToPS(String tempStr){
         JTextArea temp = new JTextArea(tempStr);
         temp.setFont(normalFont);
+        temp.setFont(normalFont);
+        temp.setEditable(false);
         sPanel.add(temp);
     }
 }
