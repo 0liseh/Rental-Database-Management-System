@@ -137,8 +137,10 @@ public class ManagerGUI extends GUI{
     private void addToSetFee(){
         setFee.setBorder(BorderFactory.createEmptyBorder(115, 40, 200, 40));
 
-        String fee = "$100"; // get the fee from databse
-        JLabel currentFee = new JLabel("Current fee is: " + fee);
+
+
+        String fee = dbController.getFee(); // get the fee from databse
+        JLabel currentFee = new JLabel("Current fee(s) are:\n" + fee);
         currentFee.setForeground(Color.BLACK);
         currentFee.setFont(normalFont);
         setFee.add(currentFee);
