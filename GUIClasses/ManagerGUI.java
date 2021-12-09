@@ -184,6 +184,7 @@ public class ManagerGUI extends GUI{
             tempStr = tempStr + "Phone Number: " + landlords.get(i).getPhoneNumber() + "\n";
             JTextArea temp = new JTextArea(tempStr);
             temp.setFont(normalFont);
+            temp.setEditable(false);
             slPanel.add(temp);
 
         }
@@ -226,6 +227,7 @@ public class ManagerGUI extends GUI{
             
             JTextArea temp = new JTextArea(tempStr);
             temp.setFont(normalFont);
+            temp.setEditable(false);
             sPanel.add(temp);
 
         }
@@ -254,6 +256,7 @@ public class ManagerGUI extends GUI{
             tempStr = tempStr + "Phone Number: " + renters.get(i).getPhoneNumber() + "\n";
             JTextArea temp = new JTextArea(tempStr);
             temp.setFont(normalFont);
+            temp.setEditable(false);
             srPanel.add(temp);
 
         }
