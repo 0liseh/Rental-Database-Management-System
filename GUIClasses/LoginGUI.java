@@ -20,7 +20,7 @@ public class LoginGUI extends GUI{
         dbController = new DatabaseController();
         setTextFields();
         setButtons();
-        //addObjects();
+        addObjects();
     }
 
     public void addObjects()

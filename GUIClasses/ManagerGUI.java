@@ -112,6 +112,9 @@ public class ManagerGUI extends GUI{
                 JTabbedPane src = (JTabbedPane) e.getSource();
                 int index = src.getSelectedIndex();
                 System.out.println("Tab Changed to " + src.getTitleAt(index));
+                if(src.getTitleAt(index).equals("Logout")) {
+                	logout();
+                }
                 
             }
         };
