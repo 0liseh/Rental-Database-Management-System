@@ -12,7 +12,7 @@ public class ManagerGUI extends GUI{
     private JButton confirmStatusChange, confirmNewFee;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private JTextField changeFeeTo, feeDuration;
-    private JPanel changeOfStatus, seeProps, seeLandlords, seeRenters , setFee, getPSummary;
+    private JPanel changeOfStatus, seeProps, seeLandlords, seeRenters , setFee, getPSummary, sPanel;
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Landlord> landlords = new Vector<Landlord>();
     private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
@@ -308,7 +308,7 @@ public class ManagerGUI extends GUI{
     private void addToPSummary(){
 
         getPSummary.setSize(500, 600);
-        JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         sPanel.setSize(500, 600);
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 0, 100));
@@ -341,22 +341,27 @@ public class ManagerGUI extends GUI{
         Vector<Property> currentlyRented = dbController.getStatusProperties("rented");
         for(int i = 0; i < currentlyRented.size(); i++){
             String tempStr = "\nProperty ID: " + currentlyRented.get(i).getPropertyid() + "\n";
-            tempStr = tempStr + "Type of property: " + currentlyRented.get(i).getPropertyType() + "\n";
-            tempStr = tempStr + "Number of Bed(s): " + currentlyRented.get(i).getNoOfBed() + "\n";
-            tempStr = tempStr + "Number of Bath(s): " + currentlyRented.get(i).getNoOfBath() + "\n";
+            addToPS(tempStr);
+            tempStr =  "Type of property: " + currentlyRented.get(i).getPropertyType() + "\n";
+            addToPS(tempStr);
+            tempStr =  "Number of Bed(s): " + currentlyRented.get(i).getNoOfBed() + "\n";
+            addToPS(tempStr);
+            tempStr =  "Number of Bath(s): " + currentlyRented.get(i).getNoOfBath() + "\n";
+            addToPS(tempStr);
             if(currentlyRented.get(i).isFurnished()){
-                tempStr = tempStr + "Furnished\n";
+                tempStr =  "Furnished\n";
             }else{
-                tempStr = tempStr + "Unfurnished\n";
+                tempStr =  "Unfurnished\n";
             }
-            tempStr = tempStr + "Location: " + currentlyRented.get(i).getArea() + "\n";
-            tempStr = tempStr + "Landlord ID: " + currentlyRented.get(i).getLandlordID() + "\n";
+            addToPS(tempStr);
+            tempStr = "Location: " + currentlyRented.get(i).getArea() + "\n";
+            addToPS(tempStr);
+            tempStr =  "Landlord ID: " + currentlyRented.get(i).getLandlordID() + "\n";
+            addToPS(tempStr);
 
 
 
-            JTextArea temp = new JTextArea(tempStr);
-            temp.setFont(normalFont);
-            sPanel.add(temp);
+            
 
         }
 
@@ -366,5 +371,11 @@ public class ManagerGUI extends GUI{
         JScrollPane scrollPane = new JScrollPane(sPanel);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         getPSummary.add(scrollPane);
+    }
+
+    private void addToPS(String tempStr){
+        JTextArea temp = new JTextArea(tempStr);
+        temp.setFont(normalFont);
+        sPanel.add(temp);
     }
 }
