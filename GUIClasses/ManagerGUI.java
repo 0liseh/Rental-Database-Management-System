@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -75,6 +78,7 @@ public class ManagerGUI extends GUI{
         tp.add("Landlords" , seeLandlords);
         tp.add("Properties" , seeProps);
         tp.add("Renters" , seeRenters);
+        tp.add("Logout", new JPanel());
         
         mainFrame.add(tp);
         
@@ -96,6 +100,14 @@ public class ManagerGUI extends GUI{
             }
         });
 
+        ChangeListener cl = new ChangeListener(){
+            public void stateChange(ChangeEvent et){
+                JTabbedPane src = (JTabbedPane) et.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
+            }
+        };
+        tp.addChangeListener(cl);
         
     }
 
