@@ -10,7 +10,7 @@ public class LoginGUI extends GUI{
 
     private JTextField un, pw;
     private JButton login , guest, register;
-    private JLabel username , password;
+    private JLabel email , password;
     private DatabaseController dbController;
 
     public LoginGUI(){
@@ -28,7 +28,7 @@ public class LoginGUI extends GUI{
         controlPanel.revalidate();
         controlPanel.repaint();
         controlPanel.add(headerLabel);
-        controlPanel.add(username);
+        controlPanel.add(email);
         controlPanel.add(un);
         controlPanel.add(password);
         controlPanel.add(pw);
@@ -50,9 +50,9 @@ public class LoginGUI extends GUI{
         headerLabel.setForeground(Color.BLACK);
         headerLabel.setFont(new Font("Courier", Font.PLAIN, 25));
 
-        username =  new JLabel("Username:");
-        username.setForeground(Color.BLACK);
-        username.setFont(normalFont);
+        email =  new JLabel("Email:");
+        email.setForeground(Color.BLACK);
+        email.setFont(normalFont);
 
         password = new JLabel("Password:");
         password.setForeground(Color.BLACK);
