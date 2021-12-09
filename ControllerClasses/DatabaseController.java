@@ -78,17 +78,17 @@ public class DatabaseController{
 	}
 
 	//Gets the properties based on the landlord ID
-	public Vector<Property> getMyProperties(int lID){
-		Vector<Property> landlordProperties = new Vector<Property>();
+	public Vector<Integer> getMyProperties(int lID){
+		Vector<Integer> landlordProperties = new Vector<Integer>();
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			while(rs.next()) {
 				System.out.println("In getMyproperties while loop");
 				if(lID == rs.getInt("landlordID")){
-					System.out.println("Found landlord properties");
+					//System.out.println("Found landlord properties");
 					int propID = rs.getInt("propertyId");
-					String propType = rs.getString("propertyType");
+					/*String propType = rs.getString("propertyType");
 					int numOfBed = rs.getInt("numberOfBed");
 					int numOfBath = rs.getInt("numberOfBath");
 					boolean furn = rs.getBoolean("furnished");
@@ -97,7 +97,8 @@ public class DatabaseController{
 					int llID = rs.getInt("landlordID");
 					
 					Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
-					landlordProperties.add(temp);
+					landlordProperties.add(temp);*/
+					landlordProperties.add(propID);
 				}
 				
 			}

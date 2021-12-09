@@ -196,6 +196,7 @@ public class ManagerGUI extends GUI{
         String newFeeDurationText = feeDuration.getText().toString();
 
         dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
+        setFee = new JPanel();
         addToSetFee();
         //send the new fee to data base
     }
