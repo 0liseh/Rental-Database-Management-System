@@ -25,7 +25,7 @@ public class Property_app{
         break;
       }else if(type == "Landlord"){
         loop = "l";
-        lGUI.addObjects();
+        lGUI.addObjects(x.id);
         x.closeWindow();
         break;
       }else if(type == "Registered Renter"){

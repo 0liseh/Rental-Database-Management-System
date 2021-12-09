@@ -13,6 +13,7 @@ public class LoginGUI extends GUI{
     private JLabel email , password;
     private DatabaseController dbController;
     String type = "yolo";
+    public int id;
 
     public LoginGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
@@ -117,13 +118,14 @@ public class LoginGUI extends GUI{
         String pass = pw.getText().toString();
         System.out.println(pass);
 
-        if(dbController.checkUser(user, pass, "Manager")){
+        if(dbController.checkUser(user, pass, "Manager") != -1){
             System.out.println("Mananger");
             type = "Manager";
-        }else if(dbController.checkUser(user, pass, "Landlord")){
+        }else if(dbController.checkUser(user, pass, "Landlord") != -1){
+            id = dbController.checkUser(user, pass, "Landlord");
             System.out.println("landlord");
             type = "Landlord";
-        }else if(dbController.checkUser(user, pass, "Renter")){
+        }else if(dbController.checkUser(user, pass, "Renter") != -1){
             System.out.println("Renter");
             type = "Registered Renter";
         }else{

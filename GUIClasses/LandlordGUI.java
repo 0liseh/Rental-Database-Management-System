@@ -14,7 +14,8 @@ public class LandlordGUI extends GUI {
     private JButton confirmStatusChange, confirmRegister , confirmRegAndPost, confirmPost;
     private JPanel reg , post , changeOfStatus; // can add prop list panel so landlords can view all their properties
     private JTabbedPane tp;
-    
+    private DatabaseController dbController;
+    private int Lid;
     //private Property properties[];
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     
@@ -25,7 +26,7 @@ public class LandlordGUI extends GUI {
         mainFrame.add(controlPanel);
         controlPanel.setLayout(null);
         //needs to use controller to get a list of properties from the database and populat properties[]
-
+        dbController = new DatabaseController();
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         tp = new JTabbedPane();
         
@@ -40,11 +41,11 @@ public class LandlordGUI extends GUI {
 
     }
 
-    public void addObjects(){
+    public void addObjects(int id){
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
-
+        Lid = id;
         addToReg();
         addToPost();
         addToChangeOfStatus();
@@ -109,6 +110,16 @@ public class LandlordGUI extends GUI {
     }
 
     private void initializeComboBoxes(){
+
+
+        Vector<Property> properties = dbController.getMyProperties(Lid);
+
+        for(int i = 0; i < properties.size(); i++){
+        
+        prop = Arrays.copyOf(prop, prop.length + 1);
+        prop[prop.length -1 ] = String.valueOf("propertyID: " + properties.get(i).getPropertyid());
+
+        }
         propertiesBox = new JComboBox(prop);
 
     }
