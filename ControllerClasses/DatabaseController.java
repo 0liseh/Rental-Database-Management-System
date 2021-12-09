@@ -129,18 +129,21 @@ public class DatabaseController{
 	}
 	
 	public boolean checkUser(String email, String password, String type) {
+		System.out.println("System is in checkUser");
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			rs = stmt.executeQuery("SELECT * FROM USER");
-			renters.clear(); 
+			rs = stmt.executeQuery("select * from user");
+			//renters.clear(); 
 			while(rs.next()) {
-				if(type.equals(rs.getString("type")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password"))){
+				System.out.println("System is checking for user in database");
+				if(type.equals(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
 					return true;
 				}
 			}
 		} catch (SQLException ex) {
             ex.printStackTrace();
         }
+		System.out.println("System is done with checkUser");
 		return false;
 	}
 	
