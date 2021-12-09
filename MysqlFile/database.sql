@@ -23,6 +23,7 @@ CREATE TABLE PROPERTY (
         area			varchar(50), 
 	status1			varchar(50),
 	datePosted              varchar(50),
+	dateRented              varchar(50),
         landlordID		integer not null,
 	primary key (propertyId),
     foreign key (landlordID) references LOGIN(id) ON UPDATE CASCADE
