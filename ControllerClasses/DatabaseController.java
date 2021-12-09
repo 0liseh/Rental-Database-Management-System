@@ -413,12 +413,14 @@ public class DatabaseController{
     	 try {
 			 if(status.equals("-------")){
 				 return false;
+			 }else{
+				String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
+  				System.out.println(query);
+  				PreparedStatement pStat = mysql_con.prepareStatement(query);
+  				pStat.executeUpdate();
+			  	return true;
 			 }
-    		String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
-  			System.out.println(query);
-  			PreparedStatement pStat = mysql_con.prepareStatement(query);
-  			pStat.executeUpdate();
-			  return true;
+    		
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
