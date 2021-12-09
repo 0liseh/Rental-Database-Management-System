@@ -20,7 +20,7 @@ public class ManagerGUI extends GUI{
     private Vector<Landlord> landlords = new Vector<Landlord>();
     private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
     private DatabaseController dbController;
-    private JComboBox fees;
+    
     
     public ManagerGUI(){
         mainFrame = new JFrame("Manager window");
@@ -170,7 +170,7 @@ public class ManagerGUI extends GUI{
         sf.repaint();
 
         Vector<String> fee = dbController.getFee(); // get the fee from databse
-        Vector<String> feeBx = new Vector<String>();
+       
         String tempFee = "Current fee(s) are:\n";
         JTextArea currentFee = new JTextArea(tempFee);
         sf.add(currentFee);
@@ -181,7 +181,7 @@ public class ManagerGUI extends GUI{
         currentFee.setFont(normalFont);
         System.out.println(fee.size());
         for(int i = 0; i < fee.size(); i++){
-            feeBx.add(fee.get(i));
+            
             tempFee = fee.get(i);
             currentFee = new JTextArea(tempFee);
             currentFee.setForeground(Color.BLACK);

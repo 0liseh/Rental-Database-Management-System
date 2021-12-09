@@ -18,7 +18,9 @@ public class LandlordGUI extends GUI {
     private int Lid;
     //private Property properties[];
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
-    
+    private JComboBox fees;
+    Vector<String> feeBx = new Vector<String>();
+
     public LandlordGUI(){
 
         mainFrame = new JFrame("Landlord window");
@@ -34,6 +36,11 @@ public class LandlordGUI extends GUI {
         post = new JPanel(new GridLayout(0, 1, 0, 20));
         changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
 
+        Vector<String> f = dbController.getFee();
+
+        for(int i = 0; i < f.size(); i++){
+            feeBx.add(f.get(i));
+        }
         
         initializeComboBoxes();
         setButtons();
