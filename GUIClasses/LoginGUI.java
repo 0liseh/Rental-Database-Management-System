@@ -128,5 +128,5 @@ public class LoginGUI extends GUI{
         }
         //send these values to check database and see if it's a user and what type of user it is
 
-
+    }
 }

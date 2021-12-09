@@ -111,17 +111,19 @@ public class DatabaseController{
 	//sends a list of landlords
 	public Vector<Landlord> getLandlords(){
 		try {
-			String type = "landlord";
+			String type = "Landlord";
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			rs = stmt.executeQuery("SELECT * FROM USER");
+			rs = stmt.executeQuery("select * from user");
 			landlords.clear(); 
 			while(rs.next()) {
-				if(type.equals(rs.getString("type"))){
+				System.out.println("In getLandlords while loop");
+				if(type.equals(rs.getString("type1"))){
 					Landlord temp;
-					temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password"), getMyProperties(rs.getInt("id")));
+					temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), getMyProperties(rs.getInt("id")));
 					landlords.add(temp);
 				}
-        }
+			}
+			System.out.println("Outside getLandlords while loop");
 		} catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -149,14 +151,14 @@ public class DatabaseController{
 	
 	public Vector<RegisteredRenter> getRegisteredRenters(){
 		try {
-			String type = "renter";
+			String type = "Renter";
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			rs = stmt.executeQuery("SELECT * FROM USER");
+			rs = stmt.executeQuery("select * from user");
 			renters.clear(); 
 			while(rs.next()) {
-				if(type.equals(rs.getString("type"))){
+				if(type.equals(rs.getString("type1"))){
 					RegisteredRenter temp;
-					temp = new RegisteredRenter(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password"), getNotification(rs.getInt("id")));
+					temp = new RegisteredRenter(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), 0); //getNotification(rs.getInt("id")));
 					renters.add(temp);
 				}
 			}
