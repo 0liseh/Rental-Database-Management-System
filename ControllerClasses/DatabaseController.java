@@ -407,5 +407,25 @@ public class DatabaseController{
 		return feeStr;
     	
     }
+    
+  //Manager can set a fee
+    public void changeStatus(double propID, String status){
+
+    	 try() {
+    		stmt = mysql_con.createStatement();
+    		rs = stmt.executeQuery("select * from property");
+    		while(rs.next()){
+    			
+    			if(rs.getInt("propertyID") == propID && !"active".equals(rs.getString("status1"))){
+    				String updateQuery = "UPDATE FEE" + " SET status1=" + status; 	
+    				
+    			}
+ 			
+    		}
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
+    	
+    }
 	
 }
