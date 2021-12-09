@@ -13,7 +13,7 @@ public class DatabaseController{
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
-	private static final String password = "kaboomy";
+	private static final String password = "JesusistheOGM1!";
 	
 	public static Connection mysql_con;
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
@@ -376,7 +376,7 @@ public class DatabaseController{
     public void setFee(double feeAmount, int feeDuration) {
 
     	 try {
- 			String query = "INSERT INTO FEE (fee, duration) values (?,?)";
+ 			String query = "INSERT INTO FEE (fee, duration) values (?,?) on duplicate key update duration = ?";
  			PreparedStatement pStat = mysql_con.prepareStatement(query);
  			pStat.setDouble(1, feeAmount);
  			pStat.setInt(2, feeDuration);
