@@ -135,17 +135,17 @@ public class ManagerGUI extends GUI{
     }
 
     private void addToSetFee(){
-        setFee.setBorder(BorderFactory.createEmptyBorder(115, 40, 200, 40));
+        setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 
 
-        String fee = dbController.getFee(); // get the fee from databse
-        String tempFee = "Current fee(s) are:\n" + fee;
+        String fee = dbController.getFee(); // get the fee from database
+        String tempFee = "Current fee(s) are: " + "\n" + fee;
         JTextArea currentFee = new JTextArea();
         currentFee.setText(tempFee);
         currentFee.setForeground(Color.BLACK);
         currentFee.setOpaque(false);
-        currentFee.setLineWrap(true);
+        //currentFee.setLineWrap(true);
         currentFee.setFont(normalFont);
         setFee.add(currentFee);
 

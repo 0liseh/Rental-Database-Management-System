@@ -386,14 +386,14 @@ public class DatabaseController{
     }
     
   //Landlords can get a fee
-    public String getFee() {
-    	String feeStr = "";
+    public Vector<String> getFee() {
+    	Vector<String> feeStr = new Vector<String>();
     	 try {
              stmt = mysql_con.createStatement();
              rs = stmt.executeQuery("select * from fee");
              
              while(rs.next()) {
-            	 feeStr = feeStr + "Fee amount: " + rs.getDouble("fee") + " for " + rs.getInt("duration") + " days\n";
+            	 feeStr.add( "Fee amount: " + rs.getDouble("fee") + " for " + rs.getInt("duration") + " days");
              }
     	 }catch(Exception e) {
              System.out.println(e);
