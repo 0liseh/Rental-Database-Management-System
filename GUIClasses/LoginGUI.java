@@ -127,11 +127,6 @@ public class LoginGUI extends GUI{
             System.out.println("Didn't work");
         }
         //send these values to check database and see if it's a user and what type of user it is
-<<<<<<< HEAD
-
-    }
-=======
     }
 
->>>>>>> 673208e450a7558240eaec36002c71993982fbd5
 }
