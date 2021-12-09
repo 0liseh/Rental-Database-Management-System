@@ -20,7 +20,7 @@ public class DatabaseController{
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
 	private ResultSet rs;//object of type ResultSet from the JDBC class that stores the result of the query
 	
-	public void DatabaseController() {
+	public DatabaseController() {
 		try {
             //Register JDBC driver
 			Driver driver = new com.mysql.cj.jdbc.Driver();
@@ -53,13 +53,17 @@ public class DatabaseController{
 	public void addProperty() {}
 	public void removeProperty() {}
 	
+	public Vector<Property> searchProperty(){
+		
+	}
+	
 	public Vector<Property> getProperties(){
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			
 			while(rs.next()) {
-				Property temp;
+				
 				int propID = rs.getInt("propertyId");
 				String propType = rs.getString("propertyType");
 				int numOfBed = rs.getInt("numberOfBed");
@@ -69,7 +73,7 @@ public class DatabaseController{
 				String status = rs.getString("status1");
 				int llID = rs.getInt("landlordID");
 				
-				temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+				Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
 				properties.add(temp);
 			}
 			

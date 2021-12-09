@@ -39,6 +39,7 @@ public class UnregisteredRenterGUI extends GUI {
         addObjects();
     }   
     private void displayProp(){
+    	propListPanel.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         sPanel.setSize(500, 600);

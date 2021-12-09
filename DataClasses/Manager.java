@@ -1,5 +1,3 @@
-package DataClasses;
-
-class Manager implements User{
+class Manager extends User{
   
 }
