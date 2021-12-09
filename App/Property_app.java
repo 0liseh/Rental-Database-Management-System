@@ -5,13 +5,13 @@ public class Property_app{
 
   public static void main(String[] args){
     ManagerGUI mGUI = new ManagerGUI();
-    //LandlordGUI lGUI = new LandlordGUI();
-    //RegisteredRenterGUI rrGUI;
-    //UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
-    //LoginGUI x = new LoginGUI();
+    LandlordGUI lGUI = new LandlordGUI();
+    RegisteredRenterGUI rrGUI;
+    UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
+    LoginGUI x = new LoginGUI();
 
     
-   /*while(true){
+   while(true){
 
 	
     String type = x.gettype();
@@ -20,12 +20,12 @@ public class Property_app{
       type = x.gettype();
       if(type == "Manager"){
         loop = "m";
-        mGUI.addElements();
+        mGUI.addObjects();
         x.closeWindow();
         break;
       }else if(type == "Landlord"){
         loop = "l";
-        lGUI.addElements();
+        lGUI.addObjects();
         x.closeWindow();
         break;
       }else if(type == "Registered Renter"){
@@ -33,7 +33,7 @@ public class Property_app{
         break;
       }else if (type == "Unregistered Renter"){
         loop = "urr";
-        urrGUI.addElements();
+        urrGUI.addObjects();
         x.closeWindow();
         break;
       }
@@ -71,12 +71,25 @@ public class Property_app{
     }else if(loop == "rr"){
 
     }else if(loop == "urr"){
+      String status = urrGUI.getLoggingOut();
+      while(status == "NO"){
+        status = urrGUI.getLoggingOut();
+        if(status == "YES"){
+          urrGUI.closeWindow();
+          x = new LoginGUI();
+          break;
+        }
+
+         System.out.print("");
+      }
+
+      urrGUI = new UnregisteredRenterGUI();
 
     }
 
 
 
-  }*/
+  }
 
 
 

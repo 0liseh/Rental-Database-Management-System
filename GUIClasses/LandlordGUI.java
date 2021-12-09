@@ -35,7 +35,7 @@ public class LandlordGUI extends GUI {
         
         initializeComboBoxes();
         setButtons();
-        addObjects();
+        //addObjects();
 
     }
 

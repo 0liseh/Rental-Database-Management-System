@@ -12,6 +12,7 @@ public class LoginGUI extends GUI{
     private JButton login , guest, register;
     private JLabel email , password;
     private DatabaseController dbController;
+    String type = "yolo";
 
     public LoginGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
@@ -19,7 +20,7 @@ public class LoginGUI extends GUI{
         dbController = new DatabaseController();
         setTextFields();
         setButtons();
-        addObjects();
+        //addObjects();
     }
 
     public void addObjects()
@@ -99,7 +100,7 @@ public class LoginGUI extends GUI{
     }
     private void guestButtonPressed()
     {
-
+        type = "Unregistered Renter";
 
         // make it login as unregistered user
     }
@@ -118,15 +119,22 @@ public class LoginGUI extends GUI{
 
         if(dbController.checkUser(user, pass, "Manager")){
             System.out.println("Mananger");
+            type = "Manager";
         }else if(dbController.checkUser(user, pass, "Landlord")){
             System.out.println("landlord");
+            type = "Landlord";
         }else if(dbController.checkUser(user, pass, "Renter")){
             System.out.println("Renter");
+            type = "Registered Renter";
         }else{
             JOptionPane.showMessageDialog(mainFrame, "Incorrect Name or Password, Please try again");
             System.out.println("Didn't work");
         }
         //send these values to check database and see if it's a user and what type of user it is
+    }
+
+    public String gettype(){
+        return type;
     }
 
 }

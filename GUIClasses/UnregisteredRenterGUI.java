@@ -36,7 +36,7 @@ public class UnregisteredRenterGUI extends GUI {
         message = new JPanel();
         //addToSearchResults();
         setButtons();
-        addObjects();
+        //addObjects();
         
         //dbController.getUsers();
     }   
@@ -74,7 +74,7 @@ public class UnregisteredRenterGUI extends GUI {
         propListPanel.add(scrollPane);
     }
 
-    private void addObjects(){
+    public void addObjects(){
         
 
         addActionListeners();

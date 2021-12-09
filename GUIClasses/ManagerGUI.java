@@ -40,7 +40,7 @@ public class ManagerGUI extends GUI{
         getPSummary = new JPanel();
         initializeComboBoxes();
         setButtons();
-        addObjects();
+        //addObjects();
     }
     private void setButtons(){
         confirmStatusChange = new JButton("Confirm Status Change");
@@ -58,7 +58,7 @@ public class ManagerGUI extends GUI{
     }
 
 
-    private void addObjects(){
+    public void addObjects(){
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
