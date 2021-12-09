@@ -9,6 +9,7 @@ public class DatabaseController{
 	private Vector<Property> properties = new Vector<Property>();
 	private Vector<Landlord> landlords = new Vector<Landlord>();
 	private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
+	private Vector<Property> dud = new Vector<Property>();
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
@@ -78,14 +79,14 @@ public class DatabaseController{
 
 	//Gets the properties based on the landlord ID
 	public Vector<Property> getMyProperties(int lID){
+		Vector<Property> landlordProperties = new Vector<Property>();
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
-			properties.clear();
 			while(rs.next()) {
-
+				System.out.println("In getMyproperties while loop");
 				if(lID == rs.getInt("landlordID")){
-					Property temp;
+					System.out.println("Found landlord properties");
 					int propID = rs.getInt("propertyId");
 					String propType = rs.getString("propertyType");
 					int numOfBed = rs.getInt("numberOfBed");
@@ -95,8 +96,8 @@ public class DatabaseController{
 					String status = rs.getString("status1");
 					int llID = rs.getInt("landlordID");
 					
-					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
-					properties.add(temp);
+					Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+					landlordProperties.add(temp);
 				}
 				
 			}
@@ -105,7 +106,7 @@ public class DatabaseController{
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
-		return properties;
+		return landlordProperties;
 	}
 
 	//sends a list of landlords
@@ -118,7 +119,7 @@ public class DatabaseController{
 			while(rs.next()) {
 				System.out.println("In getLandlords while loop");
 				if(type.equals(rs.getString("type1"))){
-					Landlord temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), getMyProperties(rs.getInt("id")));
+					Landlord temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), dud);//getMyProperties(rs.getInt("id")));
 					landlords.add(temp);
 				}
 			}
@@ -366,6 +367,40 @@ public class DatabaseController{
         }
 
         return result;
+    }
+    
+    //Manager can set a fee
+    public void setFee() {
+    	
+    	 try {
+             stmt = mysql_con.createStatement();
+             rs = stmt.executeQuery("select * from fee");
+             
+             while(rs.next()) {
+            	 
+             }
+    	 }catch(Exception e) {
+             System.out.println(e);
+    	 }
+    	
+    }
+    
+  //Landlords can get a fee
+    public String getFee() {
+    	String feeStr = "";
+    	 try {
+             stmt = mysql_con.createStatement();
+             rs = stmt.executeQuery("select * from fee");
+             
+             while(rs.next()) {
+            	 feeStr = feeStr + "Fee amount: " + rs.getDouble("fee") + " for " + rs.getInt("duration") + " days\n";
+             }
+    	 }catch(Exception e) {
+             System.out.println(e);
+    	 }
+    	 System.out.println(feeStr);
+		return feeStr;
+    	
     }
 	
 }
