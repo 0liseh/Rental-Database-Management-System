@@ -4,7 +4,8 @@ import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 //import ControllerClasses.LandlordController;
 
@@ -52,6 +53,7 @@ public class LandlordGUI extends GUI {
         tp.add("Register new Property!", reg);
         tp.add("Post Property!", post);
         tp.add("Change Status of Property", changeOfStatus);
+        tp.add("Logout", new JPanel());
         mainFrame.add(tp);
         
         mainFrame.setVisible(true);
@@ -84,6 +86,26 @@ public class LandlordGUI extends GUI {
                 confirmRegAndPostButtonPressed();
             }
         });
+
+        ChangeListener cl = new ChangeListener(){
+            public void stateChange(ChangeEvent et){
+                JTabbedPane src = (JTabbedPane) et.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
+            }
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane src = (JTabbedPane) e.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
+                if(src.getTitleAt(index).equals("Logout")){
+                    logout();
+                }
+                
+            }
+        };
+        tp.addChangeListener(cl);
     }
 
     private void initializeComboBoxes(){

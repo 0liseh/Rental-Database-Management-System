@@ -4,11 +4,12 @@ import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class UnregisteredRenterGUI extends GUI {
     
-    private JPanel search, searchResults, message; // propListPanel instead of view all
+    private JPanel search, searchResults, message, Login; // propListPanel instead of view all
     private JButton confirmSearch;
     protected JTabbedPane tp;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
@@ -81,6 +82,7 @@ public class UnregisteredRenterGUI extends GUI {
         addToSearch();
         tp.add("View all Properties", propListPanel);
         tp.add("Search properties" , search);
+        tp.add("Login" , Login);
         mainFrame.add(tp);
         mainFrame.setVisible(true);
     }
@@ -142,7 +144,28 @@ public class UnregisteredRenterGUI extends GUI {
             public void actionPerformed(ActionEvent e){
               searchButtonPressed();
             }
-          });
+        });
+
+        
+        ChangeListener cl = new ChangeListener(){
+            public void stateChange(ChangeEvent et){
+                JTabbedPane src = (JTabbedPane) et.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
+        }
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane src = (JTabbedPane) e.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
+                if(src.getTitleAt(index).equals("Login")){
+                    logout();
+                }
+                
+            }
+        };
+        tp.addChangeListener(cl);
     }
 
     private void searchButtonPressed(){
