@@ -37,3 +37,13 @@ CREATE TABLE FEE (
     
 );
 
+DROP TABLE IF EXISTS MESSAGES;
+CREATE TABLE MESSAGES(
+	messageID integer not null,
+        landlordID integer not null,
+	message varchar(500),
+	primary key(messageID),
+	foreign key (landlordID) references USER(id)
+);
+
+
