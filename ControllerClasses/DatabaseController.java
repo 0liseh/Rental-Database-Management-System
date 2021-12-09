@@ -409,7 +409,7 @@ public class DatabaseController{
     }
     
   //Manager can set a fee
-    public void changeStatus(double propID, String status){
+    public void changeStatus(String propID, String status){
 
     	 try() {
     		stmt = mysql_con.createStatement();
