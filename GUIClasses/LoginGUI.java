@@ -1,3 +1,6 @@
+
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,41 +12,37 @@ import java.io.*;
 public class LoginGUI extends GUI{
 
     private JTextField un, pw;
-    private JButton login , guest;
+    private JButton login , guest, register;
     private JLabel username , password;
-    
+
     public LoginGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         setTextFields();
         setButtons();
-        
         addObjects();
-        
-        
-        
     }
 
-    public void addObjects(){
+    public void addObjects()
+    {
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
-
         controlPanel.add(headerLabel);
         controlPanel.add(username);
         controlPanel.add(un);
         controlPanel.add(password);
         controlPanel.add(pw);
         controlPanel.add(login);
+        controlPanel.add(register);
         controlPanel.add(guest);
-
         mainFrame.setVisible(true);
     }
 
     private void setTextFields(){
         un = new JTextField();
         pw = new JTextField();
-        
+
 
         un.setFont(normalFont);
         pw.setFont(normalFont);
@@ -65,6 +64,7 @@ public class LoginGUI extends GUI{
 
         login = new JButton("Login");
         guest = new JButton("Guest");
+        register = new JButton("Register");
 
 
         login.setBackground(Color.GRAY);
@@ -73,7 +73,7 @@ public class LoginGUI extends GUI{
 
         login.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-              loginButtonPressed();
+                loginButtonPressed();
             }
         });
 
@@ -83,17 +83,31 @@ public class LoginGUI extends GUI{
 
         guest.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-              guestButtonPressed();
+                guestButtonPressed();
             }
         });
 
-       
-    
+        register.setBackground(Color.GRAY);
+        register.setForeground(Color.WHITE);
+        register.setFont(normalFont);
+
+        register.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                registerButtonPressed();
+            }
+        });
+
     }
-    private void guestButtonPressed(){
-       // make it login as unregistered user
+    private void guestButtonPressed()
+    {
+        // make it login as unregistered user
     }
-    
+
+    private void registerButtonPressed()
+    {
+        // make it go to the register page
+    }
+
     private void loginButtonPressed(){
         String user = un.getText().toString();
         System.out.println(user);
@@ -102,6 +116,6 @@ public class LoginGUI extends GUI{
         System.out.println(pass);
 
         //send these values to check database and see if it's a user and what type of user it is
-        
+
     }
 }
