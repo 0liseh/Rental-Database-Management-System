@@ -19,7 +19,7 @@ class Property_app{
     LoginGUI x = new LoginGUI();
 
 
-   while(true){
+   //while(true){
 
 
     String type = x.gettype();
@@ -84,7 +84,7 @@ class Property_app{
 
 
 
-  }
+  //}
 
 
 
