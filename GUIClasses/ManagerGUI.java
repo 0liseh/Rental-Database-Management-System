@@ -138,14 +138,15 @@ public class ManagerGUI extends GUI{
         setFee.removeAll();
         setFee.revalidate();
         setFee.repaint();
-        setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
+        JPanel sf = new JPanel(new GridLayout(0, 1, 0, 20));
+        sf.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 
         Vector<String> fee = dbController.getFee(); // get the fee from databse
         String tempFee = "Current fee(s) are:\n";
         JTextArea currentFee = new JTextArea(tempFee);
-        setFee.add(currentFee);
-        setFee.setBorder(BorderFactory.createEmptyBorder(15, 40, 300 / fee.size(), 40));
+        sf.add(currentFee);
+        sf.setBorder(BorderFactory.createEmptyBorder(15, 40, 300 / fee.size(), 40));
         currentFee.setForeground(Color.BLACK);
         currentFee.setOpaque(false);
         currentFee.setLineWrap(true);
@@ -157,7 +158,7 @@ public class ManagerGUI extends GUI{
             currentFee.setOpaque(false);
             currentFee.setLineWrap(true);
             currentFee.setFont(normalFont);
-            setFee.add(currentFee);
+            sf.add(currentFee);
         }
         if(fee.size() == 0){
             tempFee = "There Are no Fees set up\n";
@@ -166,26 +167,30 @@ public class ManagerGUI extends GUI{
             currentFee.setOpaque(false);
             currentFee.setLineWrap(true);
             currentFee.setFont(normalFont);
-            setFee.add(currentFee);
+            sf.add(currentFee);
         } 
         JLabel newFee = new JLabel("Enter the Desired Fee Amount e.g 50");
         newFee.setForeground(Color.BLACK);
         newFee.setFont(normalFont);
-        setFee.add(newFee);
+        sf.add(newFee);
 
         changeFeeTo = new JTextField();
         changeFeeTo.setFont(normalFont);
-        setFee.add(changeFeeTo);
+        sf.add(changeFeeTo);
 
         JLabel nFee = new JLabel("Enter Fee Duration in days e.g 30");
         nFee.setForeground(Color.BLACK);
         nFee.setFont(normalFont);
-        setFee.add(nFee);
+        sf.add(nFee);
         feeDuration = new JTextField();
         feeDuration.setFont(normalFont);
-        setFee.add(feeDuration);
+        sf.add(feeDuration);
 
-        setFee.add(confirmNewFee);
+        sf.add(confirmNewFee);
+
+        JScrollPane scrollPane = new JScrollPane(sf);    
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        setFee.add(scrollPane);
     }
 
     private void confirmNewFeeButtonPressed(){
