@@ -209,4 +209,64 @@ public class DatabaseController{
         }
     }
 	
+	
+	
+	
+	
+	public int TotalPropertyPostedInPeriod(String start_date, String end_date)  // date must be of form: dd-mm-yyyy
+    {
+        int counter=0;
+        try {
+            stmt = mysql_con.createStatement();
+            rs = stmt.executeQuery("select * from property");
+            var startDate = start_date.split("-");
+            var newStartDate = (new Date(Integer.parseInt(startDate[2]),Integer.parseInt(startDate[1])-1, Integer.parseInt(startDate[0]))).getTime();
+            var endDate = end_date.split("-");
+            var newEndDate = (new Date(Integer.parseInt(endDate[2]),Integer.parseInt(endDate[1])-1, Integer.parseInt(endDate[0]))).getTime();
+            while(rs.next())
+            {
+
+                String date_posted = rs.getString("datePosted");
+                var datePosted = date_posted.split("-");
+                var newDatePosted = (new Date(Integer.parseInt(datePosted[2]),Integer.parseInt(datePosted[1])-1, Integer.parseInt(datePosted[0]))).getTime();
+                if(newStartDate<newDatePosted && newEndDate>newDatePosted)
+                {
+                    counter+=1;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return counter;
+    }
+
+    public int TotalPropertyRentedInPeriod(String start_date, String end_date)  // date must be of form: dd-mm-yyyy and status should be rented
+    {
+        int counter=0;
+        try {
+            stmt = mysql_con.createStatement();
+            rs = stmt.executeQuery("select * from property");
+            var startDate = start_date.split("-");
+            var newStartDate = (new Date(Integer.parseInt(startDate[2]),Integer.parseInt(startDate[1])-1, Integer.parseInt(startDate[0]))).getTime();
+            var endDate = end_date.split("-");
+            var newEndDate = (new Date(Integer.parseInt(endDate[2]),Integer.parseInt(endDate[1])-1, Integer.parseInt(endDate[0]))).getTime();
+            while(rs.next())
+            {
+
+                String date_posted = rs.getString("datePosted");
+                var datePosted = date_posted.split("-");
+                var newDatePosted = (new Date(Integer.parseInt(datePosted[2]),Integer.parseInt(datePosted[1])-1, Integer.parseInt(datePosted[0]))).getTime();
+                if(newStartDate<newDatePosted && newEndDate>newDatePosted && rs.getString("status").equals("rented"))
+                {
+                    counter+=1;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return counter;
+    }
+	
 }
