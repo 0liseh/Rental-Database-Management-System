@@ -203,8 +203,10 @@ public class DatabaseController{
 					int llID = rs.getInt("landlordID");
 					
 					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
-					properties.add(temp);
+					prop.add(temp);
+		
 				}
+			
 			}
 		}
 		catch(Exception e){ 
