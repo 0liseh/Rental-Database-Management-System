@@ -118,8 +118,7 @@ public class DatabaseController{
 			while(rs.next()) {
 				System.out.println("In getLandlords while loop");
 				if(type.equals(rs.getString("type1"))){
-					Landlord temp;
-					temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), getMyProperties(rs.getInt("id")));
+					Landlord temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), getMyProperties(rs.getInt("id")));
 					landlords.add(temp);
 				}
 			}
