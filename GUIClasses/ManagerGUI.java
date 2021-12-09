@@ -325,20 +325,22 @@ public class ManagerGUI extends GUI{
         houseRented.setFont(normalFont);
         sPanel.add(houseRented);
 
-        JLabel activeListing= new JLabel("Total Active Listings: "); // retrieve from database
+        Vector<Property> activeList = dbController.getStatusProperties("Active");
+
+        JLabel activeListing= new JLabel("Total Active Listings: " + activeList.size()); // retrieve from database
         activeListing.setForeground(Color.BLACK);
         activeListing.setFont(normalFont);
         sPanel.add(activeListing);
 
+        
         JLabel houseRentedP = new JLabel("Houses Rented this period: "); // retrieve from database
         houseRentedP.setForeground(Color.BLACK);
         houseRentedP.setFont(normalFont);
         sPanel.add(houseRentedP);
-
-        Vector<Property> currentlyRented = new Vector<Property>();
+        
 
         //Call controller function for all properties with status rented
-
+        Vector<Property> currentlyRented = dbController.getStatusProperties("Rented");
         for(int i = 0; i < currentlyRented.size(); i++){
             String tempStr = "\nProperty ID: " + currentlyRented.get(i).getPropertyid() + "\n";
             tempStr = tempStr + "Type of property: " + currentlyRented.get(i).getPropertyType() + "\n";
