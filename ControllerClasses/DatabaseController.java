@@ -370,18 +370,35 @@ public class DatabaseController{
     }
     
     //Manager can set a fee
-    public void setFee() {
+    public void setFee(double feeAmount, int feeDuration) {
     	
+//    	 try {
+//		        stmt = mysql_con.createStatement();
+//		        String insert = "INSERT INTO FEE (fee, duration) values (?,?)";
+//		        rs = stmt.executeQuery(insert);
+//		        				
+//		         while(rs.next()) {
+//		        	 if(rs.getInt("duration")== feeDuration) {
+//		        		 rs.updateDouble(1, feeAmount);
+//		        	 }
+//		        	 else {
+//		        		 rs.setDouble(1, feeAmount);
+//		        	 }
+//             }
+//    	 }catch(Exception e) {
+//             System.out.println(e);
+//    	 }
+//    	 
     	 try {
-             stmt = mysql_con.createStatement();
-             rs = stmt.executeQuery("select * from fee");
-             
-             while(rs.next()) {
-            	 
-             }
-    	 }catch(Exception e) {
-             System.out.println(e);
-    	 }
+ 			String query = "INSERT INTO FEE (fee, duration) values (?,?,?)";
+ 			PreparedStatement pStat = mysql_con.prepareStatement(query);
+ 			pStat.setDouble(1, feeAmount);
+ 			pStat.setInt(2, feeDuration);
+ 			pStat.executeUpdate();
+ 			pStat.close();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
     	
     }
     
