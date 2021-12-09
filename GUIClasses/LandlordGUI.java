@@ -55,11 +55,12 @@ public class LandlordGUI extends GUI {
         controlPanel.revalidate();
         controlPanel.repaint();
         Lid = id;
+        addPropertiesBox();
         addToReg();
         addToPost();
         addToChangeOfStatus();
         addListeners();
-        addPropertiesBox();
+       
 
         tp.add("Register new Property!", reg);
         tp.add("Post Property!", post);
