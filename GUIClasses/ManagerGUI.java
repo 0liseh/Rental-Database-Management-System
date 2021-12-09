@@ -138,17 +138,33 @@ public class ManagerGUI extends GUI{
         setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 
-
-        String fee = dbController.getFee(); // get the fee from database
-        String tempFee = "Current fee(s) are: " + "\n" + fee;
-        JTextArea currentFee = new JTextArea();
-        currentFee.setText(tempFee);
+        Vector<String> fee = dbController.getFee(); // get the fee from databse
+        String tempFee = "Current fee(s) are:\n";
+        JTextArea currentFee = new JTextArea(tempFee);
+        setFee.add(currentFee);
+        setFee.setBorder(BorderFactory.createEmptyBorder(15, 40, 300 / fee.size(), 40));
         currentFee.setForeground(Color.BLACK);
         currentFee.setOpaque(false);
-        //currentFee.setLineWrap(true);
+        currentFee.setLineWrap(true);
         currentFee.setFont(normalFont);
-        setFee.add(currentFee);
-
+        for(int i = 0; i < fee.size(); i++){
+            tempFee = fee.get(i);
+            currentFee = new JTextArea(tempFee);
+            currentFee.setForeground(Color.BLACK);
+            currentFee.setOpaque(false);
+            currentFee.setLineWrap(true);
+            currentFee.setFont(normalFont);
+            setFee.add(currentFee);
+        }
+        if(fee.size() == 0){
+            tempFee = "There Are no Fees set up\n";
+            currentFee = new JTextArea(tempFee);
+            currentFee.setForeground(Color.BLACK);
+            currentFee.setOpaque(false);
+            currentFee.setLineWrap(true);
+            currentFee.setFont(normalFont);
+            setFee.add(currentFee);
+        } 
         JLabel newFee = new JLabel("Enter the Desired Fee Amount e.g 50");
         newFee.setForeground(Color.BLACK);
         newFee.setFont(normalFont);
