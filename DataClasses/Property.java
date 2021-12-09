@@ -1,17 +1,29 @@
 package DataClasses;
 
-class Property {
+public class Property {
   
-  private static int propertyid;
-  private string propertyType;
+  private  int propertyid;
+  private String propertyType;
   private int noOfBed;
   private int noOfBath;
-  private bool furnished;
-  private string area;
-  private string status;
+  private boolean furnished;
+  private String area;
+  private String status;
   private int landlordID;
 
-  Property(){
+  public Property(){
+
+  }
+
+  public Property(int pid, String pType, int nBed, int nBath, boolean f, String area, String stat, int llID ){
+    this.propertyid = pid;
+    this.propertyType = pType;
+    this.noOfBed = nBed;
+    this.noOfBath = nBath;
+    this.furnished = f;
+    this.area = area;
+    this.status = stat;
+    this.landlordID = llID;
 
   }
 }
