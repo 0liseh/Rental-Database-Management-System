@@ -1,8 +1,6 @@
+//uses static method getConnection(database URL, username, password)
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager; //uses static method getConnection(database URL, username, password)
-import java.sql.SQLException;
+import java.sql.Date;
 import java.util.*;
 import java.lang.*;
 
@@ -130,13 +128,13 @@ public class DatabaseController{
 		return landlords;
 	}
 	
-	public boolean checkUser(String username, String password, String type) {
+	public boolean checkUser(String email, String password, String type) {
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = stmt.executeQuery("SELECT * FROM USER");
 			renters.clear(); 
 			while(rs.next()) {
-				if(type.equals(rs.getString("type")) && username.equals(rs.getString("username")) && password.equals(rs.getString("password"))){
+				if(type.equals(rs.getString("type")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password"))){
 					return true;
 				}
 			}
