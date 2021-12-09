@@ -9,7 +9,8 @@ import ControllerClasses.*;
 
 class Property_app{
 
-  //Property app calls loginGUI first
+
+
   public static void main(String[] args){
     ManagerGUI mGUI = new ManagerGUI();
     LandlordGUI lGUI = new LandlordGUI();
@@ -19,6 +20,8 @@ class Property_app{
 
 
    while(true){
+
+
     String type = x.gettype();
     String loop = "";
     while(type == "yolo"){
@@ -76,19 +79,7 @@ class Property_app{
     }else if(loop == "rr"){
 
     }else if(loop == "urr"){
-      String status = urrGUI.getLoggingOut();
-      while(status == "NO"){
-        status = urrGUI.getLoggingOut();
-        if(status == "YES"){
-          urrGUI.closeWindow();
-          x = new LoginGUI();
-          break;
-        }
 
-         System.out.print("");
-      }
-
-      urrGUI = new UnregisteredRenterGUI();
     }
 
 

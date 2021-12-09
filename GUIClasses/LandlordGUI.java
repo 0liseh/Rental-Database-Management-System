@@ -27,35 +27,35 @@ public class LandlordGUI extends GUI{
     header.setForeground(Color.BLACK);
     header.setFont(new Font("Courier", Font.PLAIN, 30));
     header.setBounds(50, 10 , 400, 40);
-    
 
-    
+
+
     registerProperty.setBackground(Color.GRAY);
     registerProperty.setForeground(Color.WHITE);
     registerProperty.setFont(normalFont);
-   
+
     registerProperty.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         registerPropertyButtonPressed();
       }
     });
 
-    
+
     postProperty.setBackground(Color.GRAY);
     postProperty.setForeground(Color.WHITE);
     postProperty.setFont(normalFont);
-   
+
     postProperty.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         postPropertyButtonPressed();
       }
     });
 
-    
+
     changeStateOfListing.setBackground(Color.GRAY);
     changeStateOfListing.setForeground(Color.WHITE);
     changeStateOfListing.setFont(normalFont);
-    
+
     changeStateOfListing.addActionListener(new ActionListener(){
       public void actionPerformed(ActionEvent e){
         changeStateOfListingButtonPressed();
@@ -71,13 +71,13 @@ public class LandlordGUI extends GUI{
         confirmButtonPressed();
       }
     });
-    
-    
-    
+
+
+
   }
 
   private void initializeBounds(){
-    
+
     postProperty.setBounds(40 , 90, 420, 30);
     registerProperty.setBounds(40 , 50, 420, 30);
     changeStateOfListing.setBounds(40 , 130, 420, 30);
@@ -91,10 +91,10 @@ public class LandlordGUI extends GUI{
     initializeBounds();
     panel.add(header);
     panel.add(postProperty);
-    
+
     panel.add(registerProperty);
     panel.add(changeStateOfListing);
-    
+
     panel.add(logout);
     frame.setVisible(true);
   }
@@ -117,7 +117,7 @@ public class LandlordGUI extends GUI{
     statuses.add("cancelled");
     statuses.add("suspended");
 
-    
+
 
     addElements();
     properties.add("Select property To change state of");
@@ -133,8 +133,8 @@ public class LandlordGUI extends GUI{
 
   private void postPropertyButtonPressed(){
     properties = new Vector<String>(0);
-    
-    
+
+
     addElements();
     changeStateOfListing.setBounds(40 , 170, 420, 30);
     properties.add("Select property to post");
@@ -164,7 +164,7 @@ public class LandlordGUI extends GUI{
 
     tOP.setBounds(40 , 90, 420, 30);
     panel.add(tOP);
-    
+
 
     JLabel bed= new JLabel("Number of Bedrooms:");
     bed.setForeground(Color.BLACK);
@@ -172,17 +172,17 @@ public class LandlordGUI extends GUI{
     panel.add(bed);
     bed.setBounds(40, 120 , 480, 40);
 
-    
+
     b.setBounds(40 , 160, 420, 30);
     panel.add(b);
-    
+
     JLabel bath = new JLabel("Number of Bathrooms:");
     bath.setForeground(Color.BLACK);
     bath.setFont(normalFont);
     panel.add(bath);
     bath.setBounds(40, 190 , 480, 40);
 
-   
+
     b2.setBounds(40 , 230, 420, 30);
     panel.add(b2);
 
@@ -202,7 +202,7 @@ public class LandlordGUI extends GUI{
     a.setFont(normalFont);
     panel.add(a);
     a.setBounds(40, 340 , 480, 40);
-    
+
 
     spotBox.setSelectedIndex(0);
     spotBox.setBounds(40, 380, 420, 30);
@@ -219,9 +219,9 @@ public class LandlordGUI extends GUI{
   }
 
   private void confirmButtonPressed(){
-    
+
     //use controller to send data to database
-    
+
     if(properties.size() > 0){
       //make changes to property here
       String forProperty = pBox.getSelectedItem().toString();
@@ -233,7 +233,7 @@ public class LandlordGUI extends GUI{
       }else if(properties.get(0).equals("Select property To change state of")){
         //need to read from box and switch status, and what property was switched
         String newStatus = sBox.getSelectedItem().toString();
-        
+
 
         if(forProperty.equals(properties.get(0))){
           JOptionPane.showMessageDialog(panel, "Must select a property to change");
@@ -242,18 +242,18 @@ public class LandlordGUI extends GUI{
           JOptionPane.showMessageDialog(panel, "The status of " + forProperty + " has been changed to " + newStatus);
           backButtonPressed();
         }
-        
+
 
       }
     }else{
       //need to read from box and switch status, and what property was switched
-     
+
       JOptionPane.showMessageDialog(panel, "The property has be registered! to post it select it under post and confirm");
       backButtonPressed();
     }
 
-    
-    
+
+
   }
 
   /*public payFee(){
@@ -281,6 +281,6 @@ public class LandlordGUI extends GUI{
   }
 
   public checkMail(){
-    
+
   }*/
 }
