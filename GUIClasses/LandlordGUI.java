@@ -41,6 +41,8 @@ public class LandlordGUI extends GUI {
         for(int i = 0; i < f.size(); i++){
             feeBx.add(f.get(i));
         }
+
+        fees = new JComboBox(feeBx);
         
         initializeComboBoxes();
         setButtons();
@@ -249,6 +251,12 @@ public class LandlordGUI extends GUI {
         whatProp.setForeground(Color.BLACK);
         whatProp.setFont(normalFont);
         post.add(whatProp);
+
+        JLabel feeL = new JLabel("Select subscription Option" , JLabel.CENTER);
+
+        feeL.setForeground(Color.BLACK);
+        feeL.setFont(normalFont);
+        post.add(feeL);
 
         fees.setForeground(Color.BLACK);
         fees.setFont(normalFont);
