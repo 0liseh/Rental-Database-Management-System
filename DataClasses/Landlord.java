@@ -5,7 +5,7 @@ public class Landlord extends User{
 	  
 	public Landlord(String name, int id, String email, String phoneNumber, String password, Vector<Property> properties){
 		super(name,id,email,phoneNumber,password);
-		this.properties = new Vector(properties);
+		this.properties = properties;
 	}
 	public Vector<Property> getProperties() {
 		return properties;
