@@ -189,4 +189,24 @@ public class DatabaseController{
         return searched;
     }
 	
+	
+    public void addItems(String table, ArrayList<String> attributes) {
+        try {
+            String query = "INSERT INTO " + table + " VALUES (";
+            for(int i = 0; i < attributes.size(); i++){
+                if(i != attributes.size()-1){
+                    query += attributes.get(i) + ", ";
+                }else{
+                    query += attributes.get(i) + ")";
+                }
+            }
+            PreparedStatement preparedStatment = mysql_con.prepareStatement(query);
+
+            preparedStatment.executeUpdate();
+            preparedStatment.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+	
 }
