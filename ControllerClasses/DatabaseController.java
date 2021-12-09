@@ -1,7 +1,3 @@
-package ControllerClasses;
-
-import DataClasses.*;
-
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.Driver;
@@ -59,7 +55,6 @@ public class DatabaseController{
 	
 	public Vector<Property> getProperties(){
 		try {
-			//Class.forName("com.mysql.cj.jdbc.Driver");
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			
@@ -87,7 +82,6 @@ public class DatabaseController{
 
 	public Vector<Property> getMyProperties(int lID){
 		try {
-			//Class.forName("com.mysql.cj.jdbc.Driver");
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			
@@ -118,8 +112,7 @@ public class DatabaseController{
 	}
 
 	public Vector<Landlord> getLandlords(){
-
-
 		return landlords;
 	}
+	
 }

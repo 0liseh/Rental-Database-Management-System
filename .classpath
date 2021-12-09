@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="GUIClasses"/>
 	<classpathentry kind="src" path="ControllerClasses"/>
 	<classpathentry kind="src" path="DataClasses"/>
+	<classpathentry kind="src" path="App"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>

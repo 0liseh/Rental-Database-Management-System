@@ -1,27 +1,19 @@
-/*
-  The first UI the user comes in contact with
-  Will call whatever GUI the user needs
-*/
+/*The first UI the user comes in contact with. Will call whatever GUI the user needs*/
 //Property_app.java
-import GUIClasses.*;
-import DataClasses.*;
-import ControllerClasses.*;
 
-class Property_app{
-
-
+public class Property_app{
 
   public static void main(String[] args){
-    //ManagerGUI mGUI = new ManagerGUI();
-    //LandlordGUI lGUI = new LandlordGUI();
+    ManagerGUI mGUI = new ManagerGUI();
+    LandlordGUI lGUI = new LandlordGUI();
     //RegisteredRenterGUI rrGUI;
     UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
-    //LoginGUI x = new LoginGUI();
+    LoginGUI x = new LoginGUI();
 
-
+    
    /*while(true){
 
-
+	
     String type = x.gettype();
     String loop = "";
     while(type == "yolo"){

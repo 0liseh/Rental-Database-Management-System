@@ -1,12 +1,9 @@
-package GUIClasses;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import DataClasses.Property;
-import ControllerClasses.DatabaseController;
 
 
 public class UnregisteredRenterGUI extends GUI {
