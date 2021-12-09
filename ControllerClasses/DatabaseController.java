@@ -10,7 +10,7 @@ public class DatabaseController{
   
 	private Vector<Property> properties = new Vector<Property>();
 	private Vector<Landlord> landlords = new Vector<Landlord>();
-	
+	private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
@@ -83,7 +83,7 @@ public class DatabaseController{
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
-			
+			properties.clear();
 			while(rs.next()) {
 
 				if(lID == rs.getInt("landlordID")){
@@ -112,17 +112,82 @@ public class DatabaseController{
 
 	//sends a list of landlords
 	public Vector<Landlord> getLandlords(){
+		try {
+			String type = "landlord";
+			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			landlords.clear(); 
+			while(rs.next()) {
+				if(type.equals(rs.getString("type"))){
+					Landlord temp;
+					temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password"), getMyProperties(rs.getInt("id")));
+					landlords.add(temp);
+				}
+        }
+		} catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 		return landlords;
 	}
+	
+	public boolean checkUser(String username, String password, String type) {
+		try {
+			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			renters.clear(); 
+			while(rs.next()) {
+				if(type.equals(rs.getString("type")) && username.equals(rs.getString("username")) && password.equals(rs.getString("password"))){
+					return true;
+				}
+			}
+		} catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+		return false;
+	}
+	
+	public Vector<RegisteredRenter> getRegisteredRenters(){
+		try {
+			String type = "renter";
+			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			renters.clear(); 
+			while(rs.next()) {
+				if(type.equals(rs.getString("type"))){
+					RegisteredRenter temp;
+					temp = new RegisteredRenter(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password"), getNotification(rs.getInt("id")));
+					renters.add(temp);
+				}
+			}
+		} catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+		return renters;
+	}
+	
+	public int getNotification(int id){
+		try {
+			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery("SELECT * FROM NOTIFICATION");
+			while(rs.next()) {
+				if(id == rs.getInt("id")){
+					return rs.getInt("notification");
+				}
+        }
+		} catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+		System.out.println("Registered Renter was not found");
+		return -1;
+	}
+	
 	
 	public Vector<Property> getStatusProperties(String stat){
 		Vector<Property> prop = new Vector<Property>();
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
-			
 			while(rs.next()) {
-
 				if(stat.equals(rs.getString("status1"))){
 					Property temp;
 					int propID = rs.getInt("propertyId");
@@ -137,15 +202,12 @@ public class DatabaseController{
 					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
 					properties.add(temp);
 				}
-				
 			}
-			
 		}
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
 		return prop;
-		
 	}
 	
 	public Vector<Property> getSearchedProperties(String type, String numBed, String numBath , String furnished, String location){
@@ -153,13 +215,11 @@ public class DatabaseController{
         int bedNum = Integer.parseInt(numBed);
         int bathNum = Integer.parseInt(numBath);
         boolean f = Boolean.parseBoolean(furnished);
-
         try {
             stmt = mysql_con.createStatement();  
             rs = stmt.executeQuery("select * from property");  
             
             while(rs.next()) {
-
                 int propID = rs.getInt("propertyId");
                 String propType = rs.getString("propertyType");
                 int numOfBed = rs.getInt("numberOfBed");
@@ -168,19 +228,13 @@ public class DatabaseController{
                 String area = rs.getString("area");
                 String status = rs.getString("status1");
                 int llID = rs.getInt("landlordID");
-
-
+                
                 if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || bedNum == numOfBed) && (numBath.equals("-------") || bathNum == numOfBath) &&
                         (furnished.equals("-------") || Boolean.compare(f , furn) == 0) && (location.equals("-------") || location.equals(area)) ){
                     Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
                     searched.add(temp);
                 }
-                
-                
-                
-                
             }
-            
         }
         catch(Exception e){ 
             System.out.println(e);
@@ -209,10 +263,7 @@ public class DatabaseController{
         }
     }
 	
-	
-	
-	
-	
+
 	public int TotalPropertyPostedInPeriod(String start_date, String end_date)  // date must be of form: dd-mm-yyyy
     {
         int counter=0;

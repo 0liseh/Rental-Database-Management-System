@@ -4,7 +4,16 @@ abstract class User{
   private String email;
   private String phoneNumber;
   private String password;
-
+  public User() {
+	  
+  }
+  public User(String name, int id, String email, String phoneNumber, String password) {
+	  this.name = name; 
+	  this.id = id; 
+	  this.email = email; 
+	  this.phoneNumber = phoneNumber; 
+	  this.password = password;
+  }
   public String getName() {
     return this.name;
   }

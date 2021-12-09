@@ -7,10 +7,18 @@ CREATE TABLE USER (
     id			integer not null,
     email 		varchar(50), 
     phoneNumber char(12),
-    password1 	varchar(50), 
-    type1 		varchar(50),
+    password 	varchar(50), 
+    type 		varchar(50),
     primary key(id)
     
+);
+
+DROP TABLE IF EXISTS NOTIFICATION;
+CREATE TABLE NOTIFICATION(
+    id integer not null,
+    notification integer not null,
+    primary key(id),
+    foreign key(id) references USER(id)
 );
 
 DROP TABLE IF EXISTS PROPERTY;
@@ -26,7 +34,7 @@ CREATE TABLE PROPERTY (
 	dateRented              varchar(50),
         landlordID		integer not null,
 	primary key (propertyId),
-    foreign key (landlordID) references LOGIN(id) ON UPDATE CASCADE
+    foreign key (landlordID) references USER(id) ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS FEE;
