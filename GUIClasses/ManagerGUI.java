@@ -340,23 +340,23 @@ public class ManagerGUI extends GUI{
         //Call controller function for all properties with status rented
         Vector<Property> currentlyRented = dbController.getStatusProperties("rented");
         for(int i = 0; i < currentlyRented.size(); i++){
-            String tempStr = "\nProperty ID: " + currentlyRented.get(i).getPropertyid() + "\n";
+            String tempStr = "\nProperty ID: " + currentlyRented.get(i).getPropertyid();
             addToPS(tempStr);
-            tempStr =  "Type of property: " + currentlyRented.get(i).getPropertyType() + "\n";
+            tempStr =  "Type of property: " + currentlyRented.get(i).getPropertyType();
             addToPS(tempStr);
-            tempStr =  "Number of Bed(s): " + currentlyRented.get(i).getNoOfBed() + "\n";
+            tempStr =  "Number of Bed(s): " + currentlyRented.get(i).getNoOfBed();
             addToPS(tempStr);
-            tempStr =  "Number of Bath(s): " + currentlyRented.get(i).getNoOfBath() + "\n";
+            tempStr =  "Number of Bath(s): " + currentlyRented.get(i).getNoOfBath();
             addToPS(tempStr);
             if(currentlyRented.get(i).isFurnished()){
-                tempStr =  "Furnished\n";
+                tempStr =  "Furnished";
             }else{
-                tempStr =  "Unfurnished\n";
+                tempStr =  "Unfurnished";
             }
             addToPS(tempStr);
-            tempStr = "Location: " + currentlyRented.get(i).getArea() + "\n";
+            tempStr = "Location: " + currentlyRented.get(i).getArea();
             addToPS(tempStr);
-            tempStr =  "Landlord ID: " + currentlyRented.get(i).getLandlordID() + "\n";
+            tempStr =  "Landlord ID: " + currentlyRented.get(i).getLandlordID();
             addToPS(tempStr);
             JTextArea t = new JTextArea("-----------------");
             t.setFont(normalFont);
