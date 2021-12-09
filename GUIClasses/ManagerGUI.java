@@ -310,10 +310,6 @@ public class ManagerGUI extends GUI{
 
         sPanel.setSize(500, 600);
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 0, 100));
-        JLabel PS = new JLabel("Periodical Summary");
-        PS.setForeground(Color.BLACK);
-        PS.setFont(normalFont);
-        getPSummary.add(PS);
 
         JLabel houseListed = new JLabel("Total houses Listed: "); // retrieve from database
         houseListed.setForeground(Color.BLACK);
