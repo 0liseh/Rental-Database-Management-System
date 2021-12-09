@@ -11,10 +11,12 @@ public class LoginGUI extends GUI{
     private JTextField un, pw;
     private JButton login , guest, register;
     private JLabel username , password;
+    private DatabaseController dbController;
 
     public LoginGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+        dbController = new DatabaseController();
         setTextFields();
         setButtons();
         addObjects();
@@ -112,6 +114,15 @@ public class LoginGUI extends GUI{
         String pass = pw.getText().toString();
         System.out.println(pass);
 
+        if(dbController.checkUser(user, pass, "Manager")){
+            System.out.println("Mananger");
+        }else if(dbController.checkUser(user, pass, "Landlord")){
+            System.out.println("landlord");
+        }else if(dbController.checkUser(user, pass, "Renter")){
+            System.out.println("Renter");
+        }else{
+            System.out.println("Didn't work");
+        }
         //send these values to check database and see if it's a user and what type of user it is
 
     }
