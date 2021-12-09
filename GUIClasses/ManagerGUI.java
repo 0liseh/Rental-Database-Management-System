@@ -11,7 +11,7 @@ public class ManagerGUI extends GUI{
     private JTabbedPane tp;
     private JButton confirmStatusChange, confirmNewFee;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
-    private JTextField changeFeeTo;
+    private JTextField changeFeeTo, feeDuration;
     private JPanel changeOfStatus, seeProps, seeLandlords, seeRenters , setFee, getPSummary;
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Landlord> landlords = new Vector<Landlord>();
@@ -174,13 +174,25 @@ public class ManagerGUI extends GUI{
         changeFeeTo.setFont(normalFont);
         setFee.add(changeFeeTo);
 
+        JLabel nFee = new JLabel("Enter Fee Duration in days e.g 30");
+        nFee.setForeground(Color.BLACK);
+        nFee.setFont(normalFont);
+        setFee.add(nFee);
+        feeDuration = new JTextField();
+        feeDuration.setFont(normalFont);
+        setFee.add(feeDuration);
+
         setFee.add(confirmNewFee);
     }
 
     private void confirmNewFeeButtonPressed(){
         String newFeeText = changeFeeTo.getText().toString();
-        System.out.println(newFeeText);
+        
 
+        String newFeeDurationText = feeDuration.getText().toString();
+
+        dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
+        addToSetFee();
         //send the new fee to data base
     }
 
