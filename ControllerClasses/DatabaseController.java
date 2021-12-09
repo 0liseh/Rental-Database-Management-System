@@ -269,4 +269,50 @@ public class DatabaseController{
         return counter;
     }
 	
+	public void sendMailToLandlord(String message, int propertyId)  // adds a message in the messages table for the landlord of that property
+    {
+        try {
+            stmt = mysql_con.createStatement();
+            rs = stmt.executeQuery("select * from property");
+
+            while(rs.next())
+            {
+                if(rs.getInt("propertyId") == propertyId)
+                {
+                    String sql = "INSERT INTO messages (landlordID, message)" +
+                            "VALUES (?, ?)";
+                    PreparedStatement preparedStatement = mysql_con.prepareStatement(sql);
+                    preparedStatement.setInt(1, rs.getInt("landlordID"));
+                    preparedStatement.setString(2, message);
+                    preparedStatement.executeUpdate();
+                }
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public Vector<String> sendMailToLandlord(int landlord_id)  // adds a message in the messages table for the landlord of that property
+    {
+        Vector<String> result = new Vector<>();
+        try {
+            stmt = mysql_con.createStatement();
+            rs = stmt.executeQuery("select * from messages");
+
+            while(rs.next())
+            {
+                if(rs.getInt("landlordID") == landlord_id)
+                {
+                    result.add(rs.getString("message"));
+                }
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+
+        return result;
+    }
+	
 }
