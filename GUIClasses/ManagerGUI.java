@@ -136,6 +136,8 @@ public class ManagerGUI extends GUI{
         System.out.println(propSelected);
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
+
+        dbController.updateStatus(propSelected.substring(11, propSelected.length()), status);
     }
 
     private void addToChangeOfStatus(){
