@@ -174,7 +174,7 @@ public class ManagerGUI extends GUI{
         String tempFee = "Current fee(s) are:\n";
         JTextArea currentFee = new JTextArea(tempFee);
         sf.add(currentFee);
-        sf.setBorder(BorderFactory.createEmptyBorder(15, 40, 300 / fee.size(), 40));
+        sf.setBorder(BorderFactory.createEmptyBorder(15, 40, 300 / (fee.size()+1), 40));
         currentFee.setForeground(Color.BLACK);
         currentFee.setOpaque(false);
         currentFee.setLineWrap(true);
@@ -229,10 +229,14 @@ public class ManagerGUI extends GUI{
         
 
         String newFeeDurationText = feeDuration.getText().toString();
+<<<<<<< Updated upstream
         ArrayList<String> attributes = new ArrayList<String>();
         attributes.add(newFeeText);
         attributes.add(newFeeDurationText);
         dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
+=======
+        dbController.setFee(newFeeText, newFeeDurationText);
+>>>>>>> Stashed changes
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         setFee.removeAll();
         addToSetFee();
