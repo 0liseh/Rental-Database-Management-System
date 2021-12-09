@@ -20,6 +20,7 @@ public class DatabaseController{
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
 	private ResultSet rs;//object of type ResultSet from the JDBC class that stores the result of the query
 	
+	//Database Controller cstr
 	public DatabaseController() {
 		try {
             //Register JDBC driver
@@ -34,6 +35,7 @@ public class DatabaseController{
 
 	}
 	
+	//Gets the list of users 
 	public void getUsers() {
 		try {
 			//Class.forName("com.mysql.cj.jdbc.Driver");
@@ -47,16 +49,8 @@ public class DatabaseController{
 			System.out.println(e);
 		}  
 	}
-	
-	public void addUser() {}
-	public void removeUser() {}
-	public void addProperty() {}
-	public void removeProperty() {}
-	
-	public Vector<Property> searchProperty(){
-		
-	}
-	
+
+	//Gets the list of all the properties
 	public Vector<Property> getProperties(){
 		try {
 			stmt = mysql_con.createStatement();  
@@ -84,6 +78,7 @@ public class DatabaseController{
 		return properties;
 	}
 
+	//Gets the properties based on the landlord ID
 	public Vector<Property> getMyProperties(int lID){
 		try {
 			stmt = mysql_con.createStatement();  
@@ -115,6 +110,7 @@ public class DatabaseController{
 		return properties;
 	}
 
+	//sends a list of landlords
 	public Vector<Landlord> getLandlords(){
 		return landlords;
 	}
