@@ -106,6 +106,12 @@ public class ManagerGUI extends GUI{
                 int index = src.getSelectedIndex();
                 System.out.println("Tab Changed to " + src.getTitleAt(index));
             }
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                // TODO Auto-generated method stub
+                
+            }
         };
         tp.addChangeListener(cl);
         
