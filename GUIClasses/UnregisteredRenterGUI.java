@@ -181,6 +181,7 @@ public class UnregisteredRenterGUI extends GUI {
         System.out.println(isFurn);
         System.out.println(area);
 
+        searchedProperties = dbController.getSearchedProperties(tOfProp, numB, numB2, isFurn, area);
         //contact database a grab all properties that match the description
         addToSearchResults();
     }
