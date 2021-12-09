@@ -10,7 +10,7 @@ public class ManagerController{
 
   }
 
-  public void updateStatus(int id, string status){
+  public void updateStatus(int id, String status){
 
   }
 }
