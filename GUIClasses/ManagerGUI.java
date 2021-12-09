@@ -151,6 +151,7 @@ public class ManagerGUI extends GUI{
         currentFee.setOpaque(false);
         currentFee.setLineWrap(true);
         currentFee.setFont(normalFont);
+        System.out.println(fee.size());
         for(int i = 0; i < fee.size(); i++){
             tempFee = fee.get(i);
             currentFee = new JTextArea(tempFee);
