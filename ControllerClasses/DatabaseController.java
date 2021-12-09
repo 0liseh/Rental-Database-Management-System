@@ -115,4 +115,78 @@ public class DatabaseController{
 		return landlords;
 	}
 	
+	public Vector<Property> getRentedProperties(){
+		Vector<Property> rented = new Vector<Property>();
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("select * from property");  
+			
+			while(rs.next()) {
+
+				if("rented".equals(rs.getString("status1"))){
+					Property temp;
+					int propID = rs.getInt("propertyId");
+					String propType = rs.getString("propertyType");
+					int numOfBed = rs.getInt("numberOfBed");
+					int numOfBath = rs.getInt("numberOfBath");
+					boolean furn = rs.getBoolean("furnished");
+					String area = rs.getString("area");
+					String status = rs.getString("status1");
+					int llID = rs.getInt("landlordID");
+					
+					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+					properties.add(temp);
+				}
+				
+			}
+			
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return rented;
+		
+	}
+	
+	public Vector<Property> getSearchedProperties(String type, String numBed, String numBath , String furnished, String location){
+        Vector<Property> searched = new Vector<Property>();
+        int bedNum = Integer.parseInt(numBed);
+        int bathNum = Integer.parseInt(numBath);
+        boolean f = Boolean.parseBoolean(furnished);
+
+        try {
+            stmt = mysql_con.createStatement();  
+            rs = stmt.executeQuery("select * from property");  
+            
+            while(rs.next()) {
+
+                int propID = rs.getInt("propertyId");
+                String propType = rs.getString("propertyType");
+                int numOfBed = rs.getInt("numberOfBed");
+                int numOfBath = rs.getInt("numberOfBath");
+                boolean furn = rs.getBoolean("furnished");
+                String area = rs.getString("area");
+                String status = rs.getString("status1");
+                int llID = rs.getInt("landlordID");
+
+
+                if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || bedNum == numOfBed) && (numBath.equals("-------") || bathNum == numOfBath) &&
+                        (furnished.equals("-------") || Boolean.compare(f , furn) == 0) && (location.equals("-------") || location.equals(area)) ){
+                    Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+                    searched.add(temp);
+                }
+                
+                
+                
+                
+            }
+            
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }  
+
+        return searched;
+    }
+	
 }

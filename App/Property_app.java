@@ -5,10 +5,10 @@ public class Property_app{
 
   public static void main(String[] args){
     ManagerGUI mGUI = new ManagerGUI();
-    LandlordGUI lGUI = new LandlordGUI();
+    //LandlordGUI lGUI = new LandlordGUI();
     //RegisteredRenterGUI rrGUI;
     UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
-    LoginGUI x = new LoginGUI();
+    //LoginGUI x = new LoginGUI();
 
     
    /*while(true){

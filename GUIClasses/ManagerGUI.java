@@ -16,13 +16,16 @@ public class ManagerGUI extends GUI{
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Landlord> landlords = new Vector<Landlord>();
     private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
+    private DatabaseController dbController;
+    
     public ManagerGUI(){
         mainFrame = new JFrame("Manager window");
         mainFrame.setSize(500, 600);
         mainFrame.add(controlPanel);
         controlPanel.setLayout(null);
         //needs to use controller to get a list of properties from the database and populat properties[]
-
+        dbController = new DatabaseController();
+        properties = dbController.getProperties();
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         tp = new JTabbedPane();
 
@@ -220,13 +223,13 @@ public class ManagerGUI extends GUI{
             tempStr = tempStr + "Landlord ID: " + properties.get(i).getLandlordID() + "\n";
 
 
-
+            
             JTextArea temp = new JTextArea(tempStr);
             temp.setFont(normalFont);
             sPanel.add(temp);
 
         }
-
+        propertiesBox = new JComboBox(prop);
         JScrollPane scrollPane = new JScrollPane(sPanel);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         seeProps.add(scrollPane);

@@ -37,6 +37,8 @@ public class UnregisteredRenterGUI extends GUI {
         //addToSearchResults();
         setButtons();
         addObjects();
+        
+        //dbController.getUsers();
     }   
     private void displayProp(){
     	propListPanel.setLayout(new GridLayout(0, 1, 0, 20));
