@@ -306,6 +306,8 @@ public class ManagerGUI extends GUI{
     }
 
     private void addToPSummary(){
+
+        getPSummary.setSize(500, 600);
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         sPanel.setSize(500, 600);
