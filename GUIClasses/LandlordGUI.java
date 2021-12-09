@@ -249,6 +249,10 @@ public class LandlordGUI extends GUI {
         whatProp.setForeground(Color.BLACK);
         whatProp.setFont(normalFont);
         post.add(whatProp);
+
+        fees.setForeground(Color.BLACK);
+        fees.setFont(normalFont);
+        post.add(fees);
         
         post.add(propertiesBox); // idk why it doesnt show up
 
