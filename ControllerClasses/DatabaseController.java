@@ -411,6 +411,9 @@ public class DatabaseController{
   //Manager can set a fee
     public boolean changeStatus(String propID, String status){
     	 try {
+			 if(status.equals("-------")){
+				 return false;
+			 }
     		String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
   			System.out.println(query);
   			PreparedStatement pStat = mysql_con.prepareStatement(query);
