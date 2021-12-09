@@ -247,8 +247,8 @@ public class LandlordGUI extends GUI {
     }
 
     private void addToPost(){
-        post.setBorder(BorderFactory.createEmptyBorder(100, 40, 300, 40));
-        JLabel whatProp = new JLabel("Select Property to Post" , JLabel.CENTER);
+        post.setBorder(BorderFactory.createEmptyBorder(100, 40, 200, 40));
+        JLabel whatProp = new JLabel("Select Property to Post");
 
         whatProp.setForeground(Color.BLACK);
         whatProp.setFont(normalFont);
@@ -256,8 +256,7 @@ public class LandlordGUI extends GUI {
 
         post.add(propertiesBox); // idk why it doesnt show up
 
-        JLabel feeL = new JLabel("Select subscription Option" , JLabel.CENTER);
-
+        JLabel feeL = new JLabel("Select subscription Option");
         feeL.setForeground(Color.BLACK);
         feeL.setFont(normalFont);
         post.add(feeL);
