@@ -218,7 +218,6 @@ public class ManagerGUI extends GUI{
 
         sf.add(confirmNewFee);
 
-        fees = new JComboBox(feeBx);
         JScrollPane scrollPane = new JScrollPane(sf);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setFee.add(scrollPane);
@@ -229,14 +228,11 @@ public class ManagerGUI extends GUI{
         
 
         String newFeeDurationText = feeDuration.getText().toString();
-<<<<<<< Updated upstream
         ArrayList<String> attributes = new ArrayList<String>();
         attributes.add(newFeeText);
         attributes.add(newFeeDurationText);
         dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
-=======
-        dbController.setFee(newFeeText, newFeeDurationText);
->>>>>>> Stashed changes
+        
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         setFee.removeAll();
         addToSetFee();

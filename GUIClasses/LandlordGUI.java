@@ -44,7 +44,7 @@ public class LandlordGUI extends GUI {
 
         fees = new JComboBox(feeBx);
         
-        initializeComboBoxes();
+        
         setButtons();
         //addObjects();
 
@@ -59,6 +59,7 @@ public class LandlordGUI extends GUI {
         addToPost();
         addToChangeOfStatus();
         addListeners();
+        initializeComboBoxes();
 
         tp.add("Register new Property!", reg);
         tp.add("Post Property!", post);
@@ -252,6 +253,8 @@ public class LandlordGUI extends GUI {
         whatProp.setFont(normalFont);
         post.add(whatProp);
 
+        post.add(propertiesBox); // idk why it doesnt show up
+
         JLabel feeL = new JLabel("Select subscription Option" , JLabel.CENTER);
 
         feeL.setForeground(Color.BLACK);
@@ -262,7 +265,7 @@ public class LandlordGUI extends GUI {
         fees.setFont(normalFont);
         post.add(fees);
         
-        post.add(propertiesBox); // idk why it doesnt show up
+        
 
         post.add(confirmPost);
         
