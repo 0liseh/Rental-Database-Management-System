@@ -293,7 +293,7 @@ public class DatabaseController{
         }
     }
 
-    public Vector<String> sendMailToLandlord(int landlord_id)  // adds a message in the messages table for the landlord of that property
+    public Vector<String> getAllMails(int landlord_id)  // adds a message in the messages table for the landlord of that property
     {
         Vector<String> result = new Vector<>();
         try {
