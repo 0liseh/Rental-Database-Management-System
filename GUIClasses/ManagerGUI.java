@@ -362,6 +362,8 @@ public class ManagerGUI extends GUI{
             t.setFont(normalFont);
             t.setFont(normalFont);
             t.setEditable(false);
+            t.setForeground(Color.BLACK);
+            t.setOpaque(false);
             sPanel.add(t);
 
 
@@ -381,6 +383,8 @@ public class ManagerGUI extends GUI{
         JTextArea temp = new JTextArea(tempStr);
         temp.setFont(normalFont);
         temp.setFont(normalFont);
+        temp.setForeground(Color.BLACK);
+        temp.setOpaque(false);
         temp.setEditable(false);
         sPanel.add(temp);
     }
