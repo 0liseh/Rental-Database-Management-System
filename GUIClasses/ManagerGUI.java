@@ -177,7 +177,10 @@ public class ManagerGUI extends GUI{
         slPanel.setSize(500, 600);
         slPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
         landlords = dbController.getLandlords();
+        System.out.println("Size of landlord is " + landlords.size());
         for(int i = 0; i < landlords.size(); i++){
+            
+            System.out.println(landlords.get(i).getId());
             String tempStr = "\nLandlord ID: " + landlords.get(i).getId() + "\n";
             tempStr = tempStr + "Name: " + landlords.get(i).getName() + "\n";
             tempStr = tempStr + "Email: " + landlords.get(i).getEmail() + "\n";
