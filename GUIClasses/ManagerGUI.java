@@ -140,7 +140,7 @@ public class ManagerGUI extends GUI{
         setFee.repaint();
         JPanel sf = new JPanel(new GridLayout(0, 1, 0, 20));
         sf.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
-
+        sf.setSize(500, 600);
 
         Vector<String> fee = dbController.getFee(); // get the fee from databse
         String tempFee = "Current fee(s) are:\n";
