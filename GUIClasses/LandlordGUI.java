@@ -174,6 +174,15 @@ public class LandlordGUI extends GUI {
 
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
+
+
+        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
+
+        if(b){
+            JOptionPane.showMessageDialog(mainFrame, "Status Changes Successfully!");
+        }else{
+            JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
+        }
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
     }
