@@ -109,7 +109,9 @@ public class ManagerGUI extends GUI{
 
             @Override
             public void stateChanged(ChangeEvent e) {
-                // TODO Auto-generated method stub
+                JTabbedPane src = (JTabbedPane) e.getSource();
+                int index = src.getSelectedIndex();
+                System.out.println("Tab Changed to " + src.getTitleAt(index));
                 
             }
         };
