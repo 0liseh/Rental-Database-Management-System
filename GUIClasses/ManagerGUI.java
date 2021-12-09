@@ -135,6 +135,10 @@ public class ManagerGUI extends GUI{
     }
 
     private void addToSetFee(){
+        setFee.removeAll();
+        setFee.revalidate();
+        setFee.repaint();
+        
         setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 
@@ -308,6 +312,7 @@ public class ManagerGUI extends GUI{
     private void addToPSummary(){
 
         getPSummary.setSize(500, 600);
+        getPSummary.setLayout(new GridLayout(0, 1, 0, 20));
         sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
         sPanel.setSize(500, 600);
