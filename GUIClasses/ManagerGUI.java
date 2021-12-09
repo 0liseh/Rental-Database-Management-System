@@ -176,7 +176,7 @@ public class ManagerGUI extends GUI{
 
         slPanel.setSize(500, 600);
         slPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
-
+        landlords = dbController.getLandlords();
         for(int i = 0; i < landlords.size(); i++){
             String tempStr = "\nLandlord ID: " + landlords.get(i).getId() + "\n";
             tempStr = tempStr + "Name: " + landlords.get(i).getName() + "\n";
@@ -246,7 +246,7 @@ public class ManagerGUI extends GUI{
 
         srPanel.setSize(500, 600);
         srPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
-
+        renters = dbController.getRegisteredRenters();
         for(int i = 0; i < renters.size(); i++){
             String tempStr = "\nRenter ID: " + renters.get(i).getId() + "\n";
             tempStr = tempStr + "Name: " + renters.get(i).getName() + "\n";

@@ -99,6 +99,8 @@ public class LoginGUI extends GUI{
     }
     private void guestButtonPressed()
     {
+
+        
         // make it login as unregistered user
     }
 
@@ -121,9 +123,10 @@ public class LoginGUI extends GUI{
         }else if(dbController.checkUser(user, pass, "Renter")){
             System.out.println("Renter");
         }else{
+            JOptionPane.showMessageDialog(mainFrame, "Incorrect Name or Password, Please try again");
             System.out.println("Didn't work");
         }
         //send these values to check database and see if it's a user and what type of user it is
 
-    }
+
 }
