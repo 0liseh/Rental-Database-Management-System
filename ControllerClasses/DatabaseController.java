@@ -254,10 +254,10 @@ public class DatabaseController{
             while(rs.next())
             {
 
-                String date_posted = rs.getString("datePosted");
-                var datePosted = date_posted.split("-");
-                var newDatePosted = (new Date(Integer.parseInt(datePosted[2]),Integer.parseInt(datePosted[1])-1, Integer.parseInt(datePosted[0]))).getTime();
-                if(newStartDate<newDatePosted && newEndDate>newDatePosted && rs.getString("status").equals("rented"))
+                String date_posted = rs.getString("dateRented");
+                var dateRented = date_posted.split("-");
+                var newDateRented = (new Date(Integer.parseInt(dateRented[2]),Integer.parseInt(dateRented[1])-1, Integer.parseInt(dateRented[0]))).getTime();
+                if(newStartDate<newDateRented && newEndDate>newDateRented)
                 {
                     counter+=1;
                 }
