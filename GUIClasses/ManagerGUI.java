@@ -138,7 +138,6 @@ public class ManagerGUI extends GUI{
         setFee.removeAll();
         setFee.revalidate();
         setFee.repaint();
-        setButtons();
         setFee.setBorder(BorderFactory.createEmptyBorder(10, 40, 30, 40));
 
 
@@ -196,7 +195,7 @@ public class ManagerGUI extends GUI{
         String newFeeDurationText = feeDuration.getText().toString();
 
         dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
-        setFee = new JPanel();
+        setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         addToSetFee();
         //send the new fee to data base
     }
