@@ -43,7 +43,7 @@ public class LandlordGUI extends GUI {
         }
 
         fees = new JComboBox(feeBx);
-        
+        propertiesBox = new JComboBox(prop);
         
         setButtons();
         //addObjects();
@@ -59,7 +59,7 @@ public class LandlordGUI extends GUI {
         addToPost();
         addToChangeOfStatus();
         addListeners();
-        initializeComboBoxes();
+        addPropertiesBox();
 
         tp.add("Register new Property!", reg);
         tp.add("Post Property!", post);
@@ -119,7 +119,7 @@ public class LandlordGUI extends GUI {
         tp.addChangeListener(cl);
     }
 
-    private void initializeComboBoxes(){
+    private void addPropertiesBox(){
 
 
         Vector<Integer> properties = dbController.getMyProperties(Lid);
