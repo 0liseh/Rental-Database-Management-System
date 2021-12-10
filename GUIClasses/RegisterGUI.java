@@ -31,7 +31,7 @@ public class RegisterGUI extends  GUI{
     {
         JPanel temp = new JPanel(new GridLayout( 0, 1, 0 ,20));
         temp.setSize(500, 600);
-       String t[] = {"renter", "landlord"};
+       String t[] = {"renter", "Landlord"};
         nu = new JComboBox(t);
         controlPanel.removeAll();
         controlPanel.revalidate();
