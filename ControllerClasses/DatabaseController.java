@@ -376,7 +376,9 @@ public class DatabaseController{
     public void setFee(double feeAmount, int feeDuration) {
 
     	 try {
- 			String query = "INSERT INTO FEE (fee, duration) values (?,?) on duplicate key update duration = ?";
+ 			String query = "INSERT INTO FEE (fee, duration) VALUES (?,?) ON DUPLICATE KEY UPDATE fee=";
+ 			query+=feeAmount;
+ 			System.out.println("This is the query in setFee: " + query);
  			PreparedStatement pStat = mysql_con.prepareStatement(query);
  			pStat.setDouble(1, feeAmount);
  			pStat.setInt(2, feeDuration);

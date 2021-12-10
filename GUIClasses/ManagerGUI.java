@@ -228,8 +228,9 @@ public class ManagerGUI extends GUI{
         ArrayList<String> attributes = new ArrayList<String>();
         attributes.add(newFeeText);
         attributes.add(newFeeDurationText);
-        dbController.addItems("FEE",attributes);
+        dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
+        setFee.removeAll();
         addToSetFee();
         //send the new fee to data base
     }
