@@ -9,14 +9,16 @@ import javax.swing.event.ChangeListener;
 
 public class UnregisteredRenterGUI extends GUI {
     
-    private JPanel search, searchResults, message, Login; // propListPanel instead of view all
-    private JButton confirmSearch;
+    private JPanel search, searchResults, sendMessage, Login; // propListPanel instead of view all
+    private JButton confirmSearch, confirmSendMessage;
     protected JTabbedPane tp;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private JLabel typeOfProperty, bed , bath , f , a;
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Property> searchedProperties = new Vector<Property>();
     protected DatabaseController dbController;
+    protected JTextField iD;
+    protected JTextArea message;
 
 
     public UnregisteredRenterGUI(){
@@ -34,7 +36,7 @@ public class UnregisteredRenterGUI extends GUI {
         
         search = new JPanel(new GridLayout(0, 1, 0, 20));
         searchResults = new JPanel(new GridLayout(0, 1, 0, 20));
-        message = new JPanel();
+        sendMessage = new JPanel();
         //addToSearchResults();
         setButtons();
         //addObjects();
@@ -80,6 +82,7 @@ public class UnregisteredRenterGUI extends GUI {
 
         addActionListeners();
         addToSearch();
+        addToSendMessage();
         tp.add("View all Properties", propListPanel);
         tp.add("Search properties" , search);
         tp.add("Login" , Login);
@@ -94,6 +97,13 @@ public class UnregisteredRenterGUI extends GUI {
         confirmSearch.setBackground(Color.WHITE);
         confirmSearch.setForeground(Color.GRAY);
         confirmSearch.setFont(normalFont);
+
+        confirmSendMessage = new JButton("Search");
+       
+
+        confirmSendMessage.setBackground(Color.WHITE);
+        confirmSendMessage.setForeground(Color.GRAY);
+        confirmSendMessage.setFont(normalFont);
     }
 
     private void addToSearch(){
@@ -145,6 +155,13 @@ public class UnregisteredRenterGUI extends GUI {
               searchButtonPressed();
             }
         });
+
+        confirmSendMessage.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+              sendMessageButtonPressed();
+            }
+        });
+
 
         
         ChangeListener cl = new ChangeListener(){
@@ -231,5 +248,44 @@ public class UnregisteredRenterGUI extends GUI {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         searchResults.add(scrollPane);
         tp.add("Search Results" , searchResults);
+    }
+
+    private void addToSendMessage(){
+        sendMessage.setLayout(new GridLayout(0 , 1 ,0 , 20));
+        sendMessage.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+
+        JTextArea LLID = new JTextArea("Enter ID of landlord you wish to send the message to e.g 5");
+        LLID.setFont(normalFont);
+        LLID.setOpaque(false);
+        LLID.setEditable(false);
+        LLID.setLineWrap(true);
+        LLID.getWrapStyleWord();
+        sendMessage.add(LLID);
+
+        iD = new JTextField();
+        iD.setFont(normalFont);
+        sendMessage.add(iD);
+
+        JTextArea typed = new JTextArea("Enter Message Below");
+        typed.setFont(normalFont);
+        typed.setOpaque(false);
+        typed.setEditable(false);
+        sendMessage.add(typed);
+
+        message = new JTextArea();
+        message.setFont(normalFont);
+        message.setLineWrap(true);
+        message.getWrapStyleWord();
+        sendMessage.add(message);
+
+        sendMessage.add(confirmSendMessage);
+
+
+     
+    }
+
+    private void sendMessageButtonPressed(){
+        JOptionPane.showMessageDialog(mainFrame, "Message has been sent");
+        dbController.sendMail(Integer.parseInt(iD.getText().toString()) , message.getText().toString());
     }
 }
