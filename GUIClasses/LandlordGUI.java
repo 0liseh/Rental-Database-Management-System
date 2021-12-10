@@ -16,6 +16,7 @@ public class LandlordGUI extends GUI {
     private JTabbedPane tp;
     private DatabaseController dbController;
     private int Lid;
+    private Integer pId;
     //private Property properties[];
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private String prop2[] = {"-------"};
@@ -210,15 +211,20 @@ public class LandlordGUI extends GUI {
         System.out.println(area);
         //send Lid as well
 
-        dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
+        pId = dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
 
     }
 
     private void confirmRegAndPostButtonPressed(){
         confirmRegisterButtonPressed();
 
+        JPanel p = new JPanel(new GridLayout(0 , 1, 0, 20));
+        p.add(new JLabel("Select Subscription Model for Property"));
+        p.add(fees);
+
+        JOptionPane.showMessageDialog(mainFrame, p);
         //change 32 to the prop id;
-        dbController.changeStatus("32" , "active");
+        dbController.changeStatus(pId.toString() , "active");
         //String tOfProp = typeOfPropBox.getSelectedItem().toString();
        // String numB = numOfBedsBox.getSelectedItem().toString();
         //String numB2 = numOfBathsBox.getSelectedItem().toString();
