@@ -189,6 +189,9 @@ public class LandlordGUI extends GUI {
         }else{
             JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
         }
+
+        addPropertiesBox();
+        addToPost();
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
     }
