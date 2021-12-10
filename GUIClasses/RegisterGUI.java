@@ -16,6 +16,7 @@ public class RegisterGUI extends  GUI{
     JComboBox nu;
     String type = "yolo";
     public int id;
+    String loggingOut = "NO";
 
     public RegisterGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
@@ -150,7 +151,7 @@ public class RegisterGUI extends  GUI{
         id = dbController.registerUser(nam , phone, user, pass , userType);
 
         type = userType;
-
+            loggingOut = "YES";
         
 
         //send these values to check database and see if it's a user and what type of user it is
@@ -158,6 +159,9 @@ public class RegisterGUI extends  GUI{
     }
     public String gettype(){
         return type;
+    }
+    public String getLoggingOut(){
+        return loggingOut;
     }
 
 }

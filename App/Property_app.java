@@ -41,7 +41,7 @@ public class Property_app{
         loop ="r";
         rGUI.addObjects();
         x.closeWindow();
-
+        break;
       }
       System.out.print("");
     }
@@ -104,33 +104,21 @@ public class Property_app{
 
       urrGUI = new UnregisteredRenterGUI();
 
-    }else if(loop == "r"){
-      type= rGUI.gettype();
-      while(type == "yolo"){
-        type = rGUI.gettype();
-     
-        if(type == "landlord"){
-          loop = "l";
-          lGUI.addObjects(rGUI.id);
+    }else if(loop =="r"){
+      String status = rGUI.getLoggingOut();
+      while(status == "NO"){
+        status = rGUI.getLoggingOut();
+        if(status == "YES"){
           rGUI.closeWindow();
-          break;
-        }else if(type == "renter"){
-          rGUI.closeWindow();
-          rrGUI.addObjects();
-          break;
-        }else if (type == "Unregistered Renter"){
-          loop = "urr";
-          urrGUI.addObjects();
-          rGUI.closeWindow();
+          x = new LoginGUI();
           break;
         }
-        System.out.print("");
+
+         System.out.print("");
       }
-      
 
+      rGUI = new RegisterGUI();
     }
-
-
 
   }
 
