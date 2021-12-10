@@ -30,6 +30,7 @@ public class RegisterGUI extends LoginGUI{
     public void addObjects()
     {
         JPanel temp = new JPanel(new GridLayout( 0, 1, 0 ,20));
+        temp.setSize(500, 600);
        String t[] = {"renter", "landlord"};
         nu = new JComboBox(t);
         controlPanel.removeAll();
