@@ -472,7 +472,7 @@ public class DatabaseController{
 	}
 
 	//This function registers users - landlords and renters
-	public int registerUser(String name, int phNo, String mail, String pwd, String uType) {
+	public int registerUser(String name, String phNo, String mail, String pwd, String uType) {
 		int newUserID = -1;
     	try {
 	    		stmt = mysql_con.createStatement();
@@ -490,7 +490,7 @@ public class DatabaseController{
     			pStat.setString(1, name);
     			pStat.setInt(2, newUserID);
      			pStat.setString(3, mail);
-     			pStat.setInt(4, phNo);
+     			pStat.setString(4, phNo);
      			pStat.setString(5, pwd);
      			pStat.setString(6, uType);
      			pStat.executeUpdate();

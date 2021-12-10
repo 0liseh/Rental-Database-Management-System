@@ -109,7 +109,7 @@ public class Property_app{
      
       if(type == "landlord"){
         loop = "l";
-        lGUI.addObjects(x.id);
+        lGUI.addObjects(rGUI.id);
         rGUI.closeWindow();
         break;
       }else if(type == "renter"){

@@ -16,7 +16,7 @@ public class RegisterGUI extends  GUI{
     private DatabaseController dbController;
     JComboBox nu;
     String type = "yolo";
-    int id;
+    public int id;
 
     public RegisterGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
@@ -145,6 +145,10 @@ public class RegisterGUI extends  GUI{
         String userType = nu.getSelectedItem().toString();
 
         //call dbController . create user
+
+        // /registerUser(String name, int phNo, String mail, String pwd, String uType) {
+
+        id = dbController.registerUser(nam , phone, user, pass , userType);
 
         type = userType;
 
