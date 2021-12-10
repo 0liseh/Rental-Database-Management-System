@@ -108,22 +108,22 @@ public class Property_app{
       while(type == "yolo"){
         type = rGUI.gettype();
      
-      if(type == "landlord"){
-        loop = "l";
-        lGUI.addObjects(rGUI.id);
-        rGUI.closeWindow();
-        break;
-      }else if(type == "renter"){
-        rGUI.closeWindow();
-        rrGUI.addObjects();
-        break;
-      }else if (type == "Unregistered Renter"){
-        loop = "urr";
-        urrGUI.addObjects();
-        rGUI.closeWindow();
-        break;
-      }
-      System.out.print("");
+        if(type == "landlord"){
+          loop = "l";
+          lGUI.addObjects(rGUI.id);
+          rGUI.closeWindow();
+          break;
+        }else if(type == "renter"){
+          rGUI.closeWindow();
+          rrGUI.addObjects();
+          break;
+        }else if (type == "Unregistered Renter"){
+          loop = "urr";
+          urrGUI.addObjects();
+          rGUI.closeWindow();
+          break;
+        }
+        System.out.print("");
       }
       
 
