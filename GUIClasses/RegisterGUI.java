@@ -129,7 +129,7 @@ public class RegisterGUI extends LoginGUI{
     }
     private void guestButtonPressed()
     {
-        // make it login as unregistered user
+        type = "Unregistered Renter";
     }
 
     private void loginButtonPressed(){
