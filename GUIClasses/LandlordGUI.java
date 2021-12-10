@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
 public class LandlordGUI extends GUI {
     
     private JButton confirmStatusChange, confirmRegister , confirmRegAndPost, confirmPost;
-    private JPanel reg , post , changeOfStatus; // can add prop list panel so landlords can view all their properties
+    private JPanel reg , post , changeOfStatus, messages; // can add prop list panel so landlords can view all their properties
     private JTabbedPane tp;
     private DatabaseController dbController;
     private int Lid;
@@ -98,12 +98,14 @@ public class LandlordGUI extends GUI {
         addToReg();
         addToPost();
         addToChangeOfStatus();
+        addToMessages();
         addListeners();
        
 
         tp.add("Register new Property!", reg);
         tp.add("Post Property!", post);
         tp.add("Change Status of Property", changeOfStatus);
+        tp.add("Inbox" , messages);
         tp.add("Logout", new JPanel());
         mainFrame.add(tp);
         
@@ -258,6 +260,31 @@ public class LandlordGUI extends GUI {
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
         
+    }
+    private void addToMessages(){
+
+        messages.setLayout(new GridLayout(0, 1, 0, 20));
+        JPanel mPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        Vector<String> mems = getEmail(Lid);
+
+       mPanel.setSize(500, 600);
+       mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+
+       for(int i = mems.size() - 1; i >= 0; i--){
+        String tempStr = mems.get(i);
+
+        JTextArea temp = new JTextArea(tempStr);
+        temp.setFont(normalFont);
+        temp.setEditable(false);
+        mPanel.add(temp);
+
+       }
+
+
+       JScrollPane scrollPane = new JScrollPane(mPanel);    
+       scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+       messages.add(scrollPane);
+       
     }
 
     private void confirmRegisterButtonPressed(){
