@@ -28,6 +28,7 @@ public class Property_app{
         x.closeWindow();
         break;
       }else if(type == "Registered Renter"){
+        loop = "rr";
         rrGUI.addObjects();
         rrGUI.addObjects(x.id);
         x.closeWindow();
