@@ -21,6 +21,7 @@ public class LandlordGUI extends GUI {
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private String prop2[] = {"-------"};
     private JComboBox fees;
+    private JComboBox fees2;
     Vector<String> feeBx = new Vector<String>();
 
     public LandlordGUI(){
@@ -45,6 +46,7 @@ public class LandlordGUI extends GUI {
         }
 
         fees = new JComboBox(feeBx);
+        fees2 = new JComboBox(feeBx);
         propertiesBox = new JComboBox(prop);
         
         setButtons();
