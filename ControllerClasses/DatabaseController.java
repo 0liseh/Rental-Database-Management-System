@@ -13,7 +13,7 @@ public class DatabaseController{
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
-	private static final String password = "kaboomy";
+	private static final String password = "JesusistheOGM1!";
 	
 	public static Connection mysql_con;
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
