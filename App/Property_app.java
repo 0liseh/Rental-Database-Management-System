@@ -12,8 +12,6 @@ public class Property_app{
 
     
    while(true){
-
-	
     String type = x.gettype();
     String loop = "";
     while(type == "yolo"){

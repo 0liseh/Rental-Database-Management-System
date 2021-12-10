@@ -112,12 +112,12 @@ public class LandlordGUI extends GUI {
     private void initializeComboBoxes(){
 
 
-        Vector<Property> properties = dbController.getMyProperties(Lid);
+        Vector<Integer> properties = dbController.getMyProperties(Lid);
 
         for(int i = 0; i < properties.size(); i++){
         
         prop = Arrays.copyOf(prop, prop.length + 1);
-        prop[prop.length -1 ] = String.valueOf("propertyID: " + properties.get(i).getPropertyid());
+        prop[prop.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
 
         }
         propertiesBox = new JComboBox(prop);
