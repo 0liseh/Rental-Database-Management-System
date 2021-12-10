@@ -63,11 +63,7 @@ public class LandlordGUI extends GUI {
     	 dbController = new DatabaseController();
     	Lid = id;
         boolean b = dbController.getNotifications(this.Lid.toString());
-        notifs.addItemListener(new ItemListener() {    
-            public void itemStateChanged(ItemEvent e) {                 
-               changeNotif();   
-            }    
-         }); 
+        
     	feeBx = new Vector<String>();
     	feeBx = new Vector<String>();
     	prop = new String[1];
@@ -163,7 +159,7 @@ public class LandlordGUI extends GUI {
                 int index = src.getSelectedIndex();
                 System.out.println("Tab Changed to " + src.getTitleAt(index));
                 if(src.getTitleAt(index).equals("Logout")){
-                    dbController.logout(id.toString());
+                    dbController.logout(Lid.toString());
                     logout();
                 }
                 
@@ -305,6 +301,11 @@ public class LandlordGUI extends GUI {
         }else{
             notifs = new JCheckBox("Turn Notifications on" ,false);
         }
+        notifs.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {                 
+               changeNotif();   
+            }    
+         }); 
         
         mPanel.add(notifs);
         
