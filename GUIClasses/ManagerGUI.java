@@ -216,11 +216,13 @@ public class ManagerGUI extends GUI{
         sf.add(feeDuration);
 
         sf.add(confirmNewFee);
-
+        
+        //scrollPane.repaint();
+        //scrollPane.removeAll();
+        //scrollPane.revalidate();
+        
         JScrollPane scrollPane = new JScrollPane(sf); 
-        scrollPane.repaint();
-        scrollPane.removeAll();
-        scrollPane.revalidate();
+        
 
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setFee.add(scrollPane);
