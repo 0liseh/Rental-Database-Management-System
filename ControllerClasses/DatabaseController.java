@@ -422,9 +422,15 @@ public class DatabaseController{
   //Manager can set a fee
     public boolean changeStatus(String propID, String status){
     	 try {
+    		 
 			 if(status.equals("-------")){
 				 return false;
 			 }else{
+				if(status.equals("active")) {
+    			 datePosted(propID); 
+	    		 }else if (status.equals("rented")) {
+	    			 dateRented(propID);
+	    		 } 
 				String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
   				System.out.println(query);
   				PreparedStatement pStat = mysql_con.prepareStatement(query);
@@ -529,6 +535,76 @@ public class DatabaseController{
 		return mail;
 	}
 	
+	public void logout(String id){	
+		try {
+	        Calendar c1 = Calendar.getInstance();	        
+			String query = "UPDATE USER SET 'lastLogin'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (id='" + id + "')" ;
+			System.out.println(query);
+			PreparedStatement pStat = mysql_con.prepareStatement(query);
+			pStat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void datePosted(String id){	
+		try {
+	        Calendar c1 = Calendar.getInstance();	        
+			String query = "UPDATE PROPERTY SET 'datePosted'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id + "')" ;
+			System.out.println(query);
+			PreparedStatement pStat = mysql_con.prepareStatement(query);
+			pStat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void dateRented(String id){	
+		try {
+	        Calendar c1 = Calendar.getInstance();	        
+			String query = "UPDATE PROPERTY SET 'dateRented'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id + "')" ;
+			System.out.println(query);
+			PreparedStatement pStat = mysql_con.prepareStatement(query);
+			pStat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public Vector<Property> getNewProperties(String id){
+		Vector<Property> props = new Vector<Property>();
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("SELECT * FROM USER WHERE 'id'=" + id);  
+			int lastTime = 0;
+			if(!rs.getString("lastLogin").equals("")) {
+				lastTime = rs.getInt("lastLogin");
+			}
+			stmt = mysql_con.createStatement(); 
+			rs = stmt.executeQuery("select * from property");  
+			int time = 10;
+			while(rs.next()) {
+				if(!rs.getString("datePosted").equals("")) {
+					 time = rs.getInt("datePosted");
+				}
+				if(lastTime < time){
+					Property temp;
+					int propID = rs.getInt("propertyId");
+					String propType = rs.getString("propertyType");
+					int numOfBed = rs.getInt("numberOfBed");
+					int numOfBath = rs.getInt("numberOfBath");
+					boolean furn = rs.getBoolean("furnished");
+					String area = rs.getString("area");
+					String status = rs.getString("status1");
+					int llID = rs.getInt("landlordID");
+					
+					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+					props.add(temp);
+				}
+			}
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return props;
+	}
 	
 	
 	
