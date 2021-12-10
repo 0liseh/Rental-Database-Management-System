@@ -21,7 +21,7 @@ public class DatabaseController{
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
 	private ResultSet rs;//object of type ResultSet from the JDBC class that stores the result of the query
 	
-	//Database Controller cstr
+	//Database Controller constructor
 	public DatabaseController() {
 		try {
             //Register JDBC driver
@@ -57,7 +57,6 @@ public class DatabaseController{
 			rs = stmt.executeQuery("select * from property");  
 			
 			while(rs.next()) {
-				
 				int propID = rs.getInt("propertyId");
 				String propType = rs.getString("propertyType");
 				int numOfBed = rs.getInt("numberOfBed");
@@ -265,7 +264,7 @@ public class DatabaseController{
                 String status = rs.getString("status1");
                 int llID = rs.getInt("landlordID");
                 
-                if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || numBed.equals(numOfBed)) && (numBath.equals("-------") || numBath.equals(numOfBath)) &&
+                if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || numBed.equals(Integer.toString(numOfBed))) && (numBath.equals("-------") || numBath.equals(Integer.toString(numOfBath))) &&
                         (furnished.equals("-------") || furnished.equals(furn)) && (location.equals("-------") || location.equals(area)) ){
                 	boolean f = false;
                 	if(furnished == "true") {
