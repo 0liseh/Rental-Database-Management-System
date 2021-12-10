@@ -190,6 +190,7 @@ public class LandlordGUI extends GUI {
         post.repaint();
         dbController.changeStatus(propSelected.substring(11, propSelected.length()), "active");
         addPropertiesBox();
+        addToPost();
 
     }
 
