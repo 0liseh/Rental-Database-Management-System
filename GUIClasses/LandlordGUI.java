@@ -23,6 +23,7 @@ public class LandlordGUI extends GUI {
     private JComboBox fees;
     private JComboBox fees2;
     Vector<String> feeBx = new Vector<String>();
+    Vector<String> feeBx2 = new Vector<String>();
 
     public LandlordGUI(){
 
@@ -40,13 +41,15 @@ public class LandlordGUI extends GUI {
         changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
 
         Vector<String> f = dbController.getFee();
+       
 
         for(int i = 0; i < f.size(); i++){
             feeBx.add(f.get(i));
+            feeBx2.add(f.get(i));
         }
 
         fees = new JComboBox(feeBx);
-        fees2 = new JComboBox(feeBx);
+        fees2 = new JComboBox(feeBx2);
         propertiesBox = new JComboBox(prop);
         
         setButtons();
