@@ -21,7 +21,7 @@ public class LandlordGUI extends GUI {
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private String prop2[] = {"-------"};
     private JComboBox fees;
-    private JComboBox fees2;
+    private JComboBox fees2 , pB;
     Vector<String> feeBx = new Vector<String>();
     Vector<String> feeBx2 = new Vector<String>();
 
@@ -150,6 +150,8 @@ public class LandlordGUI extends GUI {
         }
         propertiesBox = new JComboBox(prop);
 
+        pB = new JComboBox(prop2);
+
     }
 
     private void setButtons(){
@@ -180,7 +182,7 @@ public class LandlordGUI extends GUI {
     
 
     private void confirmPostButtonPressed(){
-        String propSelected = propertiesBox.getSelectedItem().toString();
+        String propSelected = pB.getSelectedItem().toString();
         System.out.println(propSelected);
         //boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
 
@@ -300,7 +302,6 @@ public class LandlordGUI extends GUI {
         whatProp.setFont(normalFont);
         post.add(whatProp);
 
-        JComboBox pB = new JComboBox(prop2);
 
         post.add(pB); 
 
