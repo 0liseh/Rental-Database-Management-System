@@ -43,6 +43,8 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         
     }
 
+    
+
     private void addToNewProperties(){
 
         newProps.removeAll();
@@ -67,6 +69,11 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         }else{
             notifs = new JCheckBox("Turn Notifications on" ,false);
         }
+        notifs.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {                 
+               changeNotif();   
+            }    
+         }); 
         
         sPanel.add(notifs);
         for(int i = 0; i < newPropVec.size(); i++){
@@ -93,6 +100,14 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         JScrollPane scrollPane = new JScrollPane(sPanel);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         newProps.add(scrollPane);
+    }
+
+    private void changeNotif(){
+        if(dbController.getNotifications(this.id.toString())){
+            dbController.setNotifications(id.toString(), false);
+        }else{
+            dbController.setNotifications(id.toString(), true);
+        }
     }
     
 }

@@ -15,8 +15,9 @@ public class LandlordGUI extends GUI {
     private JPanel reg , post , changeOfStatus, messages; // can add prop list panel so landlords can view all their properties
     private JTabbedPane tp;
     private DatabaseController dbController;
-    private int Lid;
+    private Integer Lid;
     private Integer pId;
+    private JCheckBox notifs;
     //private Property properties[];
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
     private String prop2[] = {"-------"};
@@ -58,6 +59,11 @@ public class LandlordGUI extends GUI {
     }
 
     public void addObjects(int id){
+
+        boolean b = dbController.getNotifications(this.Lid.toString());
+        if(b){
+            JOptionPane.showMessageDialog(mainFrame, "There are new messages in inbox");
+        }
     	feeBx = new Vector<String>();
     	feeBx = new Vector<String>();
     	prop = new String[1];
@@ -287,6 +293,15 @@ public class LandlordGUI extends GUI {
             mPanel.add(noM);
             System.out.println("it is empty should add");
         }
+
+        boolean b = dbController.getNotifications(Lid.toString());
+        if(b){
+            notifs = new JCheckBox("Turn Notifications on" ,true);
+        }else{
+            notifs = new JCheckBox("Turn Notifications on" ,false);
+        }
+        
+        mPanel.add(notifs);
         
   
 
