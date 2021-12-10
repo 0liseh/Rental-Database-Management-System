@@ -279,6 +279,9 @@ public class LandlordGUI extends GUI {
         mPanel.add(temp);
 
        }
+       if(mems.size() == 0){
+           mPanel.add(new JLabel("You Have No New Messages"));
+       }
 
 
        JScrollPane scrollPane = new JScrollPane(mPanel);    
