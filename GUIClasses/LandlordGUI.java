@@ -300,7 +300,7 @@ public class LandlordGUI extends GUI {
 
         fees.setForeground(Color.BLACK);
         fees.setFont(normalFont);
-        post.add(fees);
+        post.add(fees2);
         
         
 
