@@ -88,26 +88,35 @@ public class DatabaseController{
 				if(lID == rs.getInt("landlordID")){
 					//System.out.println("Found landlord properties");
 					int propID = rs.getInt("propertyId");
-					/*String propType = rs.getString("propertyType");
-					int numOfBed = rs.getInt("numberOfBed");
-					int numOfBath = rs.getInt("numberOfBath");
-					boolean furn = rs.getBoolean("furnished");
-					String area = rs.getString("area");
-					String status = rs.getString("status1");
-					int llID = rs.getInt("landlordID");
-					
-					Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
-					landlordProperties.add(temp);*/
 					landlordProperties.add(propID);
 				}
-				
 			}
-			
 		}
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
 		return landlordProperties;
+	}
+
+	//Gets the properties which are not active based on the landlord ID
+	public Vector<Integer> getNRProperties(int lID){
+		Vector<Integer> llProperties = new Vector<Integer>();
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("select * from property");  
+			while(rs.next()) {
+				System.out.println("In getMyproperties while loop");
+				if(lID == rs.getInt("landlordID") && !"active".equals(rs.getString("status1"))){
+					//System.out.println("Found landlord properties");
+					int propID = rs.getInt("propertyId");
+					llProperties.add(propID);
+				}
+			}
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return llProperties;
 	}
 
 	//sends a list of landlords
