@@ -295,6 +295,7 @@ public class LandlordGUI extends GUI {
         JTextArea temp = new JTextArea(tempStr);
         temp.setFont(normalFont);
         temp.setEditable(false);
+        temp.setLineWrap(true);
         mPanel.add(temp);
 
        }
