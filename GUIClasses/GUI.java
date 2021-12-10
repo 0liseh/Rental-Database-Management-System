@@ -97,7 +97,4 @@ abstract class GUI extends JFrame {
     mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
   }
 
-  private void addToPropListPanel(){// pass in property and add it as a Landlords name house id and address
-
-  }
 }

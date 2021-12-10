@@ -21,6 +21,7 @@ public class UnregisteredRenterGUI extends GUI {
     protected DatabaseController dbController;
     protected JTextField iD;
     protected JTextArea message;
+    protected Integer id = -1;
 
 
     public UnregisteredRenterGUI(){
@@ -178,8 +179,11 @@ public class UnregisteredRenterGUI extends GUI {
             public void stateChanged(ChangeEvent e) {
                 JTabbedPane src = (JTabbedPane) e.getSource();
                 int index = src.getSelectedIndex();
-                System.out.println("Tab Changed to " + src.getTitleAt(index));
+               
                 if(src.getTitleAt(index).equals("Login")){
+                   if(id > 0){
+                       dbController.logout(id.toString());
+                   }
                     logout();
                 }
                 

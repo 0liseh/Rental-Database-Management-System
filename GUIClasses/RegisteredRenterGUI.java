@@ -10,7 +10,7 @@ import java.io.*;
 public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
     private JPanel newProps; // propListPanel instead of view all
-    private Integer id;
+    
     private Vector<Property> newPropVec = new Vector<Property>();
     private JCheckBox notifs;
     public RegisteredRenterGUI(){
