@@ -163,6 +163,7 @@ public class LandlordGUI extends GUI {
                 int index = src.getSelectedIndex();
                 System.out.println("Tab Changed to " + src.getTitleAt(index));
                 if(src.getTitleAt(index).equals("Logout")){
+                    dbController.logout(id.toString());
                     logout();
                 }
                 
