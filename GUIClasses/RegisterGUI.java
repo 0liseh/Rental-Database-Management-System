@@ -8,7 +8,7 @@ import java.lang.*;
 import java.io.*;
 
 
-public class RegisterGUI extends LoginGUI{
+public class RegisterGUI extends  GUI{
 
     private JTextField un, pw, ut , n , pn;
     private JButton login , guest;
