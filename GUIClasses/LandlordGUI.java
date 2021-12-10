@@ -63,9 +63,11 @@ public class LandlordGUI extends GUI {
     	 dbController = new DatabaseController();
     	Lid = id;
         boolean b = dbController.getNotifications(this.Lid.toString());
-        if(b){
-//            JOptionPane.showMessageDialog(mainFrame, "There are new messages in inbox");
-        }
+        notifs.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) {                 
+               changeNotif();   
+            }    
+         }); 
     	feeBx = new Vector<String>();
     	feeBx = new Vector<String>();
     	prop = new String[1];
@@ -116,7 +118,9 @@ public class LandlordGUI extends GUI {
         mainFrame.add(tp);
         
         mainFrame.setVisible(true);
-        
+        if(b){
+            JOptionPane.showMessageDialog(mainFrame, "You Have new Messages");
+        }
 
     }
 
@@ -452,4 +456,12 @@ public class LandlordGUI extends GUI {
 
         changeOfStatus.add(confirmStatusChange);
     }
+    private void changeNotif(){
+        if(dbController.getNotifications(this.Lid.toString())){
+            dbController.setNotifications(Lid.toString(), false);
+        }else{
+            dbController.setNotifications(Lid.toString(), true);
+        }
+    }
+    
 }
