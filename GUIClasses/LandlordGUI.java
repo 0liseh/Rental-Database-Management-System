@@ -169,7 +169,9 @@ public class LandlordGUI extends GUI {
     private void confirmPostButtonPressed(){
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
-        //Make them pay a fee
+        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
+
+
     }
 
     private void confirmStatusChangeButtonPressed(){
