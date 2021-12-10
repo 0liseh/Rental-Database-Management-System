@@ -6,7 +6,7 @@ import java.lang.*;
 import java.io.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+import javax.swing.JComboBox;
 //import ControllerClasses.LandlordController;
 
 public class LandlordGUI extends GUI {
@@ -18,6 +18,7 @@ public class LandlordGUI extends GUI {
     private int Lid;
     //private Property properties[];
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
+    private String prop2[] = {"-------"};
     private JComboBox fees;
     Vector<String> feeBx = new Vector<String>();
 
@@ -129,6 +130,9 @@ public class LandlordGUI extends GUI {
         
         prop = Arrays.copyOf(prop, prop.length + 1);
         prop[prop.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
+
+        prop2 = Arrays.copyOf(prop2, prop2.length + 1);
+        prop2[prop2.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
 
         }
         propertiesBox = new JComboBox(prop);
@@ -266,7 +270,7 @@ public class LandlordGUI extends GUI {
         whatProp.setFont(normalFont);
         post.add(whatProp);
 
-        JComboBox pB = new JComboBox(prop);
+        JComboBox pB = new JComboBox(prop2);
 
         post.add(pB); // idk why it doesnt show up
 
