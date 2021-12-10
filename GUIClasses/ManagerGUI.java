@@ -132,10 +132,9 @@ public class ManagerGUI extends GUI{
     private void confirmStatusChangeButtonPressed(){
         String status = (String)statusBox.getSelectedItem();
         System.out.println(status);
-
+        
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
-
         dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
@@ -156,7 +155,7 @@ public class ManagerGUI extends GUI{
         whatState.setFont(normalFont);
         changeOfStatus.add(whatState);
         changeOfStatus.add(statusBox);
-
+        
         changeOfStatus.add(confirmStatusChange);
     }
 
@@ -230,11 +229,8 @@ public class ManagerGUI extends GUI{
         
 
         String newFeeDurationText = feeDuration.getText().toString();
-        ArrayList<String> attributes = new ArrayList<String>();
-        attributes.add(newFeeText);
-        attributes.add(newFeeDurationText);
-        dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
-        
+
+        dbController.setFee(newFeeText, newFeeDurationText);
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         setFee.removeAll();
         addToSetFee();
@@ -249,7 +245,7 @@ public class ManagerGUI extends GUI{
         seeLandlords.add(ll);*/
 
         //landlords = dbController.getLandlords();
-        //have to call function in db controller to get vectro of landlords
+        //have to call function in db controller to get vector of landlords
         seeLandlords.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel slPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 

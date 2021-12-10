@@ -373,15 +373,15 @@ public class DatabaseController{
     }
     
     //Manager can set a fee
-    public void setFee(double feeAmount, int feeDuration) {
+    public void setFee(String newFeeText, String newFeeDurationText) {
 
     	 try {
  			String query = "INSERT INTO FEE (fee, duration) VALUES (?,?) ON DUPLICATE KEY UPDATE fee=";
- 			query+=feeAmount;
+ 			query+=newFeeText;
  			System.out.println("This is the query in setFee: " + query);
  			PreparedStatement pStat = mysql_con.prepareStatement(query);
- 			pStat.setDouble(1, feeAmount);
- 			pStat.setInt(2, feeDuration);
+ 			pStat.setString(1, newFeeText);
+ 			pStat.setString(2, newFeeDurationText);
  			pStat.executeUpdate();
  			pStat.close();
  		} catch (SQLException e) {
@@ -410,18 +410,11 @@ public class DatabaseController{
     
   //Manager can set a fee
     public void changeStatus(String propID, String status){
-
     	 try {
-    		stmt = mysql_con.createStatement();
-    		rs = stmt.executeQuery("select * from property");
-    		while(rs.next()){
-    			
-    			if(rs.getInt("propertyID") == propID && !"active".equals(rs.getString("status1"))){
-    				String updateQuery = "UPDATE FEE" + " SET status1=" + status; 	
-    				
-    			}
- 			
-    		}
+    		String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
+  			System.out.println(query);
+  			PreparedStatement pStat = mysql_con.prepareStatement(query);
+  			pStat.executeUpdate();
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
