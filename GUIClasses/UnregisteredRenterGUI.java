@@ -98,7 +98,7 @@ public class UnregisteredRenterGUI extends GUI {
         confirmSearch.setForeground(Color.GRAY);
         confirmSearch.setFont(normalFont);
 
-        confirmSendMessage = new JButton("Search");
+        confirmSendMessage = new JButton("Send");
        
 
         confirmSendMessage.setBackground(Color.WHITE);
