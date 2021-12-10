@@ -20,6 +20,7 @@ public class ManagerGUI extends GUI{
     private Vector<Landlord> landlords = new Vector<Landlord>();
     private Vector<RegisteredRenter> renters = new Vector<RegisteredRenter>();
     private DatabaseController dbController;
+    private JComboBox fees;
     
     public ManagerGUI(){
         mainFrame = new JFrame("Manager window");
@@ -31,7 +32,6 @@ public class ManagerGUI extends GUI{
         properties = dbController.getProperties();
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         tp = new JTabbedPane();
-
         changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
         seeProps = new JPanel();
         seeLandlords = new JPanel();
@@ -85,6 +85,7 @@ public class ManagerGUI extends GUI{
         mainFrame.setVisible(true);
 
     }
+
 
     private void addListeners(){
 
@@ -169,6 +170,7 @@ public class ManagerGUI extends GUI{
         sf.repaint();
 
         Vector<String> fee = dbController.getFee(); // get the fee from databse
+        Vector<String> feeBx = new Vector<String>();
         String tempFee = "Current fee(s) are:\n";
         JTextArea currentFee = new JTextArea(tempFee);
         sf.add(currentFee);
@@ -179,6 +181,7 @@ public class ManagerGUI extends GUI{
         currentFee.setFont(normalFont);
         System.out.println(fee.size());
         for(int i = 0; i < fee.size(); i++){
+            feeBx.add(fee.get(i));
             tempFee = fee.get(i);
             currentFee = new JTextArea(tempFee);
             currentFee.setForeground(Color.BLACK);
@@ -215,6 +218,7 @@ public class ManagerGUI extends GUI{
 
         sf.add(confirmNewFee);
 
+        fees = new JComboBox(feeBx);
         JScrollPane scrollPane = new JScrollPane(sf);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setFee.add(scrollPane);
