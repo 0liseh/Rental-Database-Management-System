@@ -428,24 +428,24 @@ public class DatabaseController{
 		 return false;
     }
     
-public int registerProperty(String type, int noOfBed, it noOfBath, boolean furn, String area) {
-    	
+	public int registerProperty(String type, int noOfBed, int noOfBath, boolean furn, String area) {
+		int newPropID = -1;
     	try {
     		 stmt = mysql_con.createStatement();
              rs = stmt.executeQuery("");
-             
-	    	int propID = rs.getInt("propertyId");
-			String propType = rs.getString("propertyType");
-			int numOfBed = rs.getInt("numberOfBed");
-			int numOfBath = rs.getInt("numberOfBath");
-			boolean furn = rs.getBoolean("furnished");
-			String area = rs.getString("area");
-			String status = rs.getString("status1");
-			int llID = rs.getInt("landlordID");
-    	}
-    
-    }catch (SQLException e) {
+			 
+             while(rs.next()){
+				int propID = rs.getInt("propertyId");
+				newPropID = propID;
+			 }
+			 
+
+			
+    	}catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
+		return newPropID;
+	}
+
+
 }
