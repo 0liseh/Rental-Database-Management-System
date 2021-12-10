@@ -298,6 +298,7 @@ public class LandlordGUI extends GUI {
     }
 
     private void addToPost(){
+        post= new JPanel(new GridLayout(0, 1, 0, 20));
         post.setBorder(BorderFactory.createEmptyBorder(100, 40, 200, 40));
         JLabel whatProp = new JLabel("Select Property to Post");
 
