@@ -490,7 +490,7 @@ public class DatabaseController{
     			pStat.setString(1, name);
     			pStat.setInt(2, newUserID);
      			pStat.setString(3, mail);
-     			pStat.setInt(4, phoneNumber);
+     			pStat.setInt(4, phNo);
      			pStat.setString(5, pwd);
      			pStat.setString(6, uType);
      			pStat.executeUpdate();
