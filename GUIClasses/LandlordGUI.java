@@ -127,19 +127,26 @@ public class LandlordGUI extends GUI {
         tp.addChangeListener(cl);
     }
 
+
     private void addPropertiesBox(){
 
 
         Vector<Integer> properties = dbController.getMyProperties(Lid);
-
+        
         for(int i = 0; i < properties.size(); i++){
         
         prop = Arrays.copyOf(prop, prop.length + 1);
         prop[prop.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
 
-        prop2 = Arrays.copyOf(prop2, prop2.length + 1);
-        prop2[prop2.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
+        
 
+        }
+
+        Vector<Integer> propertiesNR = dbController.getNRProperties(Lid);
+
+        for(int i = 0; i < propertiesNR.size(); i++){
+            prop2 = Arrays.copyOf(prop2, prop2.length + 1);
+            prop2[prop2.length -1 ] = String.valueOf("propertyID: " + properties.get(i));
         }
         propertiesBox = new JComboBox(prop);
 
@@ -176,7 +183,7 @@ public class LandlordGUI extends GUI {
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
         boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
-
+        addPropertiesBox();
 
     }
 
@@ -217,7 +224,7 @@ public class LandlordGUI extends GUI {
         //send Lid as well
 
         pId = dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
-
+        addPropertiesBox();
     }
 
     private void confirmRegAndPostButtonPressed(){
@@ -235,7 +242,7 @@ public class LandlordGUI extends GUI {
         //String numB2 = numOfBathsBox.getSelectedItem().toString();
         //String isFurn = furnishedBox.getSelectedItem().toString();
         //String area  = locationBox.getSelectedItem().toString();
-        
+        addPropertiesBox();
         //once sent to database find name of property and change status to active
         //Also must show option to pay for posting if they want to cancel go back to jsut register
     }
