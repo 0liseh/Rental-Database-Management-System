@@ -16,7 +16,7 @@ public class UnregisteredRenterGUI extends GUI {
     private JLabel typeOfProperty, bed , bath , f , a;
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Property> searchedProperties = new Vector<Property>();
-    private DatabaseController dbController;
+    protected DatabaseController dbController;
 
 
     public UnregisteredRenterGUI(){
@@ -222,6 +222,7 @@ public class UnregisteredRenterGUI extends GUI {
 
             JTextArea temp = new JTextArea(tempStr);
             temp.setFont(normalFont);
+            temp.setEditable(false);
             sPanel.add(temp);
 
         }
