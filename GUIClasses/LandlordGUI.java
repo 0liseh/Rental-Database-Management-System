@@ -264,6 +264,7 @@ public class LandlordGUI extends GUI {
     private void addToMessages(){
     	
     	messages = new JPanel(new GridLayout(0, 1,0, 20));
+        messages.setSize(500, 600);
         messages.setLayout(new GridLayout(0, 1, 0, 20));
        
         Vector<String> mems = dbController.getEmail(Lid);

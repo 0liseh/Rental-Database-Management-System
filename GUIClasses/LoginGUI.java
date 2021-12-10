@@ -127,6 +127,7 @@ public class LoginGUI extends GUI{
             System.out.println("landlord");
             type = "Landlord";
         }else if(dbController.checkUser(user, pass, "Renter") != -1){
+            id = dbController.checkUser(user, pass, "Renter");
             System.out.println("Renter");
             type = "Registered Renter";
         }else{
