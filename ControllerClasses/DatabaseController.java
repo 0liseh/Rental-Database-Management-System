@@ -428,9 +428,12 @@ public class DatabaseController{
 		 return false;
     }
     
-    public int registerProperty() {
+public int registerProperty(String type, int noOfBed, it noOfBath, boolean furn, String area) {
     	
     	try {
+    		 stmt = mysql_con.createStatement();
+             rs = stmt.executeQuery("");
+             
 	    	int propID = rs.getInt("propertyId");
 			String propType = rs.getString("propertyType");
 			int numOfBed = rs.getInt("numberOfBed");
@@ -441,6 +444,8 @@ public class DatabaseController{
 			int llID = rs.getInt("landlordID");
     	}
     
-    }
+    }catch (SQLException e) {
+			e.printStackTrace();
+		}
 	
 }
