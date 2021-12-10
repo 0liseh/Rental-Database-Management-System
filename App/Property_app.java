@@ -29,6 +29,7 @@ public class Property_app{
         break;
       }else if(type == "Registered Renter"){
         rrGUI.addObjects();
+        rrGUI.addObjects(x.id);
         x.closeWindow();
         break;
       }else if (type == "Unregistered Renter"){
