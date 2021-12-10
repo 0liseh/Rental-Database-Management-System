@@ -10,7 +10,8 @@ import java.io.*;
 public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
     private JPanel newProps; // propListPanel instead of view all
-    
+    private int id;
+    private Vector<Property> newPropVec = new Vector<Property>();
     public RegisteredRenterGUI(){
         
         mainFrame.setTitle("Renter window");
@@ -30,5 +31,12 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         tp.add("Recently added" , newProps);
     }
 
+    public void addObjects(int id){
+        
+        this.id = id;
+
+        newPropVec = dbController.getNewProperties()
+        
+    }
     
 }
