@@ -108,6 +108,7 @@ public class DatabaseController{
 				System.out.println("In getMyproperties while loop");
 				if(lID == rs.getInt("landlordID") && !"active".equals(rs.getString("status1"))){
 					//System.out.println("Found landlord properties");
+					System.out.println("This are the prop not active: "+rs.getInt("propertyID"));
 					int propID = rs.getInt("propertyId");
 					llProperties.add(propID);
 				}
