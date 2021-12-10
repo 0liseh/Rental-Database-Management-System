@@ -36,6 +36,7 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         tp.remove(tp.getTabCount() - 1);
         logout = new JPanel(null);
         tp.add("Logout", logout);
+        addActionListeners();
         boolean b = dbController.getNotifications(this.id.toString());
         if(b){
             JOptionPane.showMessageDialog(mainFrame, "There are new Properties to view under Recently Added");

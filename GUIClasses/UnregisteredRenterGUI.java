@@ -15,6 +15,7 @@ public class UnregisteredRenterGUI extends GUI {
     private JButton confirmSearch, confirmSendMessage;
     protected JTabbedPane tp;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
+
     private JLabel typeOfProperty, bed , bath , f , a;
     private Vector<Property> properties = new Vector<Property>();
     private Vector<Property> searchedProperties = new Vector<Property>();
@@ -154,7 +155,7 @@ public class UnregisteredRenterGUI extends GUI {
 
     }
 
-    private void addActionListeners(){
+    protected void addActionListeners(){
         confirmSearch.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
               searchButtonPressed();
@@ -185,7 +186,7 @@ public class UnregisteredRenterGUI extends GUI {
                    
                     logout();
                 }else if(src.getTitleAt(index).equals("Logout")){
-                   dbController.logout(id.toString());
+                    dbController.logout(id.toString());
                     logout();
                 }
                 
