@@ -29,36 +29,11 @@ public class LandlordGUI extends GUI {
 
     public LandlordGUI(){
 
-//        mainFrame = new JFrame("Landlord window");
-//        mainFrame.setSize(500, 600);
-//        mainFrame.add(controlPanel);
-//        controlPanel.setLayout(null);
-//        //needs to use controller to get a list of properties from the database and populat properties[]
-//        dbController = new DatabaseController();
-//        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
-//        tp = new JTabbedPane();
-//        
-//        reg = new JPanel(new GridLayout(0, 1, 0, 20));
-//        post = new JPanel(new GridLayout(0, 1, 0, 20));
-//        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
-//
-//        Vector<String> f = dbController.getFee();
-//       
-//
-//        for(int i = 0; i < f.size(); i++){
-//            feeBx.add(f.get(i));
-//            feeBx2.add(f.get(i));
-//        }
-//
-//        fees = new JComboBox(feeBx);
-//        fees2 = new JComboBox(feeBx2);
-//        propertiesBox = new JComboBox(prop);
-//        
-//        setButtons();
-        //addObjects();
-
     }
 
+    //adds tabbed pane to the frame then adds JPanels onto the tabbedPane and calls functions to
+    //add objects t the JPanels
+    //also calls functions to initialize the correct combo boxes and textareas
     public void addObjects(int id){
     	 dbController = new DatabaseController();
     	Lid = id;
@@ -120,6 +95,9 @@ public class LandlordGUI extends GUI {
 
     }
 
+
+    //Adds evenet listeners for each button that the landlord will use on every JPanel
+    //also adds eent listner for the logout tab which will log use out when it is clicked
     private void addListeners(){
 
         confirmPost.addActionListener(new ActionListener(){
@@ -168,10 +146,9 @@ public class LandlordGUI extends GUI {
         tp.addChangeListener(cl);
     }
 
-
+    //adds properties to the property box used for change status page
+    //adds properties box for the properties available to post
     private void addPropertiesBox(){
-
-
         Vector<Integer> properties = dbController.getMyProperties(Lid);
         
         for(int i = 0; i < properties.size(); i++){
@@ -196,6 +173,8 @@ public class LandlordGUI extends GUI {
 
     }
 
+
+    //sets what each button will look like 
     private void setButtons(){
         confirmStatusChange = new JButton("Confirm Status Change");
         confirmRegister = new JButton("Register");
@@ -222,7 +201,9 @@ public class LandlordGUI extends GUI {
     }
 
     
-
+    //This method gets called when the action 'confirm post button is pressed' then sends property id to databaseController
+    //so that it's status can be updated
+    //then calls addOPbjects to update comboBoxes and reset Frame 
     private void confirmPostButtonPressed(){
         String propSelected = pB.getSelectedItem().toString();
        // System.out.println(propSelected);
@@ -239,6 +220,11 @@ public class LandlordGUI extends GUI {
         
     }
 
+
+    //method called when action 'confrim status change button is pressed' 
+    //sends property id and status we are changing it to into the databaseController
+    //if trying to change status to active users must pay fee,
+    //when changed it will recall addObjects to get new lsit of properties that aren't active that they can post
     private void confirmStatusChangeButtonPressed(){
         String status = (String)statusBox.getSelectedItem();
        // System.out.println(status);
@@ -268,6 +254,10 @@ public class LandlordGUI extends GUI {
         //should send status and property to the controller so it can update the database
         
     }
+    
+    //This decorates the Messages Jpanel with each message in the landlord has recieved with newest at the top
+    // If none are called then it says you have no new messages
+    //it also puts a notifaction checkbox at the top for landlords to pick if they want notifications on when they login
     private void addToMessages(){
     	
     	messages = new JPanel(new GridLayout(0, 1,0, 20));
@@ -332,25 +322,26 @@ public class LandlordGUI extends GUI {
        
     }
 
+
+    //Method called when action 'confirm register button is pressed' 
+    //will read in all the values in the boxes then send those values to be handled by the database Controller
+    //Then  calls addObjects to update comboboxes used for changing status and posting properties 
     private void confirmRegisterButtonPressed(){
         String tOfProp = typeOfPropBox.getSelectedItem().toString();
         String numB = numOfBedsBox.getSelectedItem().toString();
         String numB2 = numOfBathsBox.getSelectedItem().toString();
         String isFurn = furnishedBox.getSelectedItem().toString();
         String area  = locationBox.getSelectedItem().toString();
-        //sedn these values to database to register them
-       // System.out.println(tOfProp);
-        //System.out.println(numB);
-        //System.out.println(numB2);
-        //System.out.println(isFurn);
-        //System.out.println(area);
-        //send Lid as well
 
         pId = dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
         closeWindow();
         addObjects(Lid);     
         }
 
+    //Method called when action 'confirm register and post button is pressed' 
+    //will read in all the values in the boxes then send those values to be handled by the database Controller
+    //then also gives user fees to select from and calls databse controller to update status to active since it has been posted
+    //Then  calls addObjects to update comboboxes used for changing status and posting properties 
     private void confirmRegAndPostButtonPressed(){
         confirmRegisterButtonPressed();
 
@@ -361,16 +352,13 @@ public class LandlordGUI extends GUI {
         JOptionPane.showMessageDialog(mainFrame, p);
         //change 32 to the prop id;
         dbController.changeStatus(pId.toString() , "active");
-        //String tOfProp = typeOfPropBox.getSelectedItem().toString();
-       // String numB = numOfBedsBox.getSelectedItem().toString();
-        //String numB2 = numOfBathsBox.getSelectedItem().toString();
-        //String isFurn = furnishedBox.getSelectedItem().toString();
-        //String area  = locationBox.getSelectedItem().toString();
-        addPropertiesBox();
-        //once sent to database find name of property and change status to active
-        //Also must show option to pay for posting if they want to cancel go back to jsut register
+     
+        closeWindow();
+        addObjects(Lid); 
+       r
     }
 
+    //this function will decorate the JPanel for registration form
     private void addToReg(){
 
         reg.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));

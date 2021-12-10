@@ -9,6 +9,7 @@ import java.io.*;
 
 
 abstract class GUI extends JFrame {
+  //list all varaibles and objects to be used by multiple GUI's
    protected JFrame mainFrame;
    protected JPanel controlPanel , propListPanel;
    protected JScrollPane scrollPane;
@@ -28,15 +29,10 @@ abstract class GUI extends JFrame {
   
    public GUI(){
        mainFrame = new JFrame("Property Application");
-       controlPanel = new JPanel();
-       mainFrame.setSize(500, 500);
-       mainFrame.add(controlPanel);
-       controlPanel.setLayout(null);
-       propListPanel = new JPanel();
        
 
    
-       
+       //Below functions initialize what properties the JButtons and JComboBoxes have
        setupButtons();
        comboBoxSetup();
        addListeners();
@@ -44,6 +40,7 @@ abstract class GUI extends JFrame {
       
    }   
 
+   //set what the buttons for logout and back look like
    private void setupButtons(){
     logout.setOpaque(false);
     logout.setBorderPainted(false);
@@ -61,6 +58,8 @@ abstract class GUI extends JFrame {
     back.setFont(new Font("Courier", Font.PLAIN, 15)); 
    }
 
+
+   //add listener for logout button
    private void addListeners(){
 
       logout.addActionListener(new ActionListener(){
@@ -70,6 +69,7 @@ abstract class GUI extends JFrame {
       });
    }
 
+   //initialize options in the combo boxes for registering and searching properties
    private void comboBoxSetup(){
         String numOfBedsAndBathsArr[] = { "-------", "1", "2", "3" , "4" ,"5", "6" , "7" , "8"};
         String funishedArr[] = {"-------", "Furnished", "Unfurnished"};
@@ -84,15 +84,18 @@ abstract class GUI extends JFrame {
         statusBox = new JComboBox(statusesArr);
    }
 
+   //change the logging out status to yes
   public void logout(){
     loggingOut = "YES";
 
     
   }
+  //return logging out status to main loop
   public String getLoggingOut(){
     return loggingOut;
   }
 
+  //close the window of the GUI you are logging out of or clicking x
   public void closeWindow(){
     mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
   }
