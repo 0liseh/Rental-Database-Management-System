@@ -4,6 +4,7 @@
 public class Property_app{
 
   public static void main(String[] args){
+    //initilaize all GUIS
     ManagerGUI mGUI = new ManagerGUI();
     LandlordGUI lGUI = new LandlordGUI();
     RegisteredRenterGUI rrGUI = new RegisteredRenterGUI();
@@ -11,7 +12,7 @@ public class Property_app{
     LoginGUI x = new LoginGUI();
     RegisterGUI rGUI = new RegisterGUI();
 
-    
+  //loop trhough checking what type of GUI should be open and checking status of logged in to select which gui loop to operate in
    while(true){
     String type = x.gettype();
     String loop = "";
