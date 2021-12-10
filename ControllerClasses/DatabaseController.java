@@ -49,6 +49,27 @@ public class DatabaseController{
 		}  
 	}
 
+	public void updateStatus(String id, String status) {
+    	try {
+            String query = "UPDATE INTO PROPERTY SET ";
+//            query += "propertyType=" + attributes.getPropertyType();
+//            query += "numberOfBed=" + attributes.getNoOfBed();
+//            query += "numberOfBath=" + attributes.getNoOfBath();
+//            query += "numberOfBath=" + attributes.getNoOfBath();
+//            query += "furnished" + attributes.isFurnished();
+//            query += "area=" + attributes.getArea();
+            query += "status1=" + status;
+//            query += "dateRented=" + attributes.getDateRented();
+            query+= " WHERE propertyId=" + id;
+            System.out.println(query);
+            PreparedStatement preparedStatment = mysql_con.prepareStatement(query);
+            preparedStatment.executeUpdate();
+            preparedStatment.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+	
 	//Gets the list of all the properties
 	public Vector<Property> getProperties(){
 		try {
@@ -385,7 +406,6 @@ public class DatabaseController{
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
-    	
     }
     
   //Landlords can get a fee
