@@ -13,7 +13,7 @@ public class DatabaseController{
 	
 	private static final String url = "jdbc:mysql://localhost:3306/propertymanagement";
 	private static final String username = "root";
-	private static final String password = "JesusistheOGM1!";
+	private static final String password = "kaboomy";
 	
 	public static Connection mysql_con;
 	private Statement stmt; //object of type statement from JDBC class that enables the creation "Query statements"
@@ -640,7 +640,45 @@ public class DatabaseController{
 		return props;
 	}
 	
+	public boolean getNotifications(String id) {
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			while(rs.next()) {
+				if(rs.getString("id").equals(id.trim())) {
+					if(rs.getString("notifications") == null) {
+						return true;
+					}else if(rs.getString("notifications").equals("on")){
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return false;
+	}
 	
+	public void setNotifications(String id,boolean notifs) {
+		try {
+			String query = "UPDATE USER SET notifications='";
+			if(notifs) {
+				query += "on' WHERE (id='" + id.trim() + "')";
+			}else {
+				query += "off' WHERE (id='" + id.trim() + "')";
+	
+			}
+			PreparedStatement pStat = mysql_con.prepareStatement(query);
+			pStat.executeUpdate();
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+	}
 	
 
 }
