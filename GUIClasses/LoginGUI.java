@@ -8,6 +8,8 @@ import java.io.*;
 
 public class LoginGUI extends GUI{
 
+
+    //sets variables for to be used
     private JTextField un, pw;
     private JButton login , guest, register;
     private JLabel email , password;
@@ -15,6 +17,8 @@ public class LoginGUI extends GUI{
     String type = "yolo";
     public int id;
 
+
+    //intializes the control panels and calls functions that will set up textFields, and Buttons
     public LoginGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
@@ -24,6 +28,7 @@ public class LoginGUI extends GUI{
         addObjects();
     }
 
+    //adds all the buttons, textfields and labels to the panel
     public void addObjects()
     {
         controlPanel.removeAll();
@@ -40,6 +45,9 @@ public class LoginGUI extends GUI{
         mainFrame.setVisible(true);
     }
 
+
+    //initializes textFields for the panel 
+    //sets what each will look like
     private void setTextFields(){
         un = new JTextField();
         pw = new JTextField();
@@ -61,6 +69,8 @@ public class LoginGUI extends GUI{
         password.setFont(normalFont);
     }
 
+    //initializes buttons for panel setting what each will look like
+    //also adds event listeners for each button
     private void setButtons(){
 
         login = new JButton("Login");
@@ -99,6 +109,8 @@ public class LoginGUI extends GUI{
         });
 
     }
+    
+    //will set type of user to unrigestered user
     private void guestButtonPressed()
     {
         type = "Unregistered Renter";
@@ -106,12 +118,15 @@ public class LoginGUI extends GUI{
         // make it login as unregistered user
     }
 
+    //sets type to register so GUI knows to poull up registerGUI
     private void registerButtonPressed()
     {
         type = "Register";
         // make it go to the register page
     }
-
+    
+    //if login is pressed then it will send the data from the username and password fields to the dbcontroller so it can authenticate the login
+    //if there is a problem loging in it will send error otherwise it sets type to the user it logged into
     private void loginButtonPressed(){
         String user = un.getText().toString();
         System.out.println(user);
@@ -137,6 +152,7 @@ public class LoginGUI extends GUI{
         //send these values to check database and see if it's a user and what type of user it is
     }
 
+    //returns type to the main function running this
     public String gettype(){
         return type;
     }

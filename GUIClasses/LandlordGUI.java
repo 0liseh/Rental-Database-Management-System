@@ -359,6 +359,7 @@ public class LandlordGUI extends GUI {
     }
 
     //this function will decorate the JPanel for registration form
+    //setting what all labels and text boxes will look like and setting layout
     private void addToReg(){
 
         reg.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
@@ -400,6 +401,8 @@ public class LandlordGUI extends GUI {
 
     }
 
+
+    //addToPost decorates the post JPanel with the proper comboBoxes and Labels 
     private void addToPost(){
         post= new JPanel(new GridLayout(0, 1, 0, 20));
         post.setBorder(BorderFactory.createEmptyBorder(100, 40, 200, 40));
@@ -428,6 +431,8 @@ public class LandlordGUI extends GUI {
 
     }
 
+    // decorates the changeStatus panel with proper combo Boxes labels and buttons
+
     private void addToChangeOfStatus(){
         changeOfStatus.setBorder(BorderFactory.createEmptyBorder(115, 40, 200, 40));
 
@@ -446,6 +451,8 @@ public class LandlordGUI extends GUI {
 
         changeOfStatus.add(confirmStatusChange);
     }
+
+    //This is the actionlsitener for the notification toggle button and will send status of checkmark to the dbcontroller
     private void changeNotif(){
         if(dbController.getNotifications(this.Lid.toString())){
             dbController.setNotifications(Lid.toString(), false);

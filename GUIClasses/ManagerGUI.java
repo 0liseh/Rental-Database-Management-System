@@ -12,6 +12,7 @@ import java.io.*;
 
 public class ManagerGUI extends GUI{
     
+    //declares variables and Objects
     private JTabbedPane tp;
     private JButton confirmStatusChange, confirmNewFee;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
@@ -24,25 +25,10 @@ public class ManagerGUI extends GUI{
     
     
     public ManagerGUI(){
-//        mainFrame = new JFrame("Manager window");
-//        mainFrame.setSize(500, 600);
-//        mainFrame.add(controlPanel);
-//        controlPanel.setLayout(null);
-//        //needs to use controller to get a list of properties from the database and populat properties[]
-//        dbController = new DatabaseController();
-//        properties = dbController.getProperties();
-//        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
-//        tp = new JTabbedPane();
-//        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
-//        seeProps = new JPanel();
-//        seeLandlords = new JPanel();
-//        seeRenters = new JPanel();
-//        setFee = new JPanel(new GridLayout(0, 1, 0, 20));
-//        getPSummary = new JPanel();
-//        initializeComboBoxes();
-//        setButtons();
-        //addObjects();
+
     }
+
+    //sets what each button will look like
     private void setButtons(){
         confirmStatusChange = new JButton("Confirm Status Change");
         confirmNewFee = new JButton("Confirm Fee Change");
@@ -58,7 +44,8 @@ public class ManagerGUI extends GUI{
 
     }
 
-
+    //initializes objects and variables, calls methods to add to panels, adds panels to tabbed pane
+    //then adds tabbed pain to the frame
     public void addObjects(){
     	 properties = new Vector<Property>();
     	 landlords = new Vector<Landlord>();
@@ -110,6 +97,8 @@ public class ManagerGUI extends GUI{
     }
 
 
+
+    //adds listeners for buttons and for the tab Logout
     private void addListeners(){
 
         confirmStatusChange.addActionListener(new ActionListener(){
@@ -146,12 +135,18 @@ public class ManagerGUI extends GUI{
         
     }
 
+
+    //initializes the properties box for manager to see
     private void initializeComboBoxes(){
         //need to contact contoller to get list of all properties
         propertiesBox = new JComboBox(prop);
 
     }
 
+
+    //method called when action 'confrim status change button is pressed' 
+    //sends property id and status we are changing it to into the databaseController
+    //then gives method if it was able to change successfully or not
     private void confirmStatusChangeButtonPressed(){
         String status = (String)statusBox.getSelectedItem();
         System.out.println(status);
@@ -171,6 +166,8 @@ public class ManagerGUI extends GUI{
         //should send status and property to the controller so it can update the database
     }
 
+
+    //adds elements to change of status panel 
     private void addToChangeOfStatus(){
         changeOfStatus.setBorder(BorderFactory.createEmptyBorder(115, 40, 200, 40));
 
@@ -189,6 +186,10 @@ public class ManagerGUI extends GUI{
         
         changeOfStatus.add(confirmStatusChange);
     }
+
+
+    //adds elem,ents to setFee panel
+    //calls databaseController to get al fees
 
     private void addToSetFee(){
         setFee.removeAll();
@@ -255,6 +256,8 @@ public class ManagerGUI extends GUI{
         setFee.add(scrollPane);
     }
 
+
+    //when fee button is pressed this will get called to retrieve information inputted and send it to databaseCController for handling
     private void confirmNewFeeButtonPressed(){
         String newFeeText = changeFeeTo.getText().toString();
         
@@ -269,6 +272,8 @@ public class ManagerGUI extends GUI{
         addObjects(); 
         //send the new fee to data base
     }
+
+    //will use databseController to get all landlrds then add the to the landlords tab to display 
 
     private void addToSeeLandlords(){
         
@@ -307,12 +312,11 @@ public class ManagerGUI extends GUI{
         seeLandlords.add(scrollPane);
 
     }
+
+    //retrieves all properties using databse controler and adds them to the properties tab/Panel
     private void addToSeeProperties(){
         
-        /*JLabel p = new JLabel("Properties");
-        p.setForeground(Color.BLACK);
-        p.setFont(normalFont);
-        seeProps.add(p);*/
+        
         seeProps.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
 
@@ -348,6 +352,8 @@ public class ManagerGUI extends GUI{
         seeProps.add(scrollPane);
 
     }
+    
+    //retrieves all renters will databseController and uses posts them on the renters panel/tab
     private void addToSeeRenters(){
         
        /* JLabel r = new JLabel("Renters");
@@ -379,6 +385,8 @@ public class ManagerGUI extends GUI{
 
     }
 
+
+    //uses databseConroller to handle all values then sends them to the panel to report the summary 
     private void addToPSummary(){
 
         getPSummary.setSize(500, 600);
@@ -460,6 +468,8 @@ public class ManagerGUI extends GUI{
         getPSummary.add(scrollPane);
     }
 
+
+    //adds all the tempStr to summary panel
     private void addToPS(String tempStr){
         JTextArea temp = new JTextArea(tempStr);
         temp.setFont(normalFont);
