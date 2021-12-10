@@ -103,6 +103,7 @@ public class Property_app{
       urrGUI = new UnregisteredRenterGUI();
 
     }else if(loop == "r"){
+      type= rGUI.gettype();
       while(type == "yolo"){
         type = rGUI.gettype();
      
