@@ -1,3 +1,5 @@
+package DataClasses;
+import ControllerClasses.DatabaseController;
 class RegisteredRenter extends User{
 
   private boolean notifications;

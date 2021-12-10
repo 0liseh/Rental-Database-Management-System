@@ -1,4 +1,6 @@
+package DataClasses;
 
+/** Entity class Fee**/
 class Fee{
   private double fee;
 

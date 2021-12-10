@@ -1,3 +1,8 @@
+package GUIClasses;
+
+import ControllerClasses.DatabaseController;
+import DataClasses.Property;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
