@@ -355,7 +355,7 @@ public class LandlordGUI extends GUI {
      
         closeWindow();
         addObjects(Lid); 
-       r
+       
     }
 
     //this function will decorate the JPanel for registration form
