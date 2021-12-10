@@ -471,5 +471,38 @@ public class DatabaseController{
 		return newPropID;
 	}
 
+	//This function registers users - landlords and renters
+	public int registerUser(String name, int phNo, String mail, String pwd, String uType) {
+		int newUserID = -1;
+    	try {
+	    		stmt = mysql_con.createStatement();
+	            rs = stmt.executeQuery("select * from user");
+				 
+	            while(rs.next()){
+	            	int userID = rs.getInt("id");
+					newUserID = userID;
+				}
+	            newUserID++;
+	            
+    			String query = "INSERT INTO USER (username, id, email, phoneNumber, password1, type1) VALUES (?,?,?,?,?,?)";
+    			PreparedStatement pStat = mysql_con.prepareStatement(query);
+     			
+    			pStat.setString(1, name);
+    			pStat.setInt(2, newUserID);
+     			pStat.setString(3, mail);
+     			pStat.setInt(4, phoneNumber);
+     			pStat.setString(5, pwd);
+     			pStat.setString(6, uType);
+     			pStat.executeUpdate();
+     			pStat.close();
+     			
+	    		
+			 
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return newPropID;
+	}
+
 
 }
