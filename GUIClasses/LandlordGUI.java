@@ -267,20 +267,27 @@ public class LandlordGUI extends GUI {
         messages.setLayout(new GridLayout(0, 1, 0, 20));
        
         Vector<String> mems = dbController.getEmail(Lid);
+        System.out.println("Mems .size is: " + mems.size());
         JPanel mPanel;
         if(mems.size() > 0){
+            
             mPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+            mPanel.setSize(500, 600);
+            mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+            System.out.println("it is not empty");
         }else{
             mPanel = new JPanel(null);
+            mPanel.setSize(500, 600);
+            mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
             JLabel noM = new JLabel("You Have No New Messages");
             noM.setFont(normalFont);
             noM.setForeground(Color.black);
             
             mPanel.add(noM);
+            System.out.println("it is empty should add");
         }
         
-       mPanel.setSize(500, 600);
-       mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+  
 
        for(int i = mems.size() - 1; i >= 0; i--){
         String tempStr = mems.get(i);
