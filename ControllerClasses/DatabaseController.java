@@ -715,5 +715,34 @@ public class DatabaseController{
 		return false;
 	}
 	
+	public int[] last30Days() {
+		int rented = 0; 
+		int posted = 0;
+		int[] temp = new int[2];
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("SELECT * FROM PROPERTY");
+			 Calendar c1 = Calendar.getInstance();	
+			 long time = c1.getTimeInMillis() - 2592000000L;
+			 
+			while(rs.next()) {
+				if(rs.getString("dateRented") != null) {
+					if(time < rs.getLong("dateRented")) {
+						rented++;
+					}
+				}if (rs.getString("datePosted") != null) {
+					if(time < rs.getLong("datePosted")) {
+						posted++;
+					}
+				}
+			}
+			temp[0] = rented;
+			temp[1] = posted; 
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return temp;
+	}
 
 }
