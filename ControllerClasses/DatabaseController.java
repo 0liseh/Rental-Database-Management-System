@@ -505,6 +505,27 @@ public class DatabaseController{
 		return newUserID;
 	}
 	
+	//Landlord gets his emails
+	public Vector<String> getEmail(int llID){
+		Vector<String> mail = new Vector<String>();
+		
+		try {
+			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery("select * from email");
+			mail.clear(); 
+			while(rs.next()) {
+				if(llID == rs.getInt("landlordID")){
+					String temp = rs.getString("emailMessage");
+					mail.add(temp);
+				}
+			}
+		} catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+		return mail;
+	}
+	
+	
 	
 	
 
