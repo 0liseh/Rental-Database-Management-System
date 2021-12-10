@@ -218,9 +218,6 @@ public class DatabaseController{
 	
 	public Vector<Property> getSearchedProperties(String type, String numBed, String numBath , String furnished, String location){
         Vector<Property> searched = new Vector<Property>();
-        int bedNum = Integer.parseInt(numBed);
-        int bathNum = Integer.parseInt(numBath);
-        boolean f = Boolean.parseBoolean(furnished);
         try {
             stmt = mysql_con.createStatement();  
             rs = stmt.executeQuery("select * from property");  
@@ -230,14 +227,18 @@ public class DatabaseController{
                 String propType = rs.getString("propertyType");
                 int numOfBed = rs.getInt("numberOfBed");
                 int numOfBath = rs.getInt("numberOfBath");
-                boolean furn = rs.getBoolean("furnished");
+                String furn = rs.getString("furnished");
                 String area = rs.getString("area");
                 String status = rs.getString("status1");
                 int llID = rs.getInt("landlordID");
                 
-                if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || bedNum == numOfBed) && (numBath.equals("-------") || bathNum == numOfBath) &&
-                        (furnished.equals("-------") || Boolean.compare(f , furn) == 0) && (location.equals("-------") || location.equals(area)) ){
-                    Property temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+                if((type.equals(propType) || type.equals("-------")) && (numBed.equals("-------") || numBed.equals(numOfBed)) && (numBath.equals("-------") || numBath.equals(numOfBath)) &&
+                        (furnished.equals("-------") || furnished.equals(furn)) && (location.equals("-------") || location.equals(area)) ){
+                	boolean f = false;
+                	if(furnished == "true") {
+                		f = true; 
+                	}
+                    Property temp = new Property(propID, propType, numOfBed, numOfBath, f, area, status, llID);
                     searched.add(temp);
                 }
             }
