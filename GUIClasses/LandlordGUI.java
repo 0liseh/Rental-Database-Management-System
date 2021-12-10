@@ -182,10 +182,11 @@ public class LandlordGUI extends GUI {
     private void confirmPostButtonPressed(){
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
-        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
+        //boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
 
         post.removeAll();
         post.repaint();
+        dbController.changeStatus(propSelected.substring(11, propSelected.length()), "active");
         addPropertiesBox();
 
     }
