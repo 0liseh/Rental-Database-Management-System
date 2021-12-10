@@ -34,7 +34,10 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         this.id = id;
         addToNewProperties();
 
-
+        boolean b = dbController.getNotifications(this.id.toString());
+        if(b){
+            JOptionPane.showMessageDialog(mainFrame, "There are new Properties to view under Recently Added");
+        }
         tp.add("Recently added" , newProps);
 
         
@@ -58,8 +61,13 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         sPanel.setSize(500, 600);
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
         newPropVec = dbController.getNewProperties(this.id.toString());
-        boolean b = dbController.getNotification(id);
-        notifs = new JCheckBox("Turn Notifications on" ,true);
+        boolean b = dbController.getNotifications(id.toString());
+        if(b){
+            notifs = new JCheckBox("Turn Notifications on" ,true);
+        }else{
+            notifs = new JCheckBox("Turn Notifications on" ,false);
+        }
+        
         sPanel.add(notifs);
         for(int i = 0; i < newPropVec.size(); i++){
             String tempStr = "\nProperty ID: " + newPropVec.get(i).getPropertyid() + "\n";
