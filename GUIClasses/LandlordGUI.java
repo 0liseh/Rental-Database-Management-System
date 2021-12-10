@@ -208,6 +208,9 @@ public class LandlordGUI extends GUI {
         System.out.println(numB2);
         System.out.println(isFurn);
         System.out.println(area);
+        //send Lid as well
+
+        dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
 
     }
 
