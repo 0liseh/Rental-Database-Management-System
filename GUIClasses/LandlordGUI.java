@@ -114,7 +114,7 @@ public class LandlordGUI extends GUI {
         mainFrame.add(tp);
         
         mainFrame.setVisible(true);
-        if(b){
+        if(b && dbController.newEmails(Lid.toString())){
             JOptionPane.showMessageDialog(mainFrame, "You Have new Messages");
         }
 
