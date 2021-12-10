@@ -108,6 +108,7 @@ public class LoginGUI extends GUI{
 
     private void registerButtonPressed()
     {
+        type = "Register";
         // make it go to the register page
     }
 

@@ -72,7 +72,7 @@ abstract class GUI extends JFrame {
    private void comboBoxSetup(){
         String numOfBedsAndBathsArr[] = { "-------", "1", "2", "3" , "4" ,"5", "6" , "7" , "8"};
         String funishedArr[] = {"-------", "Furnished", "Unfurnished"};
-        String locationArr[] = {"-------", "SW" , "NW" , "SE", "NE"};
+        String locationArr[] = {"-------", "se" , "nw" , "se", "ne"};
         String typeOfPropArr[] = {"-------", "Apartment", "Condo", "Attached House" , "House", "Townhouse"};
         String statusesArr[] = {"-------", "active" , "rented", "cancelled", "suspended"};
         numOfBedsBox = new JComboBox(numOfBedsAndBathsArr);

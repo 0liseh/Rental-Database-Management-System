@@ -9,6 +9,7 @@ public class Property_app{
     RegisteredRenterGUI rrGUI = new RegisteredRenterGUI();
     UnregisteredRenterGUI urrGUI = new UnregisteredRenterGUI();
     LoginGUI x = new LoginGUI();
+    RegisterGUI rGUI = new RegisterGUI();
 
     
    while(true){
@@ -34,6 +35,11 @@ public class Property_app{
         urrGUI.addObjects();
         x.closeWindow();
         break;
+      }else if (type == "Register"){
+        loop ="r";
+        rGUI.addObjects();
+        x.closeWindow();
+
       }
       System.out.print("");
     }
@@ -67,6 +73,19 @@ public class Property_app{
       lGUI = new LandlordGUI();
 
     }else if(loop == "rr"){
+      String status = rrGUI.getLoggingOut();
+      while(status == "NO"){
+        status = rrGUI.getLoggingOut();
+        if(status == "YES"){
+          rrGUI.closeWindow();
+          x = new LoginGUI();
+          break;
+        }
+
+         System.out.print("");
+      }
+
+      rrGUI = new RegisteredRenterGUI();
 
     }else if(loop == "urr"){
       String status = urrGUI.getLoggingOut();
@@ -82,6 +101,37 @@ public class Property_app{
       }
 
       urrGUI = new UnregisteredRenterGUI();
+
+    }else if(loop == "r"){
+      while(type == "yolo"){
+        type = rGUI.gettype();
+      if(type == "Manager"){
+        loop = "m";
+        mGUI.addObjects();
+        rGUI.closeWindow();
+        break;
+      }else if(type == "Landlord"){
+        loop = "l";
+        lGUI.addObjects(x.id);
+        rGUI.closeWindow();
+        break;
+      }else if(type == "Registered Renter"){
+        rGUI.closeWindow();
+        break;
+      }else if (type == "Unregistered Renter"){
+        loop = "urr";
+        urrGUI.addObjects();
+        rGUI.closeWindow();
+        break;
+      }else if (type == "Register"){
+        loop ="r";
+        rGUI.addObjects();
+        rGUI.closeWindow();
+
+      }
+      System.out.print("");
+      }
+      
 
     }
 

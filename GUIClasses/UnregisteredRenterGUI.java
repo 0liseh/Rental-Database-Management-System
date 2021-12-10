@@ -193,11 +193,8 @@ public class UnregisteredRenterGUI extends GUI {
 
         
         searchResults.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
-        JLabel header = new JLabel("Search Results", JLabel.CENTER);
-        header.setForeground(Color.BLACK);
-        header.setFont(normalFont);
-        searchResults.add(header);
-        tp.add("Search Results" , searchResults);
+       
+        
 
         //searchedProperties = dbController.getSearchedProperties();
         //need to call above function to get results that fit search criteria
@@ -232,5 +229,6 @@ public class UnregisteredRenterGUI extends GUI {
         JScrollPane scrollPane = new JScrollPane(sPanel);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         searchResults.add(scrollPane);
+        tp.add("Search Results" , searchResults);
     }
 }

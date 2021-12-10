@@ -8,34 +8,49 @@ import java.lang.*;
 import java.io.*;
 
 
-public class RegisterGUI extends GUI{
+public class RegisterGUI extends LoginGUI{
 
-    private JTextField un, pw, ut;
+    private JTextField un, pw, ut , n , pn;
     private JButton login , guest;
-    private JLabel username , password, userType;
+    private JLabel username , password, userType, name , phoneNumber;
+    private DatabaseController dbController;
+    JComboBox nu;
+    String type = "yolo";
+    int id;
 
     public RegisterGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+        dbController = new DatabaseController();
         setTextFields();
         setButtons();
-        addObjects();
+        //addObjects();
     }
 
     public void addObjects()
     {
+        JPanel temp = new JPanel(new GridLayout( 0, 1, 0 ,20));
+       String t[] = {"renter", "landlord"};
+        nu = new JComboBox(t);
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
-        controlPanel.add(headerLabel);
-        controlPanel.add(username);
-        controlPanel.add(un);
-        controlPanel.add(password);
-        controlPanel.add(pw);
-        controlPanel.add(userType);
-        controlPanel.add(ut);
-        controlPanel.add(login);
-        controlPanel.add(guest);
+        temp.add(headerLabel);
+        temp.add(name);
+        temp.add(n);
+        temp.add(phoneNumber);
+        temp.add(pn);
+        temp.add(username);
+        temp.add(un);
+        temp.add(password);
+        temp.add(pw);
+        temp.add(userType);
+        temp.add(nu);
+        temp.add(login);
+        temp.add(guest);
+        JScrollPane tScroll = new JScrollPane(temp);
+        tScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        controlPanel.add(tScroll);
         mainFrame.setVisible(true);
     }
 
@@ -43,23 +58,40 @@ public class RegisterGUI extends GUI{
         un = new JTextField();
         pw = new JTextField();
         ut = new JTextField();
+        n= new JTextField();
+        pn = new JTextField();
 
 
         un.setFont(normalFont);
         pw.setFont(normalFont);
         ut.setFont(normalFont);
+        n.setFont(normalFont);
+        pn.setFont(normalFont);
+        
 
         headerLabel = new JLabel("Register to Property Tracker!", JLabel.CENTER);
         headerLabel.setForeground(Color.BLACK);
         headerLabel.setFont(new Font("Courier", Font.PLAIN, 25));
 
-        username =  new JLabel("Username:");
+        name = new JLabel("Name:");
+        name.setForeground(Color.BLACK);
+        name.setFont(normalFont);
+
+        phoneNumber =  new JLabel("Phone Number:");
+        phoneNumber.setForeground(Color.BLACK);
+        phoneNumber.setFont(normalFont);
+
+        username =  new JLabel("Email:");
         username.setForeground(Color.BLACK);
         username.setFont(normalFont);
 
         password = new JLabel("Password:");
         password.setForeground(Color.BLACK);
         password.setFont(normalFont);
+
+
+       
+
 
         userType = new JLabel("User Type:");
         userType.setForeground(Color.BLACK);
@@ -107,8 +139,29 @@ public class RegisterGUI extends GUI{
         String pass = pw.getText().toString();
         System.out.println(pass);
 
-        String userT = ut.getText().toString();
-        System.out.println(userT);
+        String nam = n.getText().toString();
+        String phone = pn.getText().toString();
+        String userType = nu.getSelectedItem().toString();
+
+        //call dbController . create user
+
+
+        if(dbController.checkUser(user, pass, "Manager") != -1){
+            System.out.println("Manager");
+            type = "Manager";
+        }else if(dbController.checkUser(user, pass, "Landlord") != -1){
+            id = dbController.checkUser(user, pass, "Landlord");
+            System.out.println("landlord");
+            type = "Landlord";
+        }else if(dbController.checkUser(user, pass, "Renter") != -1){
+            System.out.println("Renter");
+            type = "Registered Renter";
+        }else{
+            JOptionPane.showMessageDialog(mainFrame, "Incorrect Name or Password, Please try again");
+            System.out.println("Didn't work");
+        }
+
+        
 
         //send these values to check database and see if it's a user and what type of user it is
 
