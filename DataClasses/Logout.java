@@ -1,5 +1,5 @@
 class Logout{
-  public logout(){
+  public void logout(){
     
   }
 }

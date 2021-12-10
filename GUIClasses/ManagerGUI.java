@@ -222,7 +222,7 @@ public class ManagerGUI extends GUI{
         
 
         String newFeeDurationText = feeDuration.getText().toString();
-        ArrayList<String> attributes = new ArrayList<String>;
+        ArrayList<String> attributes = new ArrayList<String>();
         attributes.add(newFeeText);
         attributes.add(newFeeDurationText);
         dbController.addItems("FEE",attributes);

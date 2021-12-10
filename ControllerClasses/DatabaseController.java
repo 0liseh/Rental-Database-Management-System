@@ -140,7 +140,7 @@ public class DatabaseController{
 			while(rs.next()) {
 				System.out.println("System is checking for user in database");
 				if(type.equals(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
-					return rs.getInt("id"));
+					return rs.getInt("id");
 				}
 			}
 		} catch (SQLException ex) {
