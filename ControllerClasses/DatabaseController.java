@@ -411,7 +411,7 @@ public class DatabaseController{
   //Manager can set a fee
     public void changeStatus(double propID, String status){
 
-    	 try() {
+    	 try {
     		stmt = mysql_con.createStatement();
     		rs = stmt.executeQuery("select * from property");
     		while(rs.next()){
@@ -425,7 +425,6 @@ public class DatabaseController{
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
-    	
     }
 	
 }
