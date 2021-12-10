@@ -265,9 +265,20 @@ public class LandlordGUI extends GUI {
     	
     	messages = new JPanel(new GridLayout(0, 1,0, 20));
         messages.setLayout(new GridLayout(0, 1, 0, 20));
-        JPanel mPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+       
         Vector<String> mems = dbController.getEmail(Lid);
-
+        JPanel mPanel;
+        if(mems.size() > 0){
+            mPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        }else{
+            mPanel = new JPanel(null);
+            JLabel noM = new JLabel("You Have No New Messages");
+            noM.setFont(normalFont);
+            noM.setForeground(Color.black);
+            
+            mPanel.add(noM);
+        }
+        
        mPanel.setSize(500, 600);
        mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
 
@@ -280,9 +291,8 @@ public class LandlordGUI extends GUI {
         mPanel.add(temp);
 
        }
-       if(mems.size() == 0){
-           mPanel.add(new JLabel("You Have No New Messages"));
-       }
+        
+       
 
 
        JScrollPane scrollPane = new JScrollPane(mPanel);    
