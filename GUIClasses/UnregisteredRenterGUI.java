@@ -86,6 +86,7 @@ public class UnregisteredRenterGUI extends GUI {
         tp.add("View all Properties", propListPanel);
         tp.add("Search properties" , search);
         tp.add("Login" , Login);
+        tp.add("send message" , sendMessage);
         mainFrame.add(tp);
         mainFrame.setVisible(true);
     }

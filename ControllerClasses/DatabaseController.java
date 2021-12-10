@@ -429,9 +429,10 @@ public class DatabaseController{
 				if(status.equals("active")) {
     			 datePosted(propID); 
 	    		 }else if (status.equals("rented")) {
+	    			 System.out.println("rented");
 	    			 dateRented(propID);
 	    		 } 
-				String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID + "')" ;
+				String query = "UPDATE PROPERTY SET status1='" + status + "' WHERE (propertyId='" + propID.trim() + "')" ;
   				System.out.println(query);
   				PreparedStatement pStat = mysql_con.prepareStatement(query);
   				pStat.executeUpdate();
@@ -535,6 +536,34 @@ public class DatabaseController{
 		return mail;
 	}
 	
+	//This function send emails to a specific landlord
+		public void sendMail(int llID, String email) {
+			int msgID = 0;
+	    	try {
+		    		stmt = mysql_con.createStatement();
+		            rs = stmt.executeQuery("select * from emails");
+					 
+		            while(rs.next()){
+		            	int emailID = rs.getInt("messageID");
+						msgID = emailID;
+					}
+		            msgID++;
+		            
+	    			String query = "INSERT INTO EMAILS (messageID, landlordEmail, landlordID) VALUES (?,?,?)";
+	    			PreparedStatement pStat = mysql_con.prepareStatement(query);
+	     	
+	    			pStat.setInt(1, msgID);
+	     			pStat.setString(2, email);
+	     			pStat.setInt(3, llID);
+	     			
+	     			pStat.executeUpdate();
+	     			pStat.close();
+	     			
+	    	}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	public void logout(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
@@ -549,7 +578,7 @@ public class DatabaseController{
 	public void datePosted(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
-			String query = "UPDATE PROPERTY SET 'datePosted'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id + "')" ;
+			String query = "UPDATE PROPERTY SET datePosted='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id.trim() + "')" ;
 			System.out.println(query);
 			PreparedStatement pStat = mysql_con.prepareStatement(query);
 			pStat.executeUpdate();
@@ -560,7 +589,7 @@ public class DatabaseController{
 	public void dateRented(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
-			String query = "UPDATE PROPERTY SET 'dateRented'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id + "')" ;
+			String query = "UPDATE PROPERTY SET dateRented='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (propertyId='" + id.trim() + "')" ;
 			System.out.println(query);
 			PreparedStatement pStat = mysql_con.prepareStatement(query);
 			pStat.executeUpdate();
@@ -572,17 +601,22 @@ public class DatabaseController{
 		Vector<Property> props = new Vector<Property>();
 		try {
 			stmt = mysql_con.createStatement();  
-			rs = stmt.executeQuery("SELECT * FROM USER WHERE 'id'=" + id);  
-			int lastTime = 0;
-			if(!rs.getString("lastLogin").equals("")) {
-				lastTime = rs.getInt("lastLogin");
-			}
-			stmt = mysql_con.createStatement(); 
-			rs = stmt.executeQuery("select * from property");  
-			int time = 10;
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			long lastTime = 0;
 			while(rs.next()) {
-				if(!rs.getString("datePosted").equals("")) {
-					 time = rs.getInt("datePosted");
+				if(rs.getString("id").equals(id.trim())) {
+					if(rs.getString("lastLogin") != null) {
+						lastTime = rs.getLong("lastLogin");
+					}
+					break;
+				}
+			}			
+			stmt = mysql_con.createStatement(); 
+			rs = stmt.executeQuery("SELECT * FROM PROPERTY");  
+			long time = 10;
+			while(rs.next()) {
+				if(rs.getString("datePosted") != null) {
+					 time = rs.getLong("datePosted");
 				}
 				if(lastTime < time){
 					Property temp;
