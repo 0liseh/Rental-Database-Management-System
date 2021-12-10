@@ -136,8 +136,6 @@ public class ManagerGUI extends GUI{
         System.out.println(propSelected);
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
-
-        dbController.updateStatus(propSelected.substring(11, propSelected.length()), status);
     }
 
     private void addToChangeOfStatus(){
@@ -216,14 +214,8 @@ public class ManagerGUI extends GUI{
         sf.add(feeDuration);
 
         sf.add(confirmNewFee);
-        
-        //scrollPane.repaint();
-        //scrollPane.removeAll();
-        //scrollPane.revalidate();
-        
-        JScrollPane scrollPane = new JScrollPane(sf); 
-        
 
+        JScrollPane scrollPane = new JScrollPane(sf);    
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setFee.add(scrollPane);
     }
@@ -236,17 +228,12 @@ public class ManagerGUI extends GUI{
         ArrayList<String> attributes = new ArrayList<String>();
         attributes.add(newFeeText);
         attributes.add(newFeeDurationText);
-        dbController.addItems("FEE",attributes);
+        dbController.setFee(Double.parseDouble(newFeeText), Integer.parseInt(newFeeDurationText));
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
-        
+        setFee.removeAll();
         addToSetFee();
         //send the new fee to data base
     }
-
-    
-    
-    
-
 
     private void addToSeeLandlords(){
         

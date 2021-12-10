@@ -49,27 +49,6 @@ public class DatabaseController{
 		}  
 	}
 
-	public void updateStatus(String id, String status) {
-    	try {
-            String query = "UPDATE INTO PROPERTY SET ";
-//            query += "propertyType=" + attributes.getPropertyType();
-//            query += "numberOfBed=" + attributes.getNoOfBed();
-//            query += "numberOfBath=" + attributes.getNoOfBath();
-//            query += "numberOfBath=" + attributes.getNoOfBath();
-//            query += "furnished" + attributes.isFurnished();
-//            query += "area=" + attributes.getArea();
-            query += "status1=" + status;
-//            query += "dateRented=" + attributes.getDateRented();
-            query+= " WHERE propertyId=" + id;
-            System.out.println(query);
-            PreparedStatement preparedStatment = mysql_con.prepareStatement(query);
-            preparedStatment.executeUpdate();
-            preparedStatment.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-	
 	//Gets the list of all the properties
 	public Vector<Property> getProperties(){
 		try {
@@ -397,7 +376,9 @@ public class DatabaseController{
     public void setFee(double feeAmount, int feeDuration) {
 
     	 try {
- 			String query = "INSERT INTO FEE (fee, duration) values (?,?) on duplicate key update duration = ?";
+ 			String query = "INSERT INTO FEE (fee, duration) VALUES (?,?) ON DUPLICATE KEY UPDATE fee=";
+ 			query+=feeAmount;
+ 			System.out.println("This is the query in setFee: " + query);
  			PreparedStatement pStat = mysql_con.prepareStatement(query);
  			pStat.setDouble(1, feeAmount);
  			pStat.setInt(2, feeDuration);
@@ -406,6 +387,7 @@ public class DatabaseController{
  		} catch (SQLException e) {
  			e.printStackTrace();
  		}
+    	
     }
     
   //Landlords can get a fee
