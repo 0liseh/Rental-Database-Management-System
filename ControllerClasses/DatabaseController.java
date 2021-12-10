@@ -428,19 +428,33 @@ public class DatabaseController{
 		 return false;
     }
     
-	public int registerProperty(String type, int noOfBed, int noOfBath, boolean furn, String area) {
+	public int registerProperty(String type, int noOfBed, int noOfBath, boolean furn, String location, int llID) {
 		int newPropID = -1;
     	try {
-    		 stmt = mysql_con.createStatement();
-             rs = stmt.executeQuery("");
+	    		stmt = mysql_con.createStatement();
+	            rs = stmt.executeQuery("select * from property");
+				 
+	            while(rs.next()){
+	            	int propID = rs.getInt("propertyId");
+					newPropID = propID;
+				}
+	            newPropID++;
+	            
+    			String query = "INSERT INTO PROPERTY (propertyID, propertyType, numberOfBed, numberOfBath, furnished, area, landlordID) VALUES (?,?,?,?,?,?,?)";
+    			PreparedStatement pStat = mysql_con.prepareStatement(query);
+     			
+    			pStat.setInt(1, newPropID);
+    			pStat.setString(2, type);
+     			pStat.setInt(3, noOfBed);
+     			pStat.setInt(4, noOfBath);
+     			pStat.setBoolean(5, furn);
+     			pStat.setString(6, location);
+     			pStat.setInt(7, llID);
+     			pStat.executeUpdate();
+     			pStat.close();
+     			
+	    		
 			 
-             while(rs.next()){
-				int propID = rs.getInt("propertyId");
-				newPropID = propID;
-			 }
-			 
-
-			
     	}catch (SQLException e) {
 			e.printStackTrace();
 		}
