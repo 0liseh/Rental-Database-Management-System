@@ -511,7 +511,7 @@ public class DatabaseController{
 		
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			rs = stmt.executeQuery("select * from email");
+			rs = stmt.executeQuery("select * from emails");
 			mail.clear(); 
 			while(rs.next()) {
 				if(llID == rs.getInt("landlordID")){
@@ -522,6 +522,10 @@ public class DatabaseController{
 		} catch (SQLException ex) {
             ex.printStackTrace();
         }
+		
+		for(String bruh: mail) {
+			System.out.println("This is landlord's mail: " + bruh + "\n");
+		}
 		return mail;
 	}
 	
