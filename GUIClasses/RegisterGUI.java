@@ -20,7 +20,7 @@ public class RegisterGUI extends  GUI{
 
     public RegisterGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
-        controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         dbController = new DatabaseController();
         setTextFields();
         setButtons();
