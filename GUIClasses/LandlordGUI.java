@@ -183,6 +183,9 @@ public class LandlordGUI extends GUI {
         String propSelected = propertiesBox.getSelectedItem().toString();
         System.out.println(propSelected);
         boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
+
+        post.removeAll();
+        post.repaint();
         addPropertiesBox();
 
     }
@@ -298,7 +301,7 @@ public class LandlordGUI extends GUI {
 
         JComboBox pB = new JComboBox(prop2);
 
-        post.add(pB); // idk why it doesnt show up
+        post.add(pB); 
 
         JLabel feeL = new JLabel("Select subscription Option");
         feeL.setForeground(Color.BLACK);
