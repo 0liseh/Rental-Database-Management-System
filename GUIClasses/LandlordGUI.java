@@ -27,7 +27,44 @@ public class LandlordGUI extends GUI {
 
     public LandlordGUI(){
 
-        mainFrame = new JFrame("Landlord window");
+//        mainFrame = new JFrame("Landlord window");
+//        mainFrame.setSize(500, 600);
+//        mainFrame.add(controlPanel);
+//        controlPanel.setLayout(null);
+//        //needs to use controller to get a list of properties from the database and populat properties[]
+//        dbController = new DatabaseController();
+//        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+//        tp = new JTabbedPane();
+//        
+//        reg = new JPanel(new GridLayout(0, 1, 0, 20));
+//        post = new JPanel(new GridLayout(0, 1, 0, 20));
+//        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
+//
+//        Vector<String> f = dbController.getFee();
+//       
+//
+//        for(int i = 0; i < f.size(); i++){
+//            feeBx.add(f.get(i));
+//            feeBx2.add(f.get(i));
+//        }
+//
+//        fees = new JComboBox(feeBx);
+//        fees2 = new JComboBox(feeBx2);
+//        propertiesBox = new JComboBox(prop);
+//        
+//        setButtons();
+        //addObjects();
+
+    }
+
+    public void addObjects(int id){
+    	feeBx = new Vector<String>();
+    	feeBx = new Vector<String>();
+    	prop = new String[1];
+    	prop2 = new String[1];
+    	prop[0] = "-------"; // use for properties box populate with properties.name
+        prop2[0] = "-------";
+    	mainFrame = new JFrame("Landlord window");
         mainFrame.setSize(500, 600);
         mainFrame.add(controlPanel);
         controlPanel.setLayout(null);
@@ -53,11 +90,6 @@ public class LandlordGUI extends GUI {
         propertiesBox = new JComboBox(prop);
         
         setButtons();
-        //addObjects();
-
-    }
-
-    public void addObjects(int id){
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
@@ -186,15 +218,16 @@ public class LandlordGUI extends GUI {
         String propSelected = pB.getSelectedItem().toString();
        // System.out.println(propSelected);
         //boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
+        
         if(propSelected.length() != 7) {
         post.removeAll();
         post.repaint();
         post.revalidate();
         dbController.changeStatus(propSelected.substring(11, propSelected.length()), "active");
-        addPropertiesBox();
-        addToPost();
+        closeWindow();
+        addObjects(Lid); 
         }
-
+        
     }
 
     private void confirmStatusChangeButtonPressed(){
@@ -203,7 +236,12 @@ public class LandlordGUI extends GUI {
 
         String propSelected = propertiesBox.getSelectedItem().toString();
         //System.out.println(propSelected);
-
+        if(status.equals("active")){
+            JPanel p = new JPanel(new GridLayout(0 , 1, 0, 20));
+            p.add(new JLabel("Select Subscription Model for Property"));
+            p.add(fees);
+            JOptionPane.showMessageDialog(mainFrame, p);
+        }
         if(propSelected.length() != 7) {
 	        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
 	
@@ -212,12 +250,14 @@ public class LandlordGUI extends GUI {
 	        }else{
 	            JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
 	        }
-	
-	        addPropertiesBox();
-	        addToPost();
+	        closeWindow();
+	        addObjects(Lid); 
+//	        addPropertiesBox();
+//	        addToPost();
         }
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
+        
     }
 
     private void confirmRegisterButtonPressed(){
@@ -235,8 +275,9 @@ public class LandlordGUI extends GUI {
         //send Lid as well
 
         pId = dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);
-        addPropertiesBox();
-    }
+        closeWindow();
+        addObjects(Lid);     
+        }
 
     private void confirmRegAndPostButtonPressed(){
         confirmRegisterButtonPressed();

@@ -105,8 +105,8 @@ public class DatabaseController{
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			while(rs.next()) {
-				System.out.println("In getMyproperties while loop");
 				if(lID == rs.getInt("landlordID") && !"active".equals(rs.getString("status1"))){
+					
 					//System.out.println("Found landlord properties");
 					System.out.println("This are the prop not active: "+rs.getInt("propertyID"));
 					int propID = rs.getInt("propertyId");
@@ -450,7 +450,7 @@ public class DatabaseController{
 				}
 	            newPropID++;
 	            
-    			String query = "INSERT INTO PROPERTY (propertyID, propertyType, numberOfBed, numberOfBath, furnished, area, landlordID) VALUES (?,?,?,?,?,?,?)";
+    			String query = "INSERT INTO PROPERTY (propertyID, propertyType, numberOfBed, numberOfBath, furnished, area, landlordID,status1) VALUES (?,?,?,?,?,?,?,?)";
     			PreparedStatement pStat = mysql_con.prepareStatement(query);
      			
     			pStat.setInt(1, newPropID);
@@ -460,6 +460,7 @@ public class DatabaseController{
      			pStat.setBoolean(5, furn);
      			pStat.setString(6, location);
      			pStat.setInt(7, llID);
+     			pStat.setString(8, "suspended");
      			pStat.executeUpdate();
      			pStat.close();
      			
