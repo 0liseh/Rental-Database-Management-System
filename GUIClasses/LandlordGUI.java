@@ -204,6 +204,9 @@ public class LandlordGUI extends GUI {
 
     private void confirmRegAndPostButtonPressed(){
         confirmRegisterButtonPressed();
+
+        //change 32 to the prop id;
+        dbController.changeStatus("32" , "active");
         //String tOfProp = typeOfPropBox.getSelectedItem().toString();
        // String numB = numOfBedsBox.getSelectedItem().toString();
         //String numB2 = numOfBathsBox.getSelectedItem().toString();
@@ -263,7 +266,9 @@ public class LandlordGUI extends GUI {
         whatProp.setFont(normalFont);
         post.add(whatProp);
 
-        post.add(propertiesBox); // idk why it doesnt show up
+        JComboBox pB = new JComboBox(prop);
+
+        post.add(pB); // idk why it doesnt show up
 
         JLabel feeL = new JLabel("Select subscription Option");
         feeL.setForeground(Color.BLACK);
