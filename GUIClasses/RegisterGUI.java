@@ -145,21 +145,7 @@ public class RegisterGUI extends LoginGUI{
 
         //call dbController . create user
 
-
-        if(dbController.checkUser(user, pass, "Manager") != -1){
-            System.out.println("Manager");
-            type = "Manager";
-        }else if(dbController.checkUser(user, pass, "Landlord") != -1){
-            id = dbController.checkUser(user, pass, "Landlord");
-            System.out.println("landlord");
-            type = "Landlord";
-        }else if(dbController.checkUser(user, pass, "Renter") != -1){
-            System.out.println("Renter");
-            type = "Registered Renter";
-        }else{
-            JOptionPane.showMessageDialog(mainFrame, "Incorrect Name or Password, Please try again");
-            System.out.println("Didn't work");
-        }
+        type = userType;
 
         
 
