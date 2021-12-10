@@ -143,6 +143,7 @@ public class LandlordGUI extends GUI {
         }
 
         Vector<Integer> propertiesNR = dbController.getNRProperties(Lid);
+        System.out.println(propertiesNR.size());
 
         for(int i = 0; i < propertiesNR.size(); i++){
             prop2 = Arrays.copyOf(prop2, prop2.length + 1);
@@ -183,7 +184,7 @@ public class LandlordGUI extends GUI {
 
     private void confirmPostButtonPressed(){
         String propSelected = pB.getSelectedItem().toString();
-        System.out.println(propSelected);
+       // System.out.println(propSelected);
         //boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
 
         post.removeAll();
@@ -196,10 +197,10 @@ public class LandlordGUI extends GUI {
 
     private void confirmStatusChangeButtonPressed(){
         String status = (String)statusBox.getSelectedItem();
-        System.out.println(status);
+       // System.out.println(status);
 
         String propSelected = propertiesBox.getSelectedItem().toString();
-        System.out.println(propSelected);
+        //System.out.println(propSelected);
 
 
         boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
@@ -223,11 +224,11 @@ public class LandlordGUI extends GUI {
         String isFurn = furnishedBox.getSelectedItem().toString();
         String area  = locationBox.getSelectedItem().toString();
         //sedn these values to database to register them
-        System.out.println(tOfProp);
-        System.out.println(numB);
-        System.out.println(numB2);
-        System.out.println(isFurn);
-        System.out.println(area);
+       // System.out.println(tOfProp);
+        //System.out.println(numB);
+        //System.out.println(numB2);
+        //System.out.println(isFurn);
+        //System.out.println(area);
         //send Lid as well
 
         pId = dbController.registerProperty(tOfProp, Integer.parseInt(numB), Integer.parseInt(numB2), Boolean.parseBoolean(isFurn), area, Lid);

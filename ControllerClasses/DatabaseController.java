@@ -128,13 +128,13 @@ public class DatabaseController{
 			rs = stmt.executeQuery("select * from user");
 			landlords.clear(); 
 			while(rs.next()) {
-				System.out.println("In getLandlords while loop");
+				//System.out.println("In getLandlords while loop");
 				if(type.equals(rs.getString("type1"))){
 					Landlord temp = new Landlord(rs.getString("username"), rs.getInt("id"), rs.getString("email"), rs.getString("phoneNumber"), rs.getString("password1"), dud);//getMyProperties(rs.getInt("id")));
 					landlords.add(temp);
 				}
 			}
-			System.out.println("Outside getLandlords while loop");
+			//System.out.println("Outside getLandlords while loop");
 		} catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -142,13 +142,13 @@ public class DatabaseController{
 	}
 	
 	public int checkUser(String email, String password, String type) {
-		System.out.println("System is in checkUser");
+		//System.out.println("System is in checkUser");
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = stmt.executeQuery("select * from user");
 			//renters.clear(); 
 			while(rs.next()) {
-				System.out.println("System is checking for user in database");
+				//System.out.println("System is checking for user in database");
 				if(type.equals(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
 					return rs.getInt("id");
 				}
@@ -414,7 +414,7 @@ public class DatabaseController{
     	 }catch(Exception e) {
              System.out.println(e);
     	 }
-    	 System.out.println(feeStr);
+    	 //System.out.println(feeStr);
 		return feeStr;
     	
     }
@@ -501,7 +501,7 @@ public class DatabaseController{
     	}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return newPropID;
+		return newUserID;
 	}
 
 
