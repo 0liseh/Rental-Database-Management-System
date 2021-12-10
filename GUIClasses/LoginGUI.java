@@ -119,7 +119,7 @@ public class LoginGUI extends GUI{
         System.out.println(pass);
 
         if(dbController.checkUser(user, pass, "Manager") != -1){
-            System.out.println("Mananger");
+            System.out.println("Manager");
             type = "Manager";
         }else if(dbController.checkUser(user, pass, "Landlord") != -1){
             id = dbController.checkUser(user, pass, "Landlord");
