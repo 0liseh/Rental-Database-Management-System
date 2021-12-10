@@ -152,4 +152,8 @@ public class RegisterGUI extends LoginGUI{
         //send these values to check database and see if it's a user and what type of user it is
 
     }
+    public String gettype(){
+        return type;
+    }
+
 }
