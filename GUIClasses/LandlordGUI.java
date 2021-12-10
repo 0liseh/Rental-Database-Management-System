@@ -186,13 +186,14 @@ public class LandlordGUI extends GUI {
         String propSelected = pB.getSelectedItem().toString();
        // System.out.println(propSelected);
         //boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), "rented");
-
+        if(propSelected.length() != 7) {
         post.removeAll();
         post.repaint();
         post.revalidate();
         dbController.changeStatus(propSelected.substring(11, propSelected.length()), "active");
         addPropertiesBox();
         addToPost();
+        }
 
     }
 
@@ -203,17 +204,18 @@ public class LandlordGUI extends GUI {
         String propSelected = propertiesBox.getSelectedItem().toString();
         //System.out.println(propSelected);
 
-
-        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
-
-        if(b){
-            JOptionPane.showMessageDialog(mainFrame, "Status Changes Successfully!");
-        }else{
-            JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
+        if(propSelected.length() != 7) {
+	        boolean b = dbController.changeStatus(propSelected.substring(11, propSelected.length()), status);
+	
+	        if(b){
+	            JOptionPane.showMessageDialog(mainFrame, "Status Changes Successfully!");
+	        }else{
+	            JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
+	        }
+	
+	        addPropertiesBox();
+	        addToPost();
         }
-
-        addPropertiesBox();
-        addToPost();
         //IF CHANGING IT TO ACTIVE STATUS THEY NEED TO PAY FEE
         //should send status and property to the controller so it can update the database
     }
