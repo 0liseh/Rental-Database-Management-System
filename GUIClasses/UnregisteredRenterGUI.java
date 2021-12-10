@@ -88,9 +88,9 @@ public class UnregisteredRenterGUI extends GUI {
         addToSendMessage();
         tp.add("View all Properties", propListPanel);
         tp.add("Search properties" , search);
-        
-        tp.add("Login" , Login);
         tp.add("send message" , sendMessage);
+        tp.add("Login" , Login);
+        
         mainFrame.add(tp);
         mainFrame.setVisible(true);
     }
@@ -182,9 +182,10 @@ public class UnregisteredRenterGUI extends GUI {
                 int index = src.getSelectedIndex();
                
                 if(src.getTitleAt(index).equals("Login")){
-                   if(id > 0){
-                       dbController.logout(id.toString());
-                   }
+                   
+                    logout();
+                }else if(src.getTitleAt(index).equals("Logout")){
+                   dbController.logout(id.toString());
                     logout();
                 }
                 

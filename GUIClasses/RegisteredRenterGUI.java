@@ -10,7 +10,7 @@ import java.io.*;
 public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
     private JPanel newProps; // propListPanel instead of view all
-    
+    private JPanel logout;
     private Vector<Property> newPropVec = new Vector<Property>();
     private JCheckBox notifs;
     public RegisteredRenterGUI(){
@@ -33,7 +33,9 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         
         this.id = id;
         addToNewProperties();
-
+        tp.remove(tp.getTabCount() - 1);
+        logout = new JPanel(null);
+        tp.add("Logout", logout);
         boolean b = dbController.getNotifications(this.id.toString());
         if(b){
             JOptionPane.showMessageDialog(mainFrame, "There are new Properties to view under Recently Added");
