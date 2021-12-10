@@ -23,23 +23,23 @@ public class ManagerGUI extends GUI{
     
     
     public ManagerGUI(){
-        mainFrame = new JFrame("Manager window");
-        mainFrame.setSize(500, 600);
-        mainFrame.add(controlPanel);
-        controlPanel.setLayout(null);
-        //needs to use controller to get a list of properties from the database and populat properties[]
-        dbController = new DatabaseController();
-        properties = dbController.getProperties();
-        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
-        tp = new JTabbedPane();
-        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
-        seeProps = new JPanel();
-        seeLandlords = new JPanel();
-        seeRenters = new JPanel();
-        setFee = new JPanel(new GridLayout(0, 1, 0, 20));
-        getPSummary = new JPanel();
-        initializeComboBoxes();
-        setButtons();
+//        mainFrame = new JFrame("Manager window");
+//        mainFrame.setSize(500, 600);
+//        mainFrame.add(controlPanel);
+//        controlPanel.setLayout(null);
+//        //needs to use controller to get a list of properties from the database and populat properties[]
+//        dbController = new DatabaseController();
+//        properties = dbController.getProperties();
+//        //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+//        tp = new JTabbedPane();
+//        changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
+//        seeProps = new JPanel();
+//        seeLandlords = new JPanel();
+//        seeRenters = new JPanel();
+//        setFee = new JPanel(new GridLayout(0, 1, 0, 20));
+//        getPSummary = new JPanel();
+//        initializeComboBoxes();
+//        setButtons();
         //addObjects();
     }
     private void setButtons(){
@@ -59,6 +59,28 @@ public class ManagerGUI extends GUI{
 
 
     public void addObjects(){
+    	 properties = new Vector<Property>();
+    	 landlords = new Vector<Landlord>();
+    	 renters = new Vector<RegisteredRenter>();
+    	 prop = new String[1];
+    	 prop[0] = "-------";
+    	 mainFrame = new JFrame("Manager window");
+         mainFrame.setSize(500, 600);
+         mainFrame.add(controlPanel);
+         controlPanel.setLayout(null);
+         //needs to use controller to get a list of properties from the database and populat properties[]
+         dbController = new DatabaseController();
+         properties = dbController.getProperties();
+         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
+         tp = new JTabbedPane();
+         changeOfStatus = new JPanel(new GridLayout(0, 1, 0, 20));
+         seeProps = new JPanel();
+         seeLandlords = new JPanel();
+         seeRenters = new JPanel();
+         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
+         getPSummary = new JPanel();
+         initializeComboBoxes();
+         setButtons();
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
@@ -139,6 +161,8 @@ public class ManagerGUI extends GUI{
 
        if(b){
         JOptionPane.showMessageDialog(mainFrame, "Status Changes Successfully!");
+        closeWindow();
+        addObjects(); 
        }else{
         JOptionPane.showMessageDialog(mainFrame, "Was Unable to change status");
        }
@@ -240,6 +264,8 @@ public class ManagerGUI extends GUI{
         setFee = new JPanel(new GridLayout(0, 1, 0, 20));
         setFee.removeAll();
         addToSetFee();
+        closeWindow();
+        addObjects(); 
         //send the new fee to data base
     }
 
