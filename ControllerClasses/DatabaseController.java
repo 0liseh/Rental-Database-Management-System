@@ -427,5 +427,20 @@ public class DatabaseController{
  		}
 		 return false;
     }
+    
+    public int registerProperty() {
+    	
+    	try {
+	    	int propID = rs.getInt("propertyId");
+			String propType = rs.getString("propertyType");
+			int numOfBed = rs.getInt("numberOfBed");
+			int numOfBath = rs.getInt("numberOfBath");
+			boolean furn = rs.getBoolean("furnished");
+			String area = rs.getString("area");
+			String status = rs.getString("status1");
+			int llID = rs.getInt("landlordID");
+    	}
+    
+    }
 	
 }

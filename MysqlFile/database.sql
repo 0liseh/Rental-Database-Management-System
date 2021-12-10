@@ -23,7 +23,7 @@ CREATE TABLE NOTIFICATION(
 
 DROP TABLE IF EXISTS PROPERTY;
 CREATE TABLE PROPERTY (
-	propertyId		integer not null,
+	propertyId		integer not null AUTO_INCREMENT,
 	propertyType	        varchar(50),
 	numberOfBed		integer,
         numberOfBath	        integer,
