@@ -12,6 +12,7 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
     private JPanel newProps; // propListPanel instead of view all
     private Integer id;
     private Vector<Property> newPropVec = new Vector<Property>();
+    private JCheckBox notifs;
     public RegisteredRenterGUI(){
         
         mainFrame.setTitle("Renter window");
@@ -57,7 +58,9 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         sPanel.setSize(500, 600);
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
         newPropVec = dbController.getNewProperties(this.id.toString());
-
+        boolean b = dbController.getNotification(id);
+        notifs = new JCheckBox("Turn Notifications on" ,true);
+        sPanel.add(notifs);
         for(int i = 0; i < newPropVec.size(); i++){
             String tempStr = "\nProperty ID: " + newPropVec.get(i).getPropertyid() + "\n";
             tempStr = tempStr + "Type of property: " + newPropVec.get(i).getPropertyType() + "\n";
