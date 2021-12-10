@@ -296,6 +296,7 @@ public class LandlordGUI extends GUI {
         temp.setFont(normalFont);
         temp.setEditable(false);
         temp.setLineWrap(true);
+        temp.setWrapStyleWord(true);
         mPanel.add(temp);
 
        }
