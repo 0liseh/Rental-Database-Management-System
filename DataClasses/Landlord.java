@@ -1,3 +1,5 @@
+package DataClasses;
+
 import java.util.Vector;
 
 public class Landlord extends User{
