@@ -536,19 +536,19 @@ public class DatabaseController{
 	}
 	
 	//This function send emails to a specific landlord
-		public void sendMail(String email, int llID) {
+		public void sendMail(int llID, String email) {
 			int msgID = 0;
 	    	try {
 		    		stmt = mysql_con.createStatement();
-		            rs = stmt.executeQuery("select * from user");
+		            rs = stmt.executeQuery("select * from emails");
 					 
 		            while(rs.next()){
-		            	int emailID = rs.getInt("id");
+		            	int emailID = rs.getInt("messageID");
 						msgID = emailID;
 					}
 		            msgID++;
 		            
-	    			String query = "INSERT INTO EMAIL (messageID, landlordEmail, landlordID) VALUES (?,?,?)";
+	    			String query = "INSERT INTO EMAILS (messageID, landlordEmail, landlordID) VALUES (?,?,?)";
 	    			PreparedStatement pStat = mysql_con.prepareStatement(query);
 	     	
 	    			pStat.setInt(1, msgID);
