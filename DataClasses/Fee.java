@@ -1,4 +1,4 @@
-package DataClasses;
+
 
 /** Entity class Fee**/
 class Fee{
