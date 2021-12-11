@@ -1,8 +1,3 @@
-package GUIClasses;
-
-
-
-import ControllerClasses.DatabaseController;
 
 import javax.swing.*;
 import java.awt.*;
