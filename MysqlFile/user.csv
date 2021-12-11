@@ -1,0 +1,12 @@
+username,id,email,phoneNumber,password1,type1
+Oliseh,1,oc,4035610587,1234,Manager
+Colin,2,cc,4035610588,1234,Manager
+Dan,3,danc,1234567890,1234,Landlord
+Long,4,oc@gmail.com,1234567891,1234,Landlord
+Zeeshan,5,bruh,4035610589,1234,Landlord
+Bruhh,6,nah,1234567894,1234,Landlord
+Why,7,idek,1234567895,1234,Landlord
+Ijust,8,why,1234567893,1234,Landlord
+Can't,9,tired,1234567898,1234,Landlord
+Jonathan,10,sleepy,4035610586,1234,Renter
+Chai,11,lol,1234567892,1234,Renter

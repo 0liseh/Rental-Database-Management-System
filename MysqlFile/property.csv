@@ -1,0 +1,16 @@
+propertyId,propertyType,numberOfBed,numberOfBath,furnished,area,status1,landlordID
+1,apartment,2,2,NULL,sw,-------,5
+2,attached,NULL,NULL,NULL,NULL,rented,3
+3,dettached,NULL,NULL,NULL,NULL,active,4
+4,townhouse,NULL,NULL,NULL,NULL,cancelled,5
+5,apartment,NULL,NULL,NULL,NULL,active,11
+6,loft,NULL,NULL,NULL,NULL,rented,3
+7,penthouse,NULL,NULL,NULL,NULL,rented,3
+8,duplex,NULL,NULL,NULL,NULL,NULL,6
+9,bungalow,NULL,NULL,NULL,NULL,NULL,8
+10,house,2,3,NULL,ne,rented,5
+11,Apartment,4,4,0,nw,NULL,3
+12,Condo,2,3,0,se,cancelled,3
+13,House,3,6,0,-------,active,3
+14,Condo,7,7,0,nw,active,3
+15,Townhouse,5,5,0,se,active,3
