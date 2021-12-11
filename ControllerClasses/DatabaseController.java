@@ -681,7 +681,7 @@ public class DatabaseController{
 			System.out.println(e);
 		}  
 	}
-	public boolean newNotifications(String id) {
+	public boolean newEmails(String id) {
 		try {
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("SELECT * FROM USER");
