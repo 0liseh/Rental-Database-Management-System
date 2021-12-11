@@ -549,7 +549,7 @@ public class DatabaseController{
 					}
 		            msgID++;
 		            
-	    			String query = "INSERT INTO EMAILS (messageID, landlordEmail, landlordID) VALUES (?,?,?)";
+	    			String query = "INSERT INTO EMAILS (messageID, emailMessage, landlordID) VALUES (?,?,?)";
 	    			PreparedStatement pStat = mysql_con.prepareStatement(query);
 	     	
 	    			pStat.setInt(1, msgID);
