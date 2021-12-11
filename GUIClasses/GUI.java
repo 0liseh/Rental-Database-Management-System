@@ -29,7 +29,11 @@ abstract class GUI extends JFrame {
   
    public GUI(){
        mainFrame = new JFrame("Property Application");
-       
+       controlPanel = new JPanel(); 
+       mainFrame.setSize(500,500);
+       mainFrame.add(controlPanel);
+       controlPanel.setLayout(null);
+       propListPanel = new JPanel(); 
 
    
        //Below functions initialize what properties the JButtons and JComboBoxes have
