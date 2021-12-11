@@ -569,7 +569,7 @@ public class DatabaseController{
 	public void logout(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
-			String query = "UPDATE USER SET 'lastLogin'='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (id='" + id + "')" ;
+			String query = "UPDATE USER SET lastLogin='" + Long.toString(c1.getTimeInMillis()) + "' WHERE (id='" + id + "')" ;
 			System.out.println(query);
 			PreparedStatement pStat = mysql_con.prepareStatement(query);
 			pStat.executeUpdate();
