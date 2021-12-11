@@ -151,7 +151,7 @@ public class DatabaseController{
 			//renters.clear(); 
 			while(rs.next()) {
 				//System.out.println("System is checking for user in database");
-				if(type.equals(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
+				if(type.equalsIgnoreCase(rs.getString("type1")) && email.equals(rs.getString("email")) && password.equals(rs.getString("password1"))){
 					return rs.getInt("id");
 				}
 			}
@@ -680,6 +680,39 @@ public class DatabaseController{
 		catch(Exception e){ 
 			System.out.println(e);
 		}  
+	}
+	public boolean newNotifications(String id) {
+		try {
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("SELECT * FROM USER");
+			long time = 0;
+			while(rs.next()) {
+				if(rs.getString("landlordID").equals(id.trim())) {
+					if(rs.getString("lastLogin") != null) {
+						time = rs.getLong("lastLogin");
+					}
+					break;
+				}
+			}
+			stmt = mysql_con.createStatement();  
+			rs = stmt.executeQuery("SELECT * FROM EMAIL");
+			while(rs.next()) {
+				if(rs.getString("landlordID").equals(id.trim())) {
+					if(rs.getString("time") == null) {
+						return true;
+					}else if(time < rs.getLong("time")){
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		catch(Exception e){ 
+			System.out.println(e);
+		}  
+		return false;
 	}
 	
 
