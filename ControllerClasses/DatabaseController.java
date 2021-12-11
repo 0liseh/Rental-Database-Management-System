@@ -30,7 +30,6 @@ public class DatabaseController{
             //Open a connection
 			mysql_con = DriverManager.getConnection(url,username,password);
 		} catch (SQLException e) {
-			System.out.println("Problem");
 			e.printStackTrace();
 		}
 
@@ -142,7 +141,7 @@ public class DatabaseController{
         }
 		return landlords;
 	}
-	
+	//verify the login information is correct for the correct type
 	public int checkUser(String email, String password, String type) {
 		//System.out.println("System is in checkUser");
 		try {
@@ -161,7 +160,7 @@ public class DatabaseController{
 		System.out.println("System is done with checkUser");
 		return -1;
 	}
-	
+	//get vector of all registered renters
 	public Vector<RegisteredRenter> getRegisteredRenters(){
 		try {
 			String type = "Renter";
@@ -180,7 +179,7 @@ public class DatabaseController{
         }
 		return renters;
 	}
-	
+	// get notifications for specified landlord
 	public int getNotification(int id){
 		try {
 			stmt = mysql_con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -197,29 +196,51 @@ public class DatabaseController{
 		return -1;
 	}
 	
-	
+	//get all properties that used to have a specific status
 	public Vector<Property> getStatusProperties(String stat){
 		Vector<Property> prop = new Vector<Property>();
 		try {
+			Calendar c1 = Calendar.getInstance();	
+			long time = c1.getTimeInMillis() - 2592000000L;
 			stmt = mysql_con.createStatement();  
 			rs = stmt.executeQuery("select * from property");  
 			while(rs.next()) {
-				if(stat.equals(rs.getString("status1"))){
-					Property temp;
-					int propID = rs.getInt("propertyId");
-					String propType = rs.getString("propertyType");
-					int numOfBed = rs.getInt("numberOfBed");
-					int numOfBath = rs.getInt("numberOfBath");
-					boolean furn = rs.getBoolean("furnished");
-					String area = rs.getString("area");
-					String status = rs.getString("status1");
-					int llID = rs.getInt("landlordID");
-					
-					temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
-					prop.add(temp);
-		
+				if(stat.equals("rented")) {
+					if(rs.getString("dateRented") != null){
+						if(time < rs.getLong("dateRented")) {
+						Property temp;
+						int propID = rs.getInt("propertyId");
+						String propType = rs.getString("propertyType");
+						int numOfBed = rs.getInt("numberOfBed");
+						int numOfBath = rs.getInt("numberOfBath");
+						boolean furn = rs.getBoolean("furnished");
+						String area = rs.getString("area");
+						String status = rs.getString("status1");
+						int llID = rs.getInt("landlordID");
+						
+						temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+						prop.add(temp);
+						}
+					}
 				}
-			
+				else if(stat.equals("active")) {
+					if(rs.getString("datePosted") != null){
+						if(time < rs.getLong("datePosted")) {
+							Property temp;
+							int propID = rs.getInt("propertyId");
+							String propType = rs.getString("propertyType");
+							int numOfBed = rs.getInt("numberOfBed");
+							int numOfBath = rs.getInt("numberOfBath");
+							boolean furn = rs.getBoolean("furnished");
+							String area = rs.getString("area");
+							String status = rs.getString("status1");
+							int llID = rs.getInt("landlordID");
+							
+							temp = new Property(propID, propType, numOfBed, numOfBath, furn, area, status, llID);
+							prop.add(temp);
+						}
+					}
+				}
 			}
 		}
 		catch(Exception e){ 
@@ -227,7 +248,7 @@ public class DatabaseController{
 		}  
 		return prop;
 	}
-	
+	//get properties related to what was searched
 	public Vector<Property> getSearchedProperties(String type, String numBed, String numBath , String furnished, String location){
         Vector<Property> searched = new Vector<Property>();
         try {
@@ -261,7 +282,7 @@ public class DatabaseController{
         return searched;
     }
 	
-	
+	//add a row into a specific table
     public void addItems(String table, ArrayList<String> attributes) {
         try {
             String query = "INSERT INTO " + table + " VALUES (";
@@ -281,65 +302,8 @@ public class DatabaseController{
             ex.printStackTrace();
         }
     }
-	
-
-	public int TotalPropertyPostedInPeriod(String start_date, String end_date)  // date must be of form: dd-mm-yyyy
-    {
-        int counter=0;
-        try {
-            stmt = mysql_con.createStatement();
-            rs = stmt.executeQuery("select * from property");
-            var startDate = start_date.split("-");
-            var newStartDate = (new Date(Integer.parseInt(startDate[2]),Integer.parseInt(startDate[1])-1, Integer.parseInt(startDate[0]))).getTime();
-            var endDate = end_date.split("-");
-            var newEndDate = (new Date(Integer.parseInt(endDate[2]),Integer.parseInt(endDate[1])-1, Integer.parseInt(endDate[0]))).getTime();
-            while(rs.next())
-            {
-
-                String date_posted = rs.getString("datePosted");
-                var datePosted = date_posted.split("-");
-                var newDatePosted = (new Date(Integer.parseInt(datePosted[2]),Integer.parseInt(datePosted[1])-1, Integer.parseInt(datePosted[0]))).getTime();
-                if(newStartDate<newDatePosted && newEndDate>newDatePosted)
-                {
-                    counter+=1;
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return counter;
-    }
-
-    public int TotalPropertyRentedInPeriod(String start_date, String end_date)  // date must be of form: dd-mm-yyyy and status should be rented
-    {
-        int counter=0;
-        try {
-            stmt = mysql_con.createStatement();
-            rs = stmt.executeQuery("select * from property");
-            var startDate = start_date.split("-");
-            var newStartDate = (new Date(Integer.parseInt(startDate[2]),Integer.parseInt(startDate[1])-1, Integer.parseInt(startDate[0]))).getTime();
-            var endDate = end_date.split("-");
-            var newEndDate = (new Date(Integer.parseInt(endDate[2]),Integer.parseInt(endDate[1])-1, Integer.parseInt(endDate[0]))).getTime();
-            while(rs.next())
-            {
-
-                String date_posted = rs.getString("dateRented");
-                var dateRented = date_posted.split("-");
-                var newDateRented = (new Date(Integer.parseInt(dateRented[2]),Integer.parseInt(dateRented[1])-1, Integer.parseInt(dateRented[0]))).getTime();
-                if(newStartDate<newDateRented && newEndDate>newDateRented)
-                {
-                    counter+=1;
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return counter;
-    }
-	
-	public void sendMailToLandlord(String message, int propertyId)  // adds a message in the messages table for the landlord of that property
+	// adds a message in the messages table for the landlord of that property
+	public void sendMailToLandlord(String message, int propertyId)  
     {
         try {
             stmt = mysql_con.createStatement();
@@ -362,8 +326,9 @@ public class DatabaseController{
             System.out.println(e);
         }
     }
-
-    public Vector<String> getAllMails(int landlord_id)  // adds a message in the messages table for the landlord of that property
+	
+	// adds a message in the messages table for the landlord of that property
+    public Vector<String> getAllMails(int landlord_id)  
     {
         Vector<String> result = new Vector<>();
         try {
@@ -421,7 +386,7 @@ public class DatabaseController{
     	
     }
     
-  //Manager can set a fee
+  //Manager can change status of a property
     public boolean changeStatus(String propID, String status){
     	 try {
     		 
@@ -447,6 +412,7 @@ public class DatabaseController{
 		 return false;
     }
     
+    //add property to database 
 	public int registerProperty(String type, int noOfBed, int noOfBath, boolean furn, String location, int llID) {
 		int newPropID = -1;
     	try {
@@ -539,7 +505,7 @@ public class DatabaseController{
 	}
 	
 	//This function send emails to a specific landlord
-		public void sendMail(int llID, String email) {
+	public void sendMail(int llID, String email) {
 			int msgID = 0;
 	    	try {
 		    		stmt = mysql_con.createStatement();
@@ -565,7 +531,7 @@ public class DatabaseController{
 				e.printStackTrace();
 			}
 		}
-	
+	//when logging out, add the time of when the user logged out
 	public void logout(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
@@ -577,6 +543,7 @@ public class DatabaseController{
 			e.printStackTrace();
 		}
 	}
+	//when was the property posted
 	public void datePosted(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
@@ -588,6 +555,7 @@ public class DatabaseController{
 			e.printStackTrace();
 		}
 	}
+	//when was the property declared rented
 	public void dateRented(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
@@ -599,6 +567,7 @@ public class DatabaseController{
 			e.printStackTrace();
 		}
 	}
+	//get new properties based on when the last login time was
 	public Vector<Property> getNewProperties(String id){
 		Vector<Property> props = new Vector<Property>();
 		try {
@@ -641,7 +610,7 @@ public class DatabaseController{
 		}  
 		return props;
 	}
-	
+	//get whether user has notifications on or off
 	public boolean getNotifications(String id) {
 		try {
 			stmt = mysql_con.createStatement();  
@@ -664,7 +633,7 @@ public class DatabaseController{
 		}  
 		return false;
 	}
-	
+	//set notifications for user on or off
 	public void setNotifications(String id,boolean notifs) {
 		try {
 			String query = "UPDATE USER SET notifications='";
@@ -681,6 +650,7 @@ public class DatabaseController{
 			System.out.println(e);
 		}  
 	}
+	//get new emails based on when the landlord last logged on
 	public boolean newEmails(String id) {
 		try {
 			stmt = mysql_con.createStatement();  
@@ -714,7 +684,7 @@ public class DatabaseController{
 		}  
 		return false;
 	}
-	
+	//get the number of rented or listed properties in the last 30 days
 	public int[] last30Days() {
 		int rented = 0; 
 		int posted = 0;

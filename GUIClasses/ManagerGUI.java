@@ -388,18 +388,18 @@ public class ManagerGUI extends GUI{
         sPanel.setSize(500, 600);
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 100, 0, 100));
 
-        JLabel periodt= new JLabel("Over last 30 mins"); // retrieve from database
+        JLabel periodt= new JLabel("Over last 30 days"); // retrieve from database
         periodt.setForeground(Color.BLACK);
         periodt.setFont(normalFont);
         sPanel.add(periodt);
 
         int s[] = dbController.last30Days();
-        JLabel houseListed = new JLabel("Total houses Listed: " + s[1]); // retrieve from database
+        JLabel houseListed = new JLabel("Total houses Listed: " + Integer.toString(s[1])); // retrieve from database
         houseListed.setForeground(Color.BLACK);
         houseListed.setFont(normalFont);
         sPanel.add(houseListed);
 
-        JLabel houseRented = new JLabel("Total houses Rented: " + s[0]); // retrieve from database
+        JLabel houseRented = new JLabel("Total houses Rented: " + Integer.toString(s[0])); // retrieve from database
         houseRented.setForeground(Color.BLACK);
         houseRented.setFont(normalFont);
         sPanel.add(houseRented);
