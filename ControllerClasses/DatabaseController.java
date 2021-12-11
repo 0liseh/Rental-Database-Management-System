@@ -535,6 +535,34 @@ public class DatabaseController{
 		return mail;
 	}
 	
+	//This function send emails to a specific landlord
+		public void sendMail(String email, int llID) {
+			int msgID = 0;
+	    	try {
+		    		stmt = mysql_con.createStatement();
+		            rs = stmt.executeQuery("select * from user");
+					 
+		            while(rs.next()){
+		            	int emailID = rs.getInt("id");
+						msgID = emailID;
+					}
+		            msgID++;
+		            
+	    			String query = "INSERT INTO EMAIL (messageID, landlordEmail, landlordID) VALUES (?,?,?)";
+	    			PreparedStatement pStat = mysql_con.prepareStatement(query);
+	     	
+	    			pStat.setInt(1, msgID);
+	     			pStat.setString(2, email);
+	     			pStat.setInt(3, llID);
+	     			
+	     			pStat.executeUpdate();
+	     			pStat.close();
+	     			
+	    	}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	public void logout(String id){	
 		try {
 	        Calendar c1 = Calendar.getInstance();	        
