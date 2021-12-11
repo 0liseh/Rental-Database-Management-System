@@ -11,7 +11,8 @@ import javax.swing.event.ChangeListener;
 
 public class UnregisteredRenterGUI extends GUI {
     
-    private JPanel search, searchResults, sendMessage, Login; // propListPanel instead of view all
+    //declare variables and Objects for the Unregistered Renter GUI
+    private JPanel search, searchResults, sendMessage, Login; 
     private JButton confirmSearch, confirmSendMessage;
     protected JTabbedPane tp;
     private String prop[] = {"-------"}; // use for properties box populate with properties.name
@@ -24,7 +25,7 @@ public class UnregisteredRenterGUI extends GUI {
     protected JTextArea message;
     protected Integer id = -1;
 
-
+    //initializes frame, controller and panels plus calls other functions to set buttons
     public UnregisteredRenterGUI(){
 
         mainFrame = new JFrame("guest window");
@@ -47,6 +48,8 @@ public class UnregisteredRenterGUI extends GUI {
         
         //dbController.getUsers();
     }   
+
+    //will add to the Properties tab all the properties in the database using the controller to retrieve
     private void displayProp(){
     	propListPanel.setLayout(new GridLayout(0, 1, 0, 20));
         JPanel sPanel = new JPanel(new GridLayout(0, 1, 0, 20));
@@ -81,6 +84,8 @@ public class UnregisteredRenterGUI extends GUI {
         propListPanel.add(scrollPane);
     }
 
+    //will call fucntions to initialize buttons send message and search tabs 
+    //then will add the panels to the TabbedPane
     public void addObjects(){
         
 
@@ -96,6 +101,7 @@ public class UnregisteredRenterGUI extends GUI {
         mainFrame.setVisible(true);
     }
 
+    //will set what all the buttons look like
     private void setButtons(){
         confirmSearch = new JButton("Search");
        
@@ -112,6 +118,7 @@ public class UnregisteredRenterGUI extends GUI {
         confirmSendMessage.setFont(normalFont);
     }
 
+    //adds labels, textFields, acomboBoxes, and buttons to the search Panels
     private void addToSearch(){
         search.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
         headerLabel = new JLabel("Select search criteria", JLabel.CENTER);
@@ -155,6 +162,7 @@ public class UnregisteredRenterGUI extends GUI {
 
     }
 
+    //adds action listeners for the buttons and logout tab
     protected void addActionListeners(){
         confirmSearch.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -195,6 +203,8 @@ public class UnregisteredRenterGUI extends GUI {
         tp.addChangeListener(cl);
     }
 
+    //if serach button is pressed get inputs from the comboboxes and send to controller to get properties taht match
+    //then call teh search results pane Method
     private void searchButtonPressed(){
         String tOfProp = typeOfPropBox.getSelectedItem().toString();
         String numB = numOfBedsBox.getSelectedItem().toString();
@@ -212,7 +222,7 @@ public class UnregisteredRenterGUI extends GUI {
         //contact database a grab all properties that match the description
         addToSearchResults();
     }
-
+    //gets the vecotr of properties that match teh search results and adds them to the pagesearch results
     private void addToSearchResults(){
         searchResults.removeAll();
         searchResults.revalidate();
@@ -260,6 +270,7 @@ public class UnregisteredRenterGUI extends GUI {
         tp.add("Search Results" , searchResults);
     }
 
+    //initializes and adds Text area and button so renters can send message to Landlords
     private void addToSendMessage(){
         sendMessage.setLayout(new GridLayout(0 , 1 ,0 , 20));
         sendMessage.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
@@ -294,6 +305,7 @@ public class UnregisteredRenterGUI extends GUI {
      
     }
 
+    //actionListeners for the send button pressed message takes in message and LLId and uses controller to add to email server
     private void sendMessageButtonPressed(){
         JOptionPane.showMessageDialog(mainFrame, "Message has been sent");
         dbController.sendMail(Integer.parseInt(iD.getText().toString()) , message.getText().toString());

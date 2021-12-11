@@ -9,10 +9,13 @@ import java.io.*;
 
 public class RegisteredRenterGUI extends UnregisteredRenterGUI{
 
-    private JPanel newProps; // propListPanel instead of view all
+
+    //declare variables and objects
+    private JPanel newProps; 
     private JPanel logout;
     private Vector<Property> newPropVec = new Vector<Property>();
     private JCheckBox notifs;
+    //intializes Jpanel and title of the window
     public RegisteredRenterGUI(){
         
         mainFrame.setTitle("Renter window");
@@ -23,12 +26,15 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         
     }
 
+    //sets border of the newProps panel
     private void addToNewProps(){
         newProps.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
         
         
     }
 
+    //adds objects to the mainFrame that aren't added in the UnregisteredRenterGUI
+    //these would be notification page and logout panel
     public void addObjects(int id){
         
         this.id = id;
@@ -47,7 +53,8 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
     }
 
     
-
+    //Uses databse controller to get new properties from database and puts them on the screen
+    //also adds notification buttio so user can turn them on or off-> database controller will handle this with the database
     private void addToNewProperties(){
 
         newProps.removeAll();
@@ -107,6 +114,8 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         newProps.add(scrollPane);
     }
 
+
+    //when check box is clicked it will go here to use handler (database controller) to update database on who wants notifications on
     private void changeNotif(){
         if(dbController.getNotifications(this.id.toString())){
             dbController.setNotifications(id.toString(), false);

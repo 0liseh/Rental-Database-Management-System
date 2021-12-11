@@ -9,6 +9,7 @@ import java.io.*;
 
 public class RegisterGUI extends  GUI{
 
+    //variables and objects declared
     private JTextField un, pw, ut , n , pn;
     private JButton login , guest;
     private JLabel username , password, userType, name , phoneNumber;
@@ -18,6 +19,8 @@ public class RegisterGUI extends  GUI{
     public int id;
     String loggingOut = "NO";
 
+    //initializes controlPanel and controller
+    //will also call functions to initialize the textFields and buttons
     public RegisterGUI(){
         controlPanel.setLayout(new GridLayout(0 , 1 ,0 , 20));
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
@@ -27,6 +30,8 @@ public class RegisterGUI extends  GUI{
         //addObjects();
     }
 
+    //will initialize panel and caall functions to initialze comboBoxes then
+    //will add all objects to the Panel
     public void addObjects()
     {
         JPanel temp = new JPanel(new GridLayout( 0, 1, 0 ,20));
@@ -55,6 +60,7 @@ public class RegisterGUI extends  GUI{
         mainFrame.setVisible(true);
     }
 
+    //sets what the Labels and TextFields looks like
     private void setTextFields(){
         un = new JTextField();
         pw = new JTextField();
@@ -99,6 +105,7 @@ public class RegisterGUI extends  GUI{
         userType.setFont(normalFont);
     }
 
+    //sets what the buttons look like and adds event listeners to them
     private void setButtons(){
 
         login = new JButton("Sign Up");
@@ -128,11 +135,14 @@ public class RegisterGUI extends  GUI{
 
 
     }
+    //changes type of gui needed if the geust button is pressed 
     private void guestButtonPressed()
     {
         type = "Unregistered Renter";
     }
 
+    //if loginButton is pressed it will take all values inputted and use databaseController to create a user based on this
+    //it will tehn send the user back to the login screen
     private void loginButtonPressed(){
         String user = un.getText().toString();
         System.out.println(user);
@@ -157,9 +167,11 @@ public class RegisterGUI extends  GUI{
         //send these values to check database and see if it's a user and what type of user it is
 
     }
+    //returns type of GUI needed
     public String gettype(){
         return type;
     }
+    //returns user to login screen by telling it has been logged out of register -> registrateion complete
     public String getLoggingOut(){
         return loggingOut;
     }
