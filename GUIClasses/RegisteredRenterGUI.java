@@ -1,8 +1,3 @@
-package GUIClasses;
-
-
-
-import DataClasses.Property;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -56,7 +51,7 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         newProps.revalidate();
         newProps.repaint();
 
-        
+        newProps.setLayout(new GridLayout(0 , 1, 0, 20));
         newProps.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
        
         
@@ -69,7 +64,9 @@ public class RegisteredRenterGUI extends UnregisteredRenterGUI{
         sPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
         newPropVec = dbController.getNewProperties(this.id.toString());
         boolean b = dbController.getNotifications(id.toString());
+        System.out.print(b);
         if(b){
+        	
             notifs = new JCheckBox("Turn Notifications on" ,true);
         }else{
             notifs = new JCheckBox("Turn Notifications on" ,false);

@@ -1,6 +1,3 @@
-package GUIClasses;
-
-import ControllerClasses.DatabaseController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,10 +60,11 @@ public class LandlordGUI extends GUI {
     }
 
     public void addObjects(int id){
-
+    	 dbController = new DatabaseController();
+    	Lid = id;
         boolean b = dbController.getNotifications(this.Lid.toString());
         if(b){
-            JOptionPane.showMessageDialog(mainFrame, "There are new messages in inbox");
+//            JOptionPane.showMessageDialog(mainFrame, "There are new messages in inbox");
         }
     	feeBx = new Vector<String>();
     	feeBx = new Vector<String>();
@@ -79,7 +77,6 @@ public class LandlordGUI extends GUI {
         mainFrame.add(controlPanel);
         controlPanel.setLayout(null);
         //needs to use controller to get a list of properties from the database and populat properties[]
-        dbController = new DatabaseController();
         //controlPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 10, 40));
         tp = new JTabbedPane();
         
@@ -103,7 +100,6 @@ public class LandlordGUI extends GUI {
         controlPanel.removeAll();
         controlPanel.revalidate();
         controlPanel.repaint();
-        Lid = id;
         addPropertiesBox();
         addToReg();
         addToPost();
