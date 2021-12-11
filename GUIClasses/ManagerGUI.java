@@ -1,8 +1,3 @@
-package GUIClasses;
-import ControllerClasses.DatabaseController;
-import DataClasses.Landlord;
-import DataClasses.Property;
-import DataClasses.RegisteredRenter;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
