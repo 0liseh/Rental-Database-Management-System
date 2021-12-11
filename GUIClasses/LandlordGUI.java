@@ -274,7 +274,7 @@ public class LandlordGUI extends GUI {
             //JOptionPane.showMessageDialog(mainFrame, "You Have new Messages check inbox tab to view them");
             mPanel = new JPanel(new GridLayout(0, 1, 0, 20));
             mPanel.setSize(500, 600);
-            mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 0, 50));
+            mPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 300/mems.size(), 50));
             System.out.println("it is not empty");
         }else{
             mPanel = new JPanel(null);
