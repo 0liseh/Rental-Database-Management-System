@@ -1,4 +1,9 @@
 //uses static method getConnection(database URL, username, password)
+package ControllerClasses;
+import DataClasses.Landlord;
+import DataClasses.Property;
+import DataClasses.RegisteredRenter;
+
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
